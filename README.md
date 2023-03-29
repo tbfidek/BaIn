@@ -1,5 +1,3 @@
-# web
-
 ## BaIn (Baby Info Manager)
 
 Sa se dezvolte o aplicatie Web care sa permita utilizatorilor autentificati -- eventual,
