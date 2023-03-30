@@ -1,0 +1,155 @@
+:root{
+    --background-color: #7F7979;
+    --card-color: #C1BDB3;
+    --under-card-color: #5F5B6B;
+    --border-radius-card: 5px;
+    --border-radius-under-card: 10px;
+    --box-shadow: 1px 5px 5px #3c3744;
+}
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa', cursive, sans-serif;
+}
+body{
+    background-color: var(--background-color);
+}
+header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+header img{
+    max-width:3%;
+    border-radius: 50%;
+}
+header span{
+    margin:1rem;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-card);
+    padding:0.2rem;
+    margin-right:1.5rem;
+}
+.container{
+    display:grid;
+    width:96%;
+    margin: 0 auto;
+    gap:1.8rem;
+    grid-template-columns: 15rem auto;
+}
+span{
+    max-width: 50%;
+}
+aside{
+    display:flex;
+    flex-direction: column;
+    background-color:var(--under-card-color);
+    border-radius: var(--border-radius-under-card);
+}
+
+.buttons{
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.buttons span{
+    background-color: var(--card-color);
+    padding: 0.2rem;
+    margin-right:1rem;
+    margin-top: 1rem;
+    border-radius: var(--border-radius-card);
+    /*box-shadow: var(--box-shadow); pe hover*/
+}
+.buttons span:hover{
+    box-shadow: var(--box-shadow);
+}
+
+span:hover{
+    cursor: pointer;
+}
+
+.babies section{
+    font-size: 0.7rem;
+    font-weight: bolder;
+    align-items: center;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin:1rem;
+    background-color: var(--card-color);
+    padding:1rem;
+    border-radius: var(--border-radius-card);
+}
+
+.babies section:hover{
+    box-shadow: var(--box-shadow);
+}
+
+.babies section:last-child{
+    margin-bottom:3rem;
+}
+
+.actions section{
+    font-size: 0.7rem;
+    font-weight: bolder;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin:1rem;
+    background-color: var(--card-color);
+    padding:1rem;
+    border-radius: var(--border-radius-card);
+}
+.actions section:hover{
+    box-shadow: var(--box-shadow);
+}
+.baby-info{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+.baby-info img{
+    max-width: 25%;
+    border-radius:50%;
+    margin:1rem;
+}
+
+.baby-buttons{
+    font-weight: bolder;
+    /*margin-left:2rem;*/
+    /*margin-right:2rem;*/
+    background-color: var(--under-card-color);
+    padding:1rem 2rem;
+    border-radius: var(--border-radius-under-card);
+    margin-bottom: 1rem;
+}
+
+.gallery-edit{
+    display: flex;
+    flex-direction: column;
+}
+.gallery-edit button{
+    font-weight: bolder;
+    background-color: var(--card-color);
+    border: 0;
+    padding:0.5rem 3rem;
+    border-radius: var(--border-radius-card);
+    margin-bottom:0.5rem;
+}
+
+.gallery-edit button:hover{
+    box-shadow: var(--box-shadow);
+    cursor: pointer;
+}
+
+.show-information{
+    background-color: var(--under-card-color);
+    padding:9rem;
+    border-radius: var(--border-radius-under-card);
+}
+
