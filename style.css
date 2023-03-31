@@ -1,0 +1,162 @@
+:root{
+    --background-color: #7F7979;
+    --card-color: #C1BDB3;
+    --under-card-color: #5F5B6B;
+    --border-radius-card: 5px;
+    --border-radius-under-card: 10px;
+    --box-shadow: 1px 5px 5px #3c3744;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Comfortaa', cursive, sans-serif;
+}
+
+body{
+    background-color: var(--background-color);
+}
+.container {
+    position: relative;
+    width: 1000px; /* Schimbă dimensiunile după necesități */
+    height: 600px;
+    margin: 0 auto; /* Centrează containerul */
+  }
+  
+  img {
+   
+    display: block;
+    position: absolute;
+    width: 459px;
+    height: 459px;
+    left: -200px;
+    top: 216px;
+    border-radius: 50%;
+  }
+  
+    .input-box.email-box {
+        position:absolute ;
+        width: 427px;
+        height: 89px;
+        left: 433px;
+        top: 272px;
+        background: #C1BDB3;
+        box-shadow: -5px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        padding: 0;
+        margin: 0;
+      }
+      
+      .input-box.password-box {
+        position: absolute;
+        width: 427px;
+        height: 89px;
+        left: 433px; /* Ajustează left-ul pentru a poziționa caseta de intrare pentru parolă */
+        top: 409px;
+        background: #C1BDB3;
+        box-shadow: -5px 4px 4px rgba(0, 0, 0, 0.25);
+        border-radius: 10px;
+        margin-top: -25px;
+      
+      }
+
+       label {
+        display: block;
+        margin-bottom: 10px;
+        margin-left: 15px;   /*spatiul pt textul de la "introdu.."*/
+      } 
+      
+      input[type="email"],input[type="password"] {
+        width: 250px;
+        padding: 10px;
+        border-radius: 5px;
+        border: none;
+        font-size: 16px;
+        margin-left: 90px;
+        padding: 10 px 10 px 0px 10 px;
+        /*box-shadow: -5px 4px 4px rgba(0, 0, 0, 0.25);*/
+        margin-top: 25px;
+        background:#C1BDB3 ;
+      }
+
+    .login-button {
+        position: absolute;
+        width: 427px;
+        height: 79px;
+        left: 433px; 
+        top: 469px;
+        margin-top: 30px;
+        display: flex;
+        justify-content: center;
+      }
+      
+      .login-button button {
+        background-color: #C1BDB3;
+        width: 250px;
+        height: 79px;
+        border: none;
+        color: black;
+        padding: 20px 30px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 30px;
+      }
+      
+      .login-button button:hover {
+        background-color: rgb(120, 90, 139);
+      }
+
+    .signup-button {
+    position: absolute;
+    width: 427px;
+    height: 99px;
+    left: 433px; 
+    top: 469px;
+    margin-top: 160px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .signup-button button {
+    background-color: #C1BDB3;
+    width: 400px;
+    height: 79px;
+    border: none;
+    color: black;
+    padding: 20px 30px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 30px;
+  }
+  
+  .signup-button button:hover {
+        background-color: rgb(120, 90, 139);
+  }
+
+.line {
+    position: absolute;
+    width: 519px;
+    height: 0px;
+    left: 400px;
+    top: 600px;
+    border: 1px solid #000000;
+  }
+  .logo-text {
+    position: relative;
+    top: 680px;
+    left: -130px;
+    font-size: 1.5em;
+  }
+  
+ 
+  
+      
+
+      
+    
+      
+  
+  
+ 
+  
