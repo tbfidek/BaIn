@@ -29,7 +29,7 @@ header {
     font-size: 28px;
     font-weight: bold;
 
-    margin-top: 0px;
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,6 +72,12 @@ header {
     margin-bottom: 1rem;
 }
 
+.pfp-parent{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+}
+
 .profile-picture button {
 
     background: #C1BDB3;
@@ -80,22 +86,17 @@ header {
     border-radius: 7.5rem;
     box-shadow: -10px 4px 4px rgba(0, 0, 0, 0.25);
     border: none;
+}
 
-}
-.pfp-parent{
-    display: flex;
-    flex-direction: column;
-    margin-top: 0.5rem;
-}
 .child-list {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-top: 0.5rem;
 }
 
-.child-list div {
+.child-list section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-evenly;
 }
 
@@ -104,30 +105,41 @@ header {
     flex-direction: column;
     justify-content: space-evenly;
 
+    margin-right: 1rem;
     margin-top: 1rem;
     padding: 0.9rem 1.3rem 0.8rem 1.3rem;
+    height: 3.5rem;
 
     font-size: 24px;
     background: #C1BDB3;
     box-shadow: -5px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 10px;
+    border-radius: 0.6rem;
     border: none;
 }
-.pfp {
-    width: 3rem;
-    height: 3rem;
-    border-radius: 3rem;
 
+.pfp div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    margin-right: 1rem;
+    margin-top: 1rem;
+    padding: 0.9rem 1.3rem 0.8rem 1.3rem;
+    height: 3.5rem;
+    width: 3.5rem;
+
+    font-size: 24px;
+    background: #C1BDB3;
+    box-shadow: -5px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 50%
 }
 
 .registered-child {
     width: 15rem;
-    margin-left: 1.3rem;
-
 }
 
-.remove-child {
-    margin-right: 1.3rem;
+.remove-child button {
+    margin-left: 1rem;
 }
 
 .right-parent-info{
