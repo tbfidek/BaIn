@@ -32,7 +32,7 @@ header {
     justify-content: center;
     padding: 1rem 20rem;
 
-    font-size: 1.7px;
+    font-size: 1.7rem;
     font-weight: bold;
     background-color: var(--under-card-color);
     border-radius: 20px;
