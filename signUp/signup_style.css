@@ -65,6 +65,7 @@ header {
 
     padding: 3rem;
     background-color: var(--under-card-color);
+    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
     border-radius: var(--border-radius-under-card);
 }
 
@@ -78,7 +79,7 @@ header {
     padding: 6rem;
     border-radius: 50%;
     background: var(--card-color);
-    box-shadow: -10px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: var(--box-shadow);
     border: none;
 }
 
@@ -111,6 +112,14 @@ header {
     border-radius: var(--border-radius-card);
     border: none;
 }
+.child-list button:hover{
+    background: #9c9992;
+    cursor: pointer;
+}
+
+span:hover{
+    cursor: pointer;
+}
 
 .pfp {
     background: var(--card-color);
@@ -134,7 +143,9 @@ header {
     font-size: 1.5rem;
     gap: 1rem;
 }
-
+.div-family:hover{
+    cursor:pointer;
+}
 .form{
     display: flex;
     flex-direction: column;
@@ -178,6 +189,10 @@ header {
     box-shadow: var(--box-shadow);
     border-radius: 10px;
     border: none;
+}
+.modify-profile button:hover{
+    background: #9c9992;
+    cursor: pointer;
 }
 
 .already-exists {
