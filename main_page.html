@@ -38,17 +38,20 @@
                     </section>
                 </div>
                 <div class="actions">
-                    <section>
+                    <section onclick="showSleepingSchedule()">
                         <h2>Sleeping Schedule</h2>
                     </section>
-                    <section>
+                    <section onclick="showFeedingTime()">
                         <h2>Feeding Time</h2>
                     </section>
-                    <section>
+                    <section onclick="showMedicalHistory()">
                         <h2>Medical History</h2>
                     </section>
-                    <section>
+                    <section onclick="showGallery()">
                         <h2>Gallery</h2>
+                    </section>
+                    <section onclick="showEditChildProfile()">
+                        <h2>Edit Child Profile</h2>
                     </section>
                 </div>
             </div>
@@ -58,7 +61,7 @@
                 <img src="poza.jpg" alt="">
                 <div class="baby-buttons">
                     <section class="gallery-edit">
-                        <button>BABY #1</button>
+                        <button onclick="showJournal()">BABY #1</button>
                         <button>3MONTHS</button>
                         <button>50CM</button>
                         <button>5KG</button>
@@ -66,11 +69,37 @@
                         <button class="mobile">FEEDING TIME</button>
                         <button class="mobile">MEDICAL HISTORY</button>
                         <button class="mobile">GALLERY</button>
+                        <button class="mobile">EDIT CHILD PROFILE</button>
                     </section>
 
                 </div>
             </section>
-            <section class="show-information">
+            <section class="show-information BABY-PROFILE">
+                <h2>Hello, #name! How is your baby today?</h2>
+                <form>
+
+                    <label for="description-day">Write in your daily journal:</label><br><br>
+                    <textarea rows="5" cols="50" placeholder="My baby smiled today :)" id="description-day" name="description-day"></textarea>
+                    <br>
+                    <label for="add-photo">Add today's image:</label><br><br>
+                    <input type="file" id="add-photo" name="add-photo"  accept=".jpg, .jpeg, .png" /><br><br>
+                    <input type="submit" class="submit" value="Submit">
+                </form>
+            </section>
+            <section class="show-information SLEEPING-SCHEDULE">
+                <h2>Sleeping Schedule</h2>
+            </section>
+            <section class="show-information FEEDING-TIME">
+                <h2>Feeding Time</h2>
+            </section>
+            <section class="show-information MEDICAL-HISTORY">
+                <h2>Medical History</h2>
+            </section>
+            <section class="show-information GALLERY">
+                <h2>Gallery</h2>
+            </section>
+            <section class="show-information EDIT-CHILD">
+                <h2>Edit Child Profile</h2>
             </section>
         </main>
     </div>
