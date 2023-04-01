@@ -64,6 +64,14 @@ header span{
 span{
     max-width: 50%;
 }
+a{
+    text-decoration: none;
+    outline: none;
+    color:black;
+}
+a:visited{
+    text-decoration: none;
+}
 aside{
     display:flex;
     flex-direction: column;
@@ -111,7 +119,7 @@ span:hover{
 }
 
 .babies section:last-child{
-    margin-bottom:5rem;
+    margin-bottom:15rem;
 }
 
 .actions section{
@@ -197,6 +205,9 @@ span:hover{
     }
     header img {
         max-width: 4%;
+    }
+    .babies section:last-child{
+        margin-bottom:10rem;
     }
 }
 .mobile{

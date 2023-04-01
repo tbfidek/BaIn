@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="main_page.js"></script>
 
 </head>
 <header>
@@ -18,7 +19,7 @@
             </div>
             <div>
                 <img src="poza.jpg" alt="">
-                <span class="material-symbols-rounded">logout</span>
+                <a href="login_page.html"><span class="material-symbols-rounded">logout</span></a>
             </div>
 
 </header>
@@ -27,21 +28,13 @@
         <aside>
             <div class="buttons">
                 <span  onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
-                <span class="material-symbols-rounded">person_add</span>
+                <span onclick="addNewSection()" class="material-symbols-rounded">person_add</span>
             </div>
             <div class="sidebar">
-                <div class="babies">
+                <div class="babies" id="babyID">
                     <section>
-                        <h2>Baby #1</h2>
-                        <span class="material-symbols-rounded">person_remove</span>
-                    </section>
-                    <section>
-                        <h2>Baby #2</h2>
-                        <span class="material-symbols-rounded">person_remove</span>
-                    </section>
-                    <section>
-                        <h2>Baby #3</h2>
-                        <span class="material-symbols-rounded">person_remove</span>
+                        <h2>Baby </h2>
+                        <span onclick="removeChild(this)" class="material-symbols-rounded">person_remove</span>
                     </section>
                 </div>
                 <div class="actions">
