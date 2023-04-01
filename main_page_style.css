@@ -7,6 +7,15 @@
     --box-shadow: 1px 5px 5px #3c3744;
     --box-shadow-under: 0 1rem 3rem  #472836 ;
 }
+
+.dark-theme{
+    --background-color: #424242;
+    --card-color: #7F7979;
+    --under-card-color: #323031;
+    --box-shadow: 1px 5px 5px #051014;
+    --box-shadow-under: 0 1rem 3rem  #472836 ;
+}
+
 *{
     margin:0;
     padding:0;
