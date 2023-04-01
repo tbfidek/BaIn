@@ -30,6 +30,7 @@ header {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
+    width:99%;
 }
 
 header div{
@@ -55,7 +56,7 @@ header span{
 
 .container{
     display:grid;
-    width:97%;
+    width:95%;
     gap:1.8rem;
     grid-template-columns: 20rem auto;
     margin: 0 auto 1rem;
@@ -165,6 +166,24 @@ span:hover{
 .gallery-edit{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.click{
+    display: flex;
+    flex-direction: column;
+    /*justify-content: center;*/
+    /*align-items: center;*/
+}
+.gallery-edit h3:first-of-type{
+    font-size: 2rem;
+    background-color: var(--card-color);
+    padding:1rem;
+    border-radius: var(--border-radius-under-card);
+}
+
+.gallery-edit h3{
+    margin-bottom:0.5rem;
 }
 
 .gallery-edit button{
@@ -190,10 +209,10 @@ span:hover{
     padding-left:2rem;
 }
 .show-information h2{
-    padding-top: 2rem;
-
-    margin-bottom: 2rem;
     font-size: 2.5rem;
+}
+.BABY-PROFILE{
+    padding-top:2rem;
 }
 textarea{
     margin-bottom: 2rem;
@@ -212,6 +231,74 @@ form input:last-of-type{
 }
 .show-information label{
     font-size: 1.5rem;
+}
+.SLEEPING-SCHEDULE{
+    padding-left:0;
+}
+.SLEEPING-SCHEDULE h2{
+    padding-left:2rem;
+}
+.log-sleep{
+    padding-top:2rem;
+    padding-bottom:2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.log-sleep button{
+    margin-right:2rem;
+    padding:1rem 2rem;
+    font-weight: bold;
+    border:none;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-under-card);
+}
+table{
+    background-color: var(--card-color);
+    width:99%;
+    text-align: center;
+    border-radius: var(--border-radius-under-card);
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tbody td{
+    padding:0.5rem;
+}
+.sleep-info{
+    display: flex;
+    flex-direction: row;
+    gap:1rem;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.sleep-info h3{
+    margin-bottom:1rem;
+    margin-left:0;
+}
+.sleep-left, .sleep-right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom:2rem;
+    background-color: var(--card-color);
+    padding:1rem;
+    border-radius: var(--border-radius-under-card);
+}
+.GALLERY h2{
+    padding-top:1rem;
+    margin-bottom:1rem;
+}
+.GALLERY button{
+    padding:1rem 2rem;
+    font-weight: bold;
+    border:none;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-under-card);
+    margin-bottom:2rem;
 }
 @media (max-width: 1400px) {
     .container{
@@ -233,19 +320,65 @@ form input:last-of-type{
     .babies section:last-child{
         margin-bottom:10rem;
     }
+    .show-information{
+        padding-left:0;
+    }
+    .show-information h2{
+        /*padding-top: 0;*/
+        /*text-align: center;*/
+        margin-left:2rem;
+        margin-right:2rem;
+        font-size: 2.5rem;
+    }
+    form{
+        margin-left:2rem;
+    }
 }
-.mobile{
+
+.mobile {
     display: none;
+}
+.files{
+    display:flex;
+    flex-direction: row;
+    gap:1rem;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom:2rem;
+}
+
+.MEDICAL-HISTORY h2{
+    padding-top:2rem;
+    padding-bottom: 2rem;
+}
+.files button{
+    padding:1rem 2rem;
+    font-weight: bold;
+    border:none;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-under-card);
 }
 
 @media (max-width: 1000px)  {
+    .BABY-PROFILE h2{
+            text-align: center;
+        }
+    .show-information section{
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    /*.MEDICAL-HISTORY section{*/
+    /*    display:flex;*/
+    /*    flex-direction: column;*/
+    /*    justify-content: center;*/
+    /*    align-items: center;*/
+    /*}*/
     .container {
         display:flex;
         flex-direction: column-reverse;
         width:94%;
-        /*margin: 0 auto;*/
-        /*gap:1.8rem;*/
-        /*margin-bottom:1rem;*/
     }
     .baby-info img {
         max-width: 13rem;
@@ -263,10 +396,8 @@ form input:last-of-type{
     .baby-buttons button{
         padding: 0.5rem 2rem;
     }
-    .show-information{
-        padding:10rem;
-    }
     header{
+        width:100%;
         background-color: var(--under-card-color);
         position: sticky;
         top:0;
@@ -293,4 +424,32 @@ form input:last-of-type{
         padding:0;
     }
 
+    form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-left:0;
+    }
+    .sleep-info {
+        flex-direction: column;
+    }
+    table {
+        background-color: var(--card-color);
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (max-width: 500px){
+    table {
+        width: 50%;
+    }
+    .SLEEPING-SCHEDULE button{
+        padding:0.5rem 1rem;
+    }
+    .SLEEPING-SCHEDULE h2{
+        margin:0;
+    }
 }

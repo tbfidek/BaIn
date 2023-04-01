@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="main_page.js"></script>
-
+    <script src="sleepingSchedule.js"></script>
 </head>
 <header>
             <div class="mobile menu">
@@ -61,25 +61,29 @@
                 <img src="poza.jpg" alt="">
                 <div class="baby-buttons">
                     <section class="gallery-edit">
-                        <button onclick="showJournal()">BABY #1</button>
-                        <button>3MONTHS</button>
-                        <button>50CM</button>
-                        <button>5KG</button>
-                        <button class="mobile">SLEEP SCHEDULE</button>
-                        <button class="mobile">FEEDING TIME</button>
-                        <button class="mobile">MEDICAL HISTORY</button>
-                        <button class="mobile">GALLERY</button>
-                        <button class="mobile">EDIT CHILD PROFILE</button>
+                        <h3 onclick="showJournal()">BABY #1</h3>
+                        <h3>Age: 3MONTHS</h3>
+                        <h3>Height: 50CM</h3>
+                        <h3>Weight: 5KG</h3>
+                        <section class="click">
+
+                            <button class="mobile" onclick="showSleepingSchedule()">SLEEP SCHEDULE</button>
+                            <button class="mobile"onclick="showFeedingTime()">FEEDING TIME</button>
+                            <button class="mobile" onclick="showMedicalHistory()">MEDICAL HISTORY</button>
+                            <button class="mobile" onclick="showGallery()">GALLERY</button>
+                            <button class="mobile" onclick="showEditChildProfile()">EDIT CHILD PROFILE</button>
+                        </section>
+
                     </section>
 
                 </div>
             </section>
             <section class="show-information BABY-PROFILE">
-                <h2>Hello, #name! How is your baby today?</h2>
+                <h2>Hello, #name!<br> How is your baby today?</h2>
                 <form>
 
                     <label for="description-day">Write in your daily journal:</label><br><br>
-                    <textarea rows="5" cols="50" placeholder="My baby smiled today :)" id="description-day" name="description-day"></textarea>
+                    <textarea rows="10" cols="40" placeholder="My baby smiled today :)" id="description-day" name="description-day"></textarea>
                     <br>
                     <label for="add-photo">Add today's image:</label><br><br>
                     <input type="file" id="add-photo" name="add-photo"  accept=".jpg, .jpeg, .png" /><br><br>
@@ -87,22 +91,72 @@
                 </form>
             </section>
             <section class="show-information SLEEPING-SCHEDULE">
-                <h2>Sleeping Schedule</h2>
+                <section class="log-sleep">
+                    <h2>Sleeping Schedule</h2>
+                    <button>Log Sleep</button>
+                </section>
+
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start time</th>
+                        <th>End Time</th>
+                        <th>Quality</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+                <section class="sleep-info">
+                    <section class="sleep-left">
+                        <h3>Overview of your child's sleep</h3>
+                        <p>summary of their sleep</p>
+                    </section>
+                    <section class="sleep-right">
+                        <h3>Recommended for your child's age</h3>
+                        <p>advice for their age</p>
+                    </section>
+
+
+                </section>
+
             </section>
             <section class="show-information FEEDING-TIME">
-                <h2>Feeding Time</h2>
+                <section>
+                    <h2>Feeding Time</h2>
+                </section>
+
             </section>
             <section class="show-information MEDICAL-HISTORY">
-                <h2>Medical History</h2>
+                <section>
+                    <h2>Medical History</h2>
+                    <section class="files">
+                        <p>file1</p> <button>Download</button>
+                    </section>
+                    <section class="files">
+                        <p>file2</p> <button>Download</button>
+                    </section>
+                </section>
+
             </section>
             <section class="show-information GALLERY">
-                <h2>Gallery</h2>
+                <section>
+                    <h2>Gallery</h2>
+                    <button>Add Image</button>
+                    <p>calendar to be added</p>
+                </section>
+
             </section>
             <section class="show-information EDIT-CHILD">
-                <h2>Edit Child Profile</h2>
+                <section>
+                    <h2>Edit Child Profile</h2>
+                </section>
+
             </section>
         </main>
     </div>
     <script src="main_page.js"></script>
+    <script src="sleepingSchedule.js"></script>
 </body>
 </html>

@@ -13,9 +13,8 @@ function removeChild(element) {
 function addNewSection() {
     const newSection = document.createElement('section');
 
-    const content =`<h2>Baby </h2>
+    newSection.innerHTML = `<h2>Baby </h2>
                             <span onclick='removeChild(this)' class='material-symbols-rounded'>person_remove</span>`;
-    newSection.innerHTML = content;
 
     document.getElementById("babyID").appendChild(newSection);
 }
@@ -34,6 +33,7 @@ function showJournal() {
     others = document.querySelector('.EDIT-CHILD');
     others.style.display = 'none';
 }
+
 function showSleepingSchedule() {
     const sleepingSchedule = document.querySelector('.SLEEPING-SCHEDULE');
     sleepingSchedule.style.display = 'block';
@@ -108,6 +108,17 @@ function showEditChildProfile() {
     others = document.querySelector('.GALLERY');
     others.style.display = 'none';
 }
+
+Sleeping.forEach(schedule => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+                    <td>${schedule.date}</td>
+                    <td>${schedule.start}</td>
+                    <td>${schedule.end}</td>
+                    <td>${schedule.quality}</td>
+                    `;
+    document.querySelector('table tbody').appendChild(tr);
+})
 
 
 
