@@ -176,10 +176,14 @@ span:hover{
     /*align-items: center;*/
 }
 .gallery-edit h3:first-of-type{
+
     font-size: 2rem;
     background-color: var(--card-color);
     padding:1rem;
     border-radius: var(--border-radius-under-card);
+}
+.gallery-edit h3:first-of-type:hover, .actions section:hover, .babies section:hover, form input:last-of-type:hover, button:hover{
+    cursor:pointer;
 }
 
 .gallery-edit h3{

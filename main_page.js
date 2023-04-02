@@ -5,8 +5,8 @@ function themeToggle() {
 
 // dc nu merge :(((
 function removeChild(element) {
-    const section = element.parentElement.parentElement;
-    section.remove();
+    console.log("alo");
+    element.parentNode.parentNode.removeChild(element.parentNode);
 }
 
 
