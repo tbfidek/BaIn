@@ -12,9 +12,33 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
+    <script src="idk.js"></script>
 </head>
 <header>
     <div class="banner">babyGraphics</div>
+    <div class="pop-up" id="pop">
+        <div class="pop-up-profile">
+            <form class="pfp-child">
+                <div class="profile-picture-child">
+                    <button><span class="material-symbols-rounded">add_a_photo</span></button>
+                </div>
+                <div class="child-information">
+                    <div class="form">
+                        <input placeholder="name" type="text"/>
+                        <input type="date" id="data" name="name">
+                        <div class="alignment">
+                            <input placeholder="height" type="text" name="details"/>
+                            <input placeholder="weight" type="text" name="details"/>
+                        </div>
+                        <button class="medical">medical files
+                            <span class="material-symbols-rounded upload">upload</span>
+                        </button>
+                        <button class="finish" id="gata" onclick="closePopup()">finish profile</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </header>
 
 <body>
@@ -48,9 +72,9 @@
         <section class="right-parent-info">
             <div class="signup-form">
                 <div class="div-family">
-                    <input type="radio" id="family" name="family-type">
+                    <input type="radio" id="family" name="family-type" onclick="handleRadioClick('flex')">
                     <label id="fam" for="family">family</label><br>
-                    <input type="radio" id="parent" name="family-type">
+                    <input type="radio" id="parent" name="family-type" onclick="handleRadioClick('none')">
                     <label for="parent">single parent</label><br>
                 </div>
                 <div class="form">
@@ -58,24 +82,24 @@
                     <input type="email" placeholder="example@gmail.com"/>
                     <input type="password" placeholder="********"/>
                 </div>
-                <div class="form">
+                <div class="form family-options">
                     <input placeholder="parent2 name" type="text"/>
                     <input type="email" placeholder="example@gmail.com"/>
                 </div>
                 <div class="modify-profile">
                     <button id="done">finish profile</button>
-                    <button id="continue"><span class="material-symbols-rounded">person_add</span></button>
+                    <button id="continue" onclick="openPopup()"><span class="material-symbols-rounded">person_add</span></button>
                 </div>
 
             </div>
             <p class="already-exists">
-                Already have an account? <a href="login.html"  style = "color: #C1BDB3">Login here</a>
+                Already have an account? <a href="login.html" style="color: #C1BDB3">Login here</a>
             </p>
         </section>
+
     </div>
 
 </div>
-
 </body>
 </html>
 
