@@ -11,12 +11,18 @@ function removeChild(element) {
 
 
 function addNewSection() {
-    const newSection = document.createElement('section');
+    const firstSection = document.createElement('section');
 
-    newSection.innerHTML = `<h2>Baby </h2>
+    firstSection.innerHTML = `<h2>Baby </h2>
                             <span onclick='removeChild(this)' class='material-symbols-rounded'>person_remove</span>`;
 
-    document.getElementById("babyID").appendChild(newSection);
+    document.getElementById("babyID").appendChild(firstSection);
+    const secondSection = document.createElement('section');
+
+    secondSection.innerHTML = `<h2>Baby </h2>
+                            <span onclick='removeChild(this)' class='material-symbols-rounded'>person_remove</span>`;
+
+    document.getElementById("babyID-mobile").appendChild(secondSection);
 }
 
 function showJournal() {
@@ -118,7 +124,24 @@ Sleeping.forEach(schedule => {
                     <td>${schedule.quality}</td>
                     `;
     document.querySelector('table tbody').appendChild(tr);
-})
+});
 
+function dropdown() {
+    const menu = document.querySelector('.dropdown');
+    const container = document.querySelector('.container');
+    const root = document.querySelector(":root");
+    const dropColor = getComputedStyle(root).getPropertyValue("--under-card-color");
+    const originalColor = getComputedStyle(root).getPropertyValue("--background-color");
+
+    if (menu.style.display === 'block') {
+        menu.style.display = 'none';
+        container.style.visibility = 'visible' ;
+        document.body.style.backgroundColor = originalColor;
+    } else {
+        menu.style.display = 'block';
+        container.style.visibility = 'hidden' ;
+        document.body.style.backgroundColor = dropColor;
+    }
+}
 
 

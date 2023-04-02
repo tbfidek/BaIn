@@ -221,6 +221,15 @@ textarea{
 .SLEEPING-SCHEDULE,.FEEDING-TIME, .MEDICAL-HISTORY, .GALLERY,.EDIT-CHILD{
     display:none;
 }
+label{
+    margin-bottom:1rem;
+}
+.FEEDING-TIME form input,.EDIT-CHILD form input{
+    background-color: var(--card-color);
+    border:none;
+    padding:1rem 2rem;
+    border-radius: var(--border-radius-under-card);
+}
 form input:last-of-type{
     margin-bottom:4rem;
     background-color:var(--card-color);
@@ -246,7 +255,7 @@ form input:last-of-type{
     justify-content: space-between;
     align-items: center;
 }
-.log-sleep button{
+.log-sleep button, .update button{
     margin-right:2rem;
     padding:1rem 2rem;
     font-weight: bold;
@@ -254,7 +263,8 @@ form input:last-of-type{
     background-color: var(--card-color);
     border-radius: var(--border-radius-under-card);
 }
-table{
+
+.SLEEPING-SCHEDULE table{
     background-color: var(--card-color);
     width:99%;
     text-align: center;
@@ -266,6 +276,23 @@ table{
 
 tbody td{
     padding:0.5rem;
+}
+.FEEDING-TIME table{
+    background-color: var(--card-color);
+    width:50%;
+    text-align: center;
+    border-radius: var(--border-radius-under-card);
+    margin-bottom: 2rem;
+}
+.form-table{
+    margin-left:2rem;
+    margin-right:2rem;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap:2rem;
+
 }
 .sleep-info{
     display: flex;
@@ -345,9 +372,10 @@ tbody td{
     justify-content: flex-start;
     align-items: center;
     padding-bottom:2rem;
+    margin-left: 2rem;
 }
 
-.MEDICAL-HISTORY h2{
+.MEDICAL-HISTORY h2,.FEEDING-TIME h2,.GALLERY h2,.EDIT-CHILD h2{
     padding-top:2rem;
     padding-bottom: 2rem;
 }
@@ -358,23 +386,57 @@ tbody td{
     background-color: var(--card-color);
     border-radius: var(--border-radius-under-card);
 }
+.BABY-PROFILE h2{
+    padding-bottom: 2rem;
+}
+.update{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+}
 
 @media (max-width: 1000px)  {
+    .dropdown .mobile-buttons span{
+        font-size: 2rem;
+        padding:0.5rem;
+    }
+    .dropdown .buttons{
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+    .dropdown .babies section:first-of-type{
+        margin-top:3rem;
+    }
+    .dropdown .babies section{
+        font-size:1rem;
+        margin-left:3rem;
+        margin-right:3rem;
+    }
+    .update{
+        flex-direction: column;
+        justify-content: center;
+    }
+    .update button{
+        margin-right:0;
+        margin-bottom:2rem;
+    }
+    .form-table{
+        flex-direction: column;
+    }
     .BABY-PROFILE h2{
             text-align: center;
         }
-    .show-information section{
+    .GALLERY section, .MEDICAL-HISTORY section,.EDIT-CHILD section, .FEEDING-TIME section{
         display:flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
     }
-    /*.MEDICAL-HISTORY section{*/
-    /*    display:flex;*/
-    /*    flex-direction: column;*/
-    /*    justify-content: center;*/
-    /*    align-items: center;*/
-    /*}*/
+
+    .log-sleep{
+        flex-direction: row;
+    }
     .container {
         display:flex;
         flex-direction: column-reverse;
@@ -434,12 +496,18 @@ tbody td{
     .sleep-info {
         flex-direction: column;
     }
-    table {
+    .SLEEPING-SCHEDULE table {
         background-color: var(--card-color);
         width: 95%;
         margin-left: auto;
         margin-right: auto;
     }
+
+    ::-webkit-scrollbar {
+        width: 0;
+        height: 0;
+    }
+
 }
 
 @media (max-width: 500px){
@@ -452,4 +520,8 @@ tbody td{
     .SLEEPING-SCHEDULE h2{
         margin:0;
     }
+}
+
+.dropdown{
+    display: none;
 }

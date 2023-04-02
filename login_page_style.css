@@ -22,7 +22,7 @@ body{
     justify-content: center;
     align-items: center;
     transform: translateX(-5%);
-    overflow: hidden;
+    /*overflow: hidden;*/
 
 }
 
@@ -80,7 +80,7 @@ body{
       }
       body{
           transform: translateX(0%);
-          overflow: visible;
+          /*overflow: visible;*/
       }
       img {
           max-width:70%;

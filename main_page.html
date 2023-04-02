@@ -15,15 +15,26 @@
 </head>
 <header>
             <div class="mobile menu">
-                <span class="material-symbols-rounded">menu</span>
+                <span onclick="dropdown()" class="material-symbols-rounded">menu</span>
             </div>
             <div>
                 <img src="poza.jpg" alt="">
                 <a href="login_page.html"><span class="material-symbols-rounded">logout</span></a>
             </div>
-
 </header>
 <body>
+<div class="dropdown">
+    <div class="buttons mobile-buttons">
+        <span  onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
+        <span onclick="addNewSection()" class="material-symbols-rounded">person_add</span>
+    </div>
+    <div class="babies" id="babyID-mobile">
+        <section>
+            <h2>Baby</h2>
+            <span onclick="removeChild(this)" class="material-symbols-rounded">person_remove</span>
+        </section>
+    </div>
+</div>
     <div class="container">
         <aside>
             <div class="buttons">
@@ -68,7 +79,7 @@
                         <section class="click">
 
                             <button class="mobile" onclick="showSleepingSchedule()">SLEEP SCHEDULE</button>
-                            <button class="mobile"onclick="showFeedingTime()">FEEDING TIME</button>
+                            <button class="mobile" onclick="showFeedingTime()">FEEDING TIME</button>
                             <button class="mobile" onclick="showMedicalHistory()">MEDICAL HISTORY</button>
                             <button class="mobile" onclick="showGallery()">GALLERY</button>
                             <button class="mobile" onclick="showEditChildProfile()">EDIT CHILD PROFILE</button>
@@ -117,14 +128,35 @@
                         <h3>Recommended for your child's age</h3>
                         <p>advice for their age</p>
                     </section>
-
-
                 </section>
 
             </section>
             <section class="show-information FEEDING-TIME">
                 <section>
                     <h2>Feeding Time</h2>
+                </section>
+                <section class ="form-table">
+                    <div>
+                        <form>
+                            <label for="date">Date:</label><br>
+                            <input type="date" id="date" name="date" /><br><br>
+                            <label for="food">What did they eat?:</label><br>
+                            <input type="text" id="food" name="food"/><br><br>
+                            <input type="radio" id="breakfast"  name="type">
+                            <label for="breakfast">Breakfast</label><br>
+                            <input type="radio" id="lunch"  name="type">
+                            <label for="lunch">Lunch</label><br>
+                            <input type="radio" id="dinner"  name="type">
+                            <label for="dinner">Dinner</label><br>
+                            <input type="radio" id="snack"  name="type">
+                            <label for="snack">Snack</label><br><br>
+                            <input type="submit" class="submit" value="Submit">
+                        </form>
+                    </div>
+                    <div>
+                        <p>imagine a calendar :))</p>
+                        <br>
+                    </div>
                 </section>
 
             </section>
@@ -142,15 +174,34 @@
             </section>
             <section class="show-information GALLERY">
                 <section>
-                    <h2>Gallery</h2>
-                    <button>Add Image</button>
+                    <div class="log-sleep">
+                        <h2>Gallery</h2>
+                        <button>Add Image</button>
+                    </div>
                     <p>calendar to be added</p>
+                    <br>
                 </section>
 
             </section>
             <section class="show-information EDIT-CHILD">
                 <section>
                     <h2>Edit Child Profile</h2>
+                    <div class="update">
+                        <form class="form-child">
+                            <label for="bday">Date of birth:</label><br>
+                            <input type="date" id="bday" name="date" /><br><br>
+                            <label for="name">Name:</label><br>
+                            <input type="text" id="name" name="name"/><br><br>
+                            <label for="height">Height:</label><br>
+                            <input type="text" id="height" name="name"/><br><br>
+                            <label for="weight">Weight:</label><br>
+                            <input type="text" id="weight" name="name"/><br><br>
+
+                            <input type="submit" class="submit" value="Submit">
+                        </form>
+                        <button>update profile pic</button>
+                    </div>
+
                 </section>
 
             </section>
