@@ -13,8 +13,7 @@ function removeChild(element) {
 function addNewSection() {
     const firstSection = document.createElement('section');
 
-    firstSection.innerHTML = `<h2>Baby </h2>
-                            <span onclick='removeChild(this)' class='material-symbols-rounded'>person_remove</span>`;
+    firstSection.innerHTML = `<h2>Baby </h2>`;
 
     document.getElementById("babyID").appendChild(firstSection);
     const secondSection = document.createElement('section');

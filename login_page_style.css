@@ -11,21 +11,22 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-family: 'Comfortaa', cursive, sans-serif;
+    font-family: 'Righteous', cursive, sans-serif;
 }
 
-/*body{*/
-/*    background-color: var(--background-color);*/
-/*    margin:auto;*/
-    /*min-height:100vh;*/
-    /*min-width:100vh;*/
-    /*display:flex;*/
-    /*justify-content: center;*/
-    /*align-items: center;*/
-    /*transform: translateX(-5%);*/
-    /*overflow: hidden;*/
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
 
-/*}*/
+a{
+    text-decoration: none;
+    outline: none;
+    color:black;
+}
+a:visited{
+    text-decoration: none;
+}
 
 body {
     height:100vh;
@@ -58,6 +59,7 @@ body {
     margin-bottom: 1rem;
 }
   img {
+      margin-top: 2rem;
       max-width:60%;
       border-radius: 50%;
   }
@@ -82,6 +84,10 @@ body {
 
 @media (max-width: 1000px){
     .container{
+        margin-top:20rem;
         flex-direction: column;
+    }
+    .right-part section{
+        margin-bottom:5rem;
     }
 }

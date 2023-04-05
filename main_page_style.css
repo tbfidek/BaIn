@@ -20,7 +20,7 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
-    font-family: 'Comfortaa', cursive, sans-serif;
+    font-family: 'Righteous', cursive, sans-serif;
 }
 body{
     background-color: var(--background-color);
@@ -40,11 +40,16 @@ header div{
     align-items: center;
 }
 header img{
-    max-width:5%;
+    max-width:8%;
     border:1px solid black;
     border-radius: 50%;
     margin:1rem;
     float:right;
+    transition: all 0.3s ease;
+}
+
+header img:hover{
+    max-width:9%;
 }
 header span{
     margin-top: 1rem;
@@ -106,7 +111,6 @@ span:hover{
 }
 .babies section{
     font-size: 1rem;
-    font-weight: bolder;
     align-items: center;
     display:flex;
     flex-direction: row;
