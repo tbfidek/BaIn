@@ -5,7 +5,7 @@
     --border-radius-card: 5px;
     --border-radius-under-card: 10px;
     --box-shadow: 1px 5px 5px #3c3744;
-    --box-shadow-under: 0 1rem 3rem  #472836 ;
+    --box-shadow-under: 0 1rem 2rem  #22162b ;
 }
 
 .dark-theme{
@@ -44,6 +44,7 @@ header img{
     border:1px solid black;
     border-radius: 50%;
     margin:1rem;
+    float:right;
 }
 header span{
     margin-top: 1rem;
@@ -78,6 +79,7 @@ aside{
     flex-direction: column;
     background-color:var(--under-card-color);
     border-radius: var(--border-radius-under-card);
+    box-shadow: var(--box-shadow-under);
 
 }
 /*night+add*/
@@ -160,7 +162,7 @@ span:hover{
     border-radius: var(--border-radius-under-card);
     margin-bottom: 1rem;
     margin-left:2rem;
-    /*box-shadow: var(--box-shadow-under);*/
+    box-shadow: var(--box-shadow-under);
 }
 
 .gallery-edit{
@@ -209,7 +211,7 @@ span:hover{
     background-color: var(--under-card-color);
     /*padding:20rem;*/
     border-radius: var(--border-radius-under-card);
-    /*box-shadow: var(--box-shadow-under);*/
+    box-shadow: var(--box-shadow-under);
     padding-left:2rem;
 }
 .show-information h2{
@@ -345,9 +347,9 @@ tbody td{
     .baby-info{
         justify-content: center;
     }
-    header img {
-        max-width: 4%;
-    }
+    /*header img {*/
+    /*    max-width: 4%;*/
+    /*}*/
     .babies section:last-child{
         margin-bottom:10rem;
     }
@@ -470,7 +472,7 @@ tbody td{
         box-shadow: 0 1rem 3rem #3c3744;
     }
     header img {
-        max-width: 6%;
+        width: 100rem;
     }
     .mobile{
         display: block;
