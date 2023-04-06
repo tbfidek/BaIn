@@ -513,11 +513,12 @@ tbody td{
         margin-right: auto;
     }
 
-    ::-webkit-scrollbar {
-        width: 0;
-        height: 0;
-    }
 
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    height: 0;
 }
 
 @media (max-width: 500px){
