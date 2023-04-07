@@ -1,3 +1,4 @@
+
 :root{
     --background-color: #7F7979;
     --card-color: #C1BDB3;
@@ -6,14 +7,20 @@
     --border-radius-under-card: 10px;
     --box-shadow: 1px 5px 5px #3c3744;
     --box-shadow-under: 0 1rem 2rem  #22162b ;
+    --font-color: black;
+    --background-img: url("../images/bg.jpg");
+    --sidebar-shadow: #3c3744;
 }
 
 .dark-theme{
     --background-color: #424242;
-    --card-color: #7F7979;
-    --under-card-color: #323031;
+    --card-color: #443C68;
+    --under-card-color: #15142f;
     --box-shadow: 1px 5px 5px #051014;
-    --box-shadow-under: 0 1rem 3rem  #472836 ;
+    --box-shadow-under: 0 1rem 3rem #2e2e4f;
+    --font-color: #C1BDB3;
+    --sidebar-shadow: #2e2e4f;
+    --background-img: url("../images/darkbg.jpg");
 }
 
 *{
@@ -21,518 +28,293 @@
     padding:0;
     box-sizing: border-box;
     font-family: 'Righteous', cursive, sans-serif;
+
 }
 body{
-    background-color: var(--background-color);
-}
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    width:99%;
+    color: var(--font-color);
+    /*overflow-x: hidden;*/
+    background-image: var(--background-img);
 }
 
-header div{
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-}
-header img{
-    max-width:8%;
-    border:1px solid black;
-    border-radius: 50%;
-    margin:1rem;
-    float:right;
-    transition: all 0.3s ease;
-}
-
-header img:hover{
-    max-width:9%;
-}
-header span{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    background-color: var(--card-color);
-    border-radius: var(--border-radius-card);
-    padding:0.3rem;
-    margin-right:2rem;
-}
 
 .container{
-    display:grid;
-    width:95%;
-    gap:1.8rem;
-    grid-template-columns: 20rem auto;
-    margin: 0 auto 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    /*background-color: #9c9992;*/
+    /*width:100vw;*/
 }
-
-span{
-    max-width: 50%;
-}
-a{
-    text-decoration: none;
-    outline: none;
-    color:black;
-}
-a:visited{
-    text-decoration: none;
-}
-aside{
+.sidebar{
+    background-color: var(--under-card-color);
+    box-shadow: 1px 5px 20px var(--sidebar-shadow);
+    min-height: 100vh;
+    width:20rem;
     display:flex;
+    justify-content: normal;
     flex-direction: column;
-    background-color:var(--under-card-color);
-    border-radius: var(--border-radius-under-card);
-    box-shadow: var(--box-shadow-under);
+    align-items: center;
+    padding-top:1rem;
+}
+.menu {
+    display:flex;
+    justify-content: normal;
+    flex-direction: column;
+    align-items: center;
+}
+
+.child-pfp{
+    border-radius: 50%;
+    height: 6rem;
+    width:6rem;
+    cursor: pointer;
+    margin-right: 1rem;
+}
+
+.maintext{
+    font-size: 1.5rem;
+    font-weight: normal;
+    color: var(--font-color);
 
 }
-/*night+add*/
-.buttons{
+
+.child-profile{
+    display: flex;
+    padding-left: 0.5rem;
+    align-items: center;
+    width:18rem;
+}
+
+.overview , .feeding , .sleeping , .likes , .child , .gallery{
+    height: 3.5rem;
+    margin: 1rem;
+    display: flex;
+    border-radius: 0.4rem;
+    width:16rem;
+    cursor: pointer;
+    align-items: center;
+    padding-left: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: normal;
+}
+
+.search{
     display:flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
 }
 
-.buttons span{
+.search span{
     background-color: var(--card-color);
-    padding: 0.2rem;
+    padding: 0.5rem;
     margin-right:1rem;
     margin-top: 1rem;
     border-radius: var(--border-radius-card);
+    box-shadow: var(--box-shadow);
+
 }
 
-.buttons span:hover{
+.search span:hover, .sidebutton:hover, span:hover, .parent span:hover, .account-overview input[type=submit]:hover, input[type=file]::file-selector-button:hover{
+    background: #9c9992;
+    cursor: pointer;
+}
+
+.sidebutton{
+    transition: 0.15s ease;
+    background: var(--card-color);
     box-shadow: var(--box-shadow);
 }
 
-span:hover{
-    cursor: pointer;
+.child-list {
+    margin-top: 3rem;
 }
-.babies section{
-    font-size: 1rem;
-    align-items: center;
-    display:flex;
+
+.text{
+    margin-left:1.5rem;
+}
+.main {
+    width: 100%;
+}
+
+#greeting{
+    font-size: 2rem;
+}
+.parent {
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin:1rem;
-    background-color: var(--card-color);
-    padding:1rem;
-    border-radius: var(--border-radius-card);
 }
 
-.babies section:hover{
-    box-shadow: var(--box-shadow);
+.parent a{
+    text-decoration: none;
+    outline: none;
+    color:var(--font-color);
+    width: 10rem;
 }
-
-.babies section:last-child{
-    margin-bottom:15rem;
-}
-
-.actions section{
-    font-size: 1rem;
-    font-weight: bolder;
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    margin:1rem;
-    background-color: var(--card-color);
-    padding:1rem;
-    border-radius: var(--border-radius-card);
-}
-.actions section:hover{
-    box-shadow: var(--box-shadow);
-}
-.baby-info{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-.baby-info img{
-    max-width: 20rem;
-    border-radius:50%;
-    margin:1rem;
-    padding:1rem;
-}
-
-.baby-buttons{
-    font-weight: bolder;
-    /*margin-left:2rem;*/
-    /*margin-right:2rem;*/
-    background-color: var(--under-card-color);
-    padding:1rem 4rem;
-    border-radius: var(--border-radius-under-card);
-    margin-bottom: 1rem;
-    margin-left:2rem;
-    box-shadow: var(--box-shadow-under);
-}
-
-.gallery-edit{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.click{
-    display: flex;
-    flex-direction: column;
-    /*justify-content: center;*/
-    /*align-items: center;*/
-}
-.gallery-edit h3:first-of-type{
-
-    font-size: 2rem;
-    background-color: var(--card-color);
-    padding:1rem;
-    border-radius: var(--border-radius-under-card);
-}
-.gallery-edit h3:first-of-type:hover, .actions section:hover, .babies section:hover, form input:last-of-type:hover, button:hover{
-    cursor:pointer;
-}
-
-.gallery-edit h3{
-    margin-bottom:0.5rem;
-}
-
-.gallery-edit button{
-    font-weight: bolder;
-    font-size: 1rem;
-    background-color: var(--card-color);
-    border: 0;
-    padding:0.5rem 3rem;
-    border-radius: var(--border-radius-card);
-    margin-bottom:0.5rem;
-}
-
-.gallery-edit button:hover{
-    box-shadow: var(--box-shadow);
-    cursor: pointer;
-}
-
-.show-information{
-    background-color: var(--under-card-color);
-    /*padding:20rem;*/
-    border-radius: var(--border-radius-under-card);
-    box-shadow: var(--box-shadow-under);
-    padding-left:2rem;
-}
-.show-information h2{
+.parent p{
+    margin-left: 2rem;
     font-size: 2.5rem;
 }
-.BABY-PROFILE{
-    padding-top:2rem;
-}
-textarea{
-    margin-bottom: 2rem;
+.parent span{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-card);
+    padding:0.6rem;
+    margin-right: 0.5rem;
+    box-shadow: 1px 5px 5px #3c3744;
 }
 
-.SLEEPING-SCHEDULE,.FEEDING-TIME, .MEDICAL-HISTORY, .GALLERY,.EDIT-CHILD{
+.parent div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right:3rem;
+}
+
+.parent img {
+    max-width: 30%;
+    border-radius: 50%;
+    margin:1rem;
+    float:right;
+    box-shadow: 1px 5px 5px #3c3744;
+}
+
+.account-overview{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 4rem;
+    background-color: var(--under-card-color);
+    box-shadow: var(--box-shadow-under);
+    border-radius: var(--border-radius-under-card);
+    padding: 4rem;
+
+}
+
+.account-overview label {
+    align-items: flex-start;
+    color: var(--font-color);
+}
+
+textarea {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: var(--card-color);
+}
+
+.account-overview input[type=submit], input[type=file]::file-selector-button {
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-card);
+    padding:0.6rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    box-shadow: 1px 5px 5px #3c3744;
+    border: none;
+    font-family: 'Righteous', cursive, sans-serif;
+    transition: background .2s ease-in-out;
+}
+.account-overview input[type=submit]{
+    margin-bottom: 2rem;
+    margin-top: 0.5rem;
+}
+
+.account-overview button {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-card);
+    padding-top: 0.6rem;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 1px 5px 5px #3c3744;
+    border: none;
+}
+
+.SLEEPING-SCHEDULE,.FEEDING-TIME,.LIKES, .GALLERY, .EDIT-CHILD{
     display:none;
 }
-label{
-    margin-bottom:1rem;
-}
-.FEEDING-TIME form input,.EDIT-CHILD form input{
-    background-color: var(--card-color);
-    border:none;
-    padding:1rem 2rem;
-    border-radius: var(--border-radius-under-card);
-}
-form input:last-of-type{
-    margin-bottom:4rem;
-    background-color:var(--card-color);
-    border:none;
-    padding:1rem 2rem;
-    border-radius: var(--border-radius-under-card);
-    font-size: larger;
-}
-.show-information label{
-    font-size: 1.5rem;
-}
-.SLEEPING-SCHEDULE{
-    padding-left:0;
-}
-.SLEEPING-SCHEDULE h2{
-    padding-left:2rem;
-}
-.log-sleep{
-    padding-top:2rem;
-    padding-bottom:2rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-}
-.log-sleep button, .update button{
-    margin-right:2rem;
-    padding:1rem 2rem;
-    font-weight: bold;
-    border:none;
-    background-color: var(--card-color);
-    border-radius: var(--border-radius-under-card);
+
+.info-child p{
+    font-size: 1rem;
+    color:var(--font-color );
 }
 
-.SLEEPING-SCHEDULE table{
-    background-color: var(--card-color);
-    width:99%;
-    text-align: center;
-    border-radius: var(--border-radius-under-card);
-    margin-bottom: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-}
+/*------------------------------------------RESPONSIVE--------------------------------------------------------------*/
 
-tbody td{
-    padding:0.5rem;
-}
-.FEEDING-TIME table{
-    background-color: var(--card-color);
-    width:50%;
-    text-align: center;
-    border-radius: var(--border-radius-under-card);
-    margin-bottom: 2rem;
-}
-.form-table{
-    margin-left:2rem;
-    margin-right:2rem;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    gap:2rem;
-
-}
-.sleep-info{
-    display: flex;
-    flex-direction: row;
-    gap:1rem;
-    justify-content: space-evenly;
-    align-items: center;
-}
-.sleep-info h3{
-    margin-bottom:1rem;
-    margin-left:0;
-}
-.sleep-left, .sleep-right{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom:2rem;
-    background-color: var(--card-color);
-    padding:1rem;
-    border-radius: var(--border-radius-under-card);
-}
-.GALLERY h2{
-    padding-top:1rem;
-    margin-bottom:1rem;
-}
-.GALLERY button{
-    padding:1rem 2rem;
-    font-weight: bold;
-    border:none;
-    background-color: var(--card-color);
-    border-radius: var(--border-radius-under-card);
-    margin-bottom:2rem;
-}
-@media (max-width: 1400px) {
-    .container{
-        grid-template-columns: 15rem auto;
+@media (max-width: 1800px){
+    .main {
+        width: 90%;
     }
-    .babies section, .actions section {
-        font-size: 0.7rem;
+    body{
+        overflow: hidden;
     }
-    .baby-info img {
-        max-width: 17rem;
-        margin:0;
-    }
-    .baby-info{
-        justify-content: center;
-    }
-    /*header img {*/
-    /*    max-width: 4%;*/
-    /*}*/
-    .babies section:last-child{
-        margin-bottom:10rem;
-    }
-    .show-information{
-        padding-left:0;
-    }
-    .show-information h2{
-        /*padding-top: 0;*/
-        /*text-align: center;*/
-        margin-left:2rem;
-        margin-right:2rem;
-        font-size: 2.5rem;
-    }
-    form{
-        margin-left:2rem;
-    }
-}
-
-.mobile {
-    display: none;
-}
-.files{
-    display:flex;
-    flex-direction: row;
-    gap:1rem;
-    justify-content: flex-start;
-    align-items: center;
-    padding-bottom:2rem;
-    margin-left: 2rem;
-}
-
-.MEDICAL-HISTORY h2,.FEEDING-TIME h2,.GALLERY h2,.EDIT-CHILD h2{
-    padding-top:2rem;
-    padding-bottom: 2rem;
-}
-.files button{
-    padding:1rem 2rem;
-    font-weight: bold;
-    border:none;
-    background-color: var(--card-color);
-    border-radius: var(--border-radius-under-card);
-}
-.BABY-PROFILE h2{
-    padding-bottom: 2rem;
-}
-.update{
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-@media (max-width: 1000px)  {
-    .dropdown .mobile-buttons span{
-        font-size: 2rem;
-        padding:0.5rem;
-    }
-    .dropdown .buttons{
-        justify-content: center;
-        margin-top: 1.5rem;
-    }
-    .dropdown .babies section:first-of-type{
-        margin-top:3rem;
-    }
-    .dropdown .babies section{
-        font-size:1rem;
-        margin-left:3rem;
-        margin-right:3rem;
-    }
-    .update{
-        flex-direction: column;
-        justify-content: center;
-    }
-    .update button{
-        margin-right:0;
-        margin-bottom:2rem;
-    }
-    .form-table{
-        flex-direction: column;
-    }
-    .BABY-PROFILE h2{
-            text-align: center;
-        }
-    .GALLERY section, .MEDICAL-HISTORY section,.EDIT-CHILD section, .FEEDING-TIME section{
-        display:flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .log-sleep{
-        flex-direction: row;
-    }
-    .container {
-        display:flex;
-        flex-direction: column-reverse;
-        width:94%;
-    }
-    .baby-info img {
-        max-width: 13rem;
-        margin:0;
-    }
-    .baby-info{
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-    .baby-buttons{
-        margin: 0 0 1rem;
-        padding:1rem 5rem;
-    }
-    .baby-buttons button{
-        padding: 0.5rem 2rem;
-    }
-    header{
-        width:100%;
-        background-color: var(--under-card-color);
-        position: sticky;
-        top:0;
-        box-shadow: 0 1rem 3rem #3c3744;
-    }
-    header img {
-        width: 100rem;
-    }
-    .mobile{
-        display: block;
-        padding: 0.5rem 3rem;
-    }
-    aside{
-        display:none;
-    }
-    header {
+    .overview , .feeding , .sleeping , .likes , .child , .gallery{
+        height: 3rem;
         display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        cursor: pointer;
+        font-size: 1rem;
     }
-    .menu{
-        margin-left:2rem;
-        padding:0;
+    .child-list {
+        margin-top: 2rem;
     }
-
-    form{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin-left:0;
+    .search{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
     }
-    .sleep-info {
-        flex-direction: column;
+    .search span{
+        margin-bottom: 1rem;
     }
-    .SLEEPING-SCHEDULE table {
+    .account-overview {
+        margin: 2rem;
+        padding: 2rem;
+    }
+    textarea {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-right: 2rem;
         background-color: var(--card-color);
-        width: 95%;
-        margin-left: auto;
-        margin-right: auto;
+
     }
 
 
 }
 
-::-webkit-scrollbar {
-    width: 0;
-    height: 0;
-}
+@media screen and (max-width: 1000px){
+    .main {
+        width: 90%;
+    }
+    .parent div{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .account-overview{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 2rem;
+        padding: 2rem;
 
-@media (max-width: 500px){
-    table {
-        width: 50%;
     }
-    .SLEEPING-SCHEDULE button{
-        padding:0.5rem 1rem;
-    }
-    .SLEEPING-SCHEDULE h2{
-        margin:0;
-    }
-}
 
-.dropdown{
-    display: none;
+}
+@media (max-width:550px) {
+
+    .image{
+        height: 3.3rem;
+        width:3.3rem;
+    }
+
 }

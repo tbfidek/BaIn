@@ -11,57 +11,63 @@ function removeChild(element) {
 
 
 function addNewSection() {
-    const firstSection = document.createElement('section');
+    const firstSection = document.createElement('div');
 
-    firstSection.innerHTML = `<h2>Baby </h2>`;
+    firstSection.innerHTML = `<div class="child sidebutton text">child#</div>`;
 
-    document.getElementById("babyID").appendChild(firstSection);
-    const secondSection = document.createElement('section');
-
-    secondSection.innerHTML = `<h2>Baby </h2>
-                            <span onclick='removeChild(this)' class='material-symbols-rounded'>person_remove</span>`;
-
-    document.getElementById("babyID-mobile").appendChild(secondSection);
+    document.getElementById("child-list").appendChild(firstSection);
+    //pt mobile
+    // const secondSection = document.createElement('section');
+    //
+    // secondSection.innerHTML = `<h2>Baby </h2>
+    //                         <span onclick='removeChild(this)' class='material-symbols-rounded'>person_remove</span>`;
+    //
+    // document.getElementById("babyID-mobile").appendChild(secondSection);
 }
 
-function showJournal() {
-    const journal = document.querySelector('.BABY-PROFILE');
-    journal.style.display = 'block';
+function showOverview() {
+    const journal = document.querySelector('.OVERVIEW');
+    journal.style.display = 'flex';
     let others = document.querySelector('.SLEEPING-SCHEDULE');
     others.style.display = 'none';
     others = document.querySelector('.FEEDING-TIME');
     others.style.display = 'none';
-    others = document.querySelector('.MEDICAL-HISTORY');
+    others = document.querySelector('.LIKES');
     others.style.display = 'none';
     others = document.querySelector('.GALLERY');
     others.style.display = 'none';
     others = document.querySelector('.EDIT-CHILD');
     others.style.display = 'none';
 }
+
+// .SLEEPING-SCHEDULE,.FEEDING-TIME,.LIKES, .GALLERY, .EDIT-CHILD{
+//     display:none;
+// }
 
 function showSleepingSchedule() {
     const sleepingSchedule = document.querySelector('.SLEEPING-SCHEDULE');
     sleepingSchedule.style.display = 'block';
-    let others = document.querySelector('.BABY-PROFILE');
+    let others = document.querySelector('.OVERVIEW');
     others.style.display = 'none';
     others = document.querySelector('.FEEDING-TIME');
     others.style.display = 'none';
-    others = document.querySelector('.MEDICAL-HISTORY');
+    others = document.querySelector('.LIKES');
     others.style.display = 'none';
     others = document.querySelector('.GALLERY');
     others.style.display = 'none';
     others = document.querySelector('.EDIT-CHILD');
     others.style.display = 'none';
 }
+
 
 function showFeedingTime() {
     const feedingTime = document.querySelector('.FEEDING-TIME');
     feedingTime.style.display = 'block';
-    let others = document.querySelector('.BABY-PROFILE');
+    let others = document.querySelector('.OVERVIEW');
     others.style.display = 'none';
     others = document.querySelector('.SLEEPING-SCHEDULE');
     others.style.display = 'none';
-    others = document.querySelector('.MEDICAL-HISTORY');
+    others = document.querySelector('.LIKES');
     others.style.display = 'none';
     others = document.querySelector('.GALLERY');
     others.style.display = 'none';
@@ -69,10 +75,10 @@ function showFeedingTime() {
     others.style.display = 'none';
 }
 
-function showMedicalHistory() {
-    const medicalHistory = document.querySelector('.MEDICAL-HISTORY');
+function showTimeline() {
+    const medicalHistory = document.querySelector('.LIKES');
     medicalHistory.style.display = 'block';
-    let others = document.querySelector('.BABY-PROFILE');
+    let others = document.querySelector('.OVERVIEW');
     others.style.display = 'none';
     others = document.querySelector('.SLEEPING-SCHEDULE');
     others.style.display = 'none';
@@ -87,13 +93,13 @@ function showMedicalHistory() {
 function showGallery() {
     const gallery = document.querySelector('.GALLERY');
     gallery.style.display = 'block';
-    let others = document.querySelector('.BABY-PROFILE');
+    let others = document.querySelector('.OVERVIEW');
     others.style.display = 'none';
     others = document.querySelector('.SLEEPING-SCHEDULE');
     others.style.display = 'none';
     others = document.querySelector('.FEEDING-TIME');
     others.style.display = 'none';
-    others = document.querySelector('.MEDICAL-HISTORY');
+    others = document.querySelector('.LIKES');
     others.style.display = 'none';
     others = document.querySelector('.EDIT-CHILD');
     others.style.display = 'none';
@@ -102,13 +108,13 @@ function showGallery() {
 function showEditChildProfile() {
     const childProfile = document.querySelector('.EDIT-CHILD');
     childProfile.style.display = 'block';
-    let others = document.querySelector('.BABY-PROFILE');
+    let others = document.querySelector('.OVERVIEW');
     others.style.display = 'none';
     others = document.querySelector('.SLEEPING-SCHEDULE');
     others.style.display = 'none';
     others = document.querySelector('.FEEDING-TIME');
     others.style.display = 'none';
-    others = document.querySelector('.MEDICAL-HISTORY');
+    others = document.querySelector('.LIKES');
     others.style.display = 'none';
     others = document.querySelector('.GALLERY');
     others.style.display = 'none';
@@ -125,22 +131,23 @@ Sleeping.forEach(schedule => {
     document.querySelector('table tbody').appendChild(tr);
 });
 
-function dropdown() {
-    const menu = document.querySelector('.dropdown');
-    const container = document.querySelector('.container');
-    const root = document.querySelector(":root");
-    const dropColor = getComputedStyle(root).getPropertyValue("--under-card-color");
-    const originalColor = getComputedStyle(root).getPropertyValue("--background-color");
 
-    if (menu.style.display === 'block') {
-        menu.style.display = 'none';
-        container.style.visibility = 'visible' ;
-        document.body.style.backgroundColor = originalColor;
-    } else {
-        menu.style.display = 'block';
-        container.style.visibility = 'hidden' ;
-        document.body.style.backgroundColor = dropColor;
-    }
-}
+// function dropdown() {
+//     const menu = document.querySelector('.dropdown');
+//     const container = document.querySelector('.container');
+//     const root = document.querySelector(":root");
+//     const dropColor = getComputedStyle(root).getPropertyValue("--under-card-color");
+//     const originalColor = getComputedStyle(root).getPropertyValue("--background-color");
+//
+//     if (menu.style.display === 'block') {
+//         menu.style.display = 'none';
+//         container.style.visibility = 'visible' ;
+//         document.body.style.backgroundColor = originalColor;
+//     } else {
+//         menu.style.display = 'block';
+//         container.style.visibility = 'hidden' ;
+//         document.body.style.backgroundColor = dropColor;
+//     }
+// }
 
 
