@@ -28,6 +28,9 @@ header {
     justify-content: center;
 
 }
+body {
+    background-image: url("bg.jpg")
+}
 
 .banner {
     width:50rem;
@@ -40,13 +43,10 @@ header {
     background-color: var(--under-card-color);
     border-radius: 20px;
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-    padding-left:2rem;
-    padding-right:2rem;
 }
 
-.left-button,
-.right-button {
-    /*padding: 0.5rem 1rem;*/
+.left-button, .right-button {
+    padding: 0.5rem 1rem;
     border-radius: 5px;
     background-color: var(--primary-color);
     font-size: 1rem;
@@ -77,7 +77,8 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    /*margin-top: 2rem;*/
+    margin-top: 5rem;
+
 }
 
 .signup-box {
@@ -95,8 +96,9 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-
-    padding: 1rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    padding: 4rem;
     background-color: var(--under-card-color);
     box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
     border-radius: var(--border-radius-under-card);
@@ -238,6 +240,27 @@ button:hover{
 
 /*responsive*/
 
+@media (max-width:1400px){
+    .signup{
+        margin-top:0rem;
+    }
+    .signup-box{
+        margin-bottom:1rem;
+    }
+}
+@media (max-width: 1000px){
+    .signup-box {
+        width: 80%;
+        gap: 2rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom:2rem;
+        /*margin-right: 2rem;*/
+        /*margin-left: 2rem;*/
+    }
+}
 @media (max-width: 820px) {
     header{
         top:0;
@@ -315,5 +338,6 @@ button:hover{
         align-items: center;
     }
 }
+
 
 
