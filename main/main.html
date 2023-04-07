@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kiddoCare</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Righteous:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <link rel="stylesheet" href="main_style.css">
+    <script src="main_functions.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <div class="sidebar">
+        <div class="child-profile">
+            <img src="baby_pic.jpg" alt="profileImage" class="child-pfp">
+            <div class="child-name">
+                <p class="text maintext">Brontozaur</p>
+            </div>
+        </div>
+        <div class="links">
+            <div class="search">
+                <span onclick="addNewSection()" class="material-symbols-rounded">person_add</span>
+                <span class="material-symbols-rounded">cloud_upload<a href=""></a></span>
+                <span class="material-symbols-rounded">cloud_download<a href=""></a></span>
+                <span class="material-symbols-rounded">share<a href=""></a></span>
+            </div>
+
+            <div class="overview sidebutton text">Overview</div>
+            <div class="feeding sidebutton text">Feeding Schedule</div>
+            <div class="sleeping sidebutton text">Sleeping Schedule</div>
+            <div class="likes sidebutton text">Likes</div>
+            <div class="gallery sidebutton text">Gallery</div>
+            <div class="child-list">
+                <div class="child sidebutton text">child#</div>
+                <div class="child sidebutton text">child#</div>
+                <div class="child sidebutton text">child#</div>
+            </div>
+
+        </div>
+    </div>
+    <div class="main">
+        <div class="parent">
+            <div><p>Hello, #name! How is your baby today?</p></div>
+            <div>
+                <a href=""><img src="profile_pic.jpg" alt=""></a>
+                <span class="material-symbols-rounded">nights_stay</span>
+                <span class="material-symbols-rounded">logout</span>
+            </div>
+        </div>
+        <div class="account-overview OVERVIEW">
+            <div class="journal-input">
+                <div>
+                    <label for="description-day">Write in your daily journal:</label>
+                </div>
+                <div>
+                    <textarea rows="20" cols="100" placeholder=" My baby smiled today :)" id="description-day"
+                              name="description-day"></textarea>
+                </div>
+                <div>
+                    <label for="shopping-list">Write down what you need:</label>
+                </div>
+                <div>
+                    <textarea rows="10" cols="40" placeholder=" gift ideas, groceries, appointments" id="shopping-list"
+                              name="shopping-list"></textarea>
+                </div>
+            </div>
+            <div class="file-input">
+                <div>
+                    <label for="add-photo">Add today's image:</label><br><br>
+                    <input type="file" id="add-photo" name="add-photo" accept=".jpg, .jpeg, .png"/><br><br>
+                    <input type="submit" class="submit" value="Submit">
+                </div>
+                <div>
+                    <label>Medical History</label><br><br>
+                    <section class="files">
+                        <button>file1<span class="material-symbols-rounded">download</span></button>
+                    </section>
+                    <section class="files">
+                        <button>file2<span class="material-symbols-rounded">download</span></button>
+                    </section>
+                </div>
+            </div>
+
+        </div>
+        <!--        <div class="account-overview SLEEPING-SCHEDULE">-->
+        <!--            <section class="log-sleep">-->
+        <!--                <h2>Sleeping Schedule</h2>-->
+        <!--                <button>Log Sleep</button>-->
+        <!--            </section>-->
+        <!--            <table>-->
+        <!--                <thead>-->
+        <!--                <tr>-->
+        <!--                    <th>Date</th>-->
+        <!--                    <th>Start time</th>-->
+        <!--                    <th>End Time</th>-->
+        <!--                    <th>Quality</th>-->
+        <!--                </tr>-->
+        <!--                </thead>-->
+        <!--                <tbody>-->
+        <!--                </tbody>-->
+        <!--            </table>-->
+        <!--            <section class="sleep-info">-->
+        <!--                <section class="sleep-left">-->
+        <!--                    <h3>Overview of your child's sleep</h3>-->
+        <!--                    <p>summary of their sleep</p>-->
+        <!--                </section>-->
+        <!--                <section class="sleep-right">-->
+        <!--                    <h3>Recommended for your child's age</h3>-->
+        <!--                    <p>advice for their age</p>-->
+        <!--                </section>-->
+        <!--            </section>-->
+
+        <!--        </div>-->
+        <!--        <div class="account-overview FEEDING-TIME">-->
+        <!--            <section>-->
+        <!--                <h2>Feeding Time</h2>-->
+        <!--            </section>-->
+        <!--            <section class ="form-table">-->
+        <!--                <div>-->
+        <!--                    <form>-->
+        <!--                        <label for="date">Date:</label><br>-->
+        <!--                        <input type="date" id="date" name="date" /><br><br>-->
+        <!--                        <label for="food">What did they eat?:</label><br>-->
+        <!--                        <input type="text" id="food" name="food"/><br><br>-->
+        <!--                        <input type="radio" id="breakfast"  name="type">-->
+        <!--                        <label for="breakfast">Breakfast</label><br>-->
+        <!--                        <input type="radio" id="lunch"  name="type">-->
+        <!--                        <label for="lunch">Lunch</label><br>-->
+        <!--                        <input type="radio" id="dinner"  name="type">-->
+        <!--                        <label for="dinner">Dinner</label><br>-->
+        <!--                        <input type="radio" id="snack"  name="type">-->
+        <!--                        <label for="snack">Snack</label><br><br>-->
+        <!--                        <input type="submit" class="submit" value="Submit">-->
+        <!--                    </form>-->
+        <!--                </div>-->
+        <!--                <div>-->
+        <!--                    <p>imagine a calendar :))</p>-->
+        <!--                    <br>-->
+        <!--                </div>-->
+        <!--            </section>-->
+
+        <!--        </div>-->
+        <!--        <div class="account-overview LIKES">-->
+        <!--            <section>-->
+        <!--                <h2>Medical History</h2>-->
+        <!--                <section class="files">-->
+        <!--                    <button>Download</button> <p>file1</p>-->
+        <!--                </section>-->
+        <!--                <section class="files">-->
+        <!--                    <button>Download</button> <p>file2</p>-->
+        <!--                </section>-->
+        <!--            </section>-->
+
+        <!--        </div>-->
+        <!--        <div class="account-overview GALLERY">-->
+        <!--            <section>-->
+        <!--                <div class="log-sleep">-->
+        <!--                    <h2>Gallery</h2>-->
+        <!--                    <button>Add Image</button>-->
+        <!--                </div>-->
+        <!--                <p>calendar to be added</p>-->
+        <!--                <br>-->
+        <!--            </section>-->
+
+        <!--        </div>-->
+        <!--        <div class="account-overview EDIT-CHILD">-->
+        <!--            <section>-->
+        <!--                <h2>Edit Child Profile</h2>-->
+        <!--                <div class="update">-->
+        <!--                    <form class="form-child">-->
+        <!--                        <label for="bday">Date of birth:</label><br>-->
+        <!--                        <input type="date" id="bday" name="date" /><br><br>-->
+        <!--                        <label for="name">Name:</label><br>-->
+        <!--                        <input type="text" id="name" name="name"/><br><br>-->
+        <!--                        <label for="height">Height:</label><br>-->
+        <!--                        <input type="text" id="height" name="name"/><br><br>-->
+        <!--                        <label for="weight">Weight:</label><br>-->
+        <!--                        <input type="text" id="weight" name="name"/><br><br>-->
+
+        <!--                        <input type="submit" class="submit" value="Submit">-->
+        <!--                    </form>-->
+        <!--                    <button>update profile pic</button>-->
+        <!--                </div>-->
+
+        <!--            </section>-->
+
+        <!--        </div>-->
+    </div>
+
+</div>
+</body>
+</html>
