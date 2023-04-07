@@ -30,10 +30,11 @@ a:visited{
 
 body {
     height:100vh;
+    background-image: url("../images/bg.jpg");
     background-color: var(--background-color);
     display: flex;
-    justify-content: center; /* horizontal centering */
-    align-items: center; /* vertical centering */
+    justify-content: center;
+    align-items: center;
 }
 
 .container{
@@ -42,7 +43,12 @@ body {
     justify-content: center;
     align-items: center;
   }
+
 .right-part{
+    background-color: var(--under-card-color);
+    padding:2rem 2rem;
+    border-radius: var(--border-radius-under-card);
+    box-shadow: var(--box-shadow);
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -59,6 +65,9 @@ body {
     margin-bottom: 1rem;
 }
   img {
+      background-color: var(--under-card-color);
+      box-shadow: var(--box-shadow);
+      padding:1rem;
       margin-top: 2rem;
       max-width:60%;
       border-radius: 50%;
@@ -78,7 +87,7 @@ body {
   }
 
   section{
-      border-top: 2px solid var(--under-card-color);
+      border-top: 2px solid var(--card-color);
       padding-top:1rem;
   }
 

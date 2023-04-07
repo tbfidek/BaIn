@@ -29,7 +29,7 @@ header {
 
 }
 body {
-    background-image: url("bg.jpg")
+    background-image: url("../images/bg.jpg");
 }
 
 .banner {
@@ -42,7 +42,7 @@ body {
     font-weight: bold;
     background-color: var(--under-card-color);
     border-radius: 20px;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 .left-button, .right-button {
@@ -91,16 +91,29 @@ body {
     margin-top: 2rem;
 }
 
-.left-parent-info, .right-parent-info {
+.left-parent-info {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    margin-left: 2rem;
-    margin-right: 2rem;
-    padding: 4rem;
+    /*margin-left: 2rem;*/
+    /*margin-right: 2rem;*/
+    padding: 1rem 0;
     background-color: var(--under-card-color);
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+    border-radius: var(--border-radius-under-card);
+}
+
+.right-parent-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    /*margin-left: 2rem;*/
+    /*margin-right: 2rem;*/
+    padding: 3rem ;
+    background-color: var(--under-card-color);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
     border-radius: var(--border-radius-under-card);
 }
 
@@ -168,7 +181,7 @@ button:hover{
     cursor: pointer;
 }
 .profile{
-    width:40%;
+    width:30%;
     border-radius: 50%;
 }
 .pfp {
@@ -242,7 +255,7 @@ button:hover{
 
 @media (max-width:1400px){
     .signup{
-        margin-top:0rem;
+        margin-top:0;
     }
     .signup-box{
         margin-bottom:1rem;
@@ -270,11 +283,9 @@ button:hover{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 1rem;
         border-radius: 0;
-        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
-        padding-left:2rem;
-        padding-right:2rem;
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+        padding: 1rem 2rem;
     }
     body{
         overflow: visible;
@@ -298,7 +309,7 @@ button:hover{
 
         padding: 0.5rem;
         background-color: var(--under-card-color);
-        box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
         border-radius: var(--border-radius-under-card);
     }
 

@@ -32,12 +32,13 @@ header {
     font-weight: bold;
     background-color: var(--under-card-color);
     border-radius: 20px;
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
 }
 
 body {
+    background-image: url("../images/bg.jpg");
     background-color: var(--background-color);
-    overflow: hidden;
+    /*overflow: hidden;*/
 }
 
 .signup {
@@ -68,7 +69,7 @@ body {
 
     padding: 1rem;
     background-color: var(--under-card-color);
-    box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
     border-radius: var(--border-radius-under-card);
 }
 /*__________________________________________________left-side__________________________________________________*/
@@ -170,7 +171,7 @@ span:hover{
     align-items: center;
     margin-top: 0.5rem;
 
-    padding: 1rem 1rem;
+    padding:0.8rem 1rem;
     font-size: 1rem;
 
     background: var(--card-color);
@@ -212,7 +213,7 @@ span:hover{
 .already-exists {
     display: flex;
     flex-direction: row;
-    margin-top: 1rem;
+    /*margin-top: 1rem;*/
     justify-content: center;
     align-items: center;
     gap: 1rem;
@@ -226,7 +227,7 @@ span:hover{
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--background-color);
-    box-shadow: 0rem 2rem 10rem #363949;
+    box-shadow: 0 2rem 10rem #363949;
     border-radius: 10px;
     border: none;
     z-index: 10;
@@ -415,5 +416,12 @@ input[name="details"]{
     #fam {
         display: flex;
         align-items: center;
+    }
+}
+
+
+@media (max-width:1400px){
+    .signup{
+        margin-top:0;
     }
 }
