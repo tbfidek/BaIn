@@ -32,7 +32,6 @@
 }
 body{
     color: var(--font-color);
-    /*overflow-x: hidden;*/
     background-image: var(--background-img);
 }
 
@@ -344,9 +343,6 @@ h2{
     .main {
         width: 90%;
     }
-    body{
-        overflow: hidden;
-    }
     .overview , .feeding , .sleeping , .likes , .child , .gallery{
         height: 3rem;
         display: flex;
@@ -378,9 +374,36 @@ h2{
 
 }
 
+@media (max-width: 1500px) {
+    .sidebar {
+        width: 15rem;
+    }
+
+    .child-pfp {
+        margin-left: 1rem;
+    }
+
+    /*.child name p {*/
+    /*    font-size: smaller;*/
+    /*}*/
+
+    .child-profile {
+
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    .text {
+        margin-left: 0;
+    }
+    .search span{
+        padding:0.3rem;
+    }
+}
+
 @media screen and (max-width: 1000px){
     .main {
-        width: 90%;
+        width: 50%;
     }
     .parent div{
         display: flex;
@@ -395,7 +418,10 @@ h2{
         align-items: center;
         margin: 2rem;
         padding: 2rem;
-
+        /*width:10%;*/
+    }
+    .sidebar{
+        width:15rem;
     }
 
 }
