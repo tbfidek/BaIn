@@ -120,6 +120,49 @@ function showEditChildProfile() {
     others.style.display = 'none';
 }
 
+function showAddOption() {
+    let gallery = document.querySelector('.form-add-image');
+    gallery.style.display = 'block';
+    gallery = document.querySelector('.calendar-pic');
+    gallery.style.display = 'none';
+}
+function removeAddOption() {
+    let gallery = document.querySelector('.form-add-image');
+    gallery.style.display = 'none';
+    gallery = document.querySelector('.calendar-pic');
+    gallery.style.display = 'flex';
+}
+function showAddMeal() {
+    let food = document.querySelector('.form-table');
+    food.style.display = 'block';
+    food = document.querySelector('.calendar-meal');
+    food.style.display = 'none';
+}
+
+function showAddSleep() {
+    let sleep = document.querySelector('.sleep-form');
+    sleep.style.display = 'block';
+    // sleep= document.querySelector('table');
+    // sleep.style.display = 'none';
+}
+
+function removeAddSleep() {
+    let sleep = document.querySelector('.sleep-form');
+    sleep.style.display = 'none';
+    // sleep = document.querySelector('table');
+    // sleep.style.display = 'inherit';
+}
+function removeAddMeal() {
+    let food = document.querySelector('.form-table');
+    food.style.display = 'none';
+    food = document.querySelector('.calendar-meal');
+    food.style.display = 'flex';
+}
+function showFiles() {
+    let file = document.querySelector('.show-files');
+    file.style.display = 'block';
+}
+
 Sleeping.forEach(schedule => {
     const tr = document.createElement('tr');
     tr.innerHTML = `

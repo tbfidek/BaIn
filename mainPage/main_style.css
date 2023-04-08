@@ -209,21 +209,21 @@ textarea {
     background-color: var(--card-color);
 }
 
-.account-overview input[type=submit], input[type=file]::file-selector-button {
-    background-color: var(--card-color);
-    border-radius: var(--border-radius-card);
-    padding:0.6rem;
-    margin-top: 1rem;
-    margin-bottom: 0.5rem;
-    box-shadow: 1px 5px 5px #3c3744;
-    border: none;
-    font-family: 'Righteous', cursive, sans-serif;
-    transition: background .2s ease-in-out;
-}
-.account-overview input[type=submit]{
-    margin-bottom: 2rem;
-    margin-top: 0.5rem;
-}
+/*.account-overview input[type=submit], input[type=file]::file-selector-button {*/
+/*    background-color: var(--card-color);*/
+/*    border-radius: var(--border-radius-card);*/
+/*    padding:0.6rem;*/
+/*    margin-top: 1rem;*/
+/*    margin-bottom: 0.5rem;*/
+/*    box-shadow: 1px 5px 5px #3c3744;*/
+/*    border: none;*/
+/*    font-family: 'Righteous', cursive, sans-serif;*/
+/*    transition: background .2s ease-in-out;*/
+/*}*/
+/*.account-overview input[type=submit]{*/
+/*    margin-bottom: 2rem;*/
+/*    margin-top: 0.5rem;*/
+/*}*/
 
 .account-overview button {
     display: flex;
@@ -232,9 +232,8 @@ textarea {
     justify-content: center;
     background-color: var(--card-color);
     border-radius: var(--border-radius-card);
-    padding-top: 0.6rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
+    padding:0.5rem;
+    margin-top:1.5rem;
     margin-bottom: 1rem;
     box-shadow: 1px 5px 5px #3c3744;
     border: none;
@@ -244,11 +243,101 @@ textarea {
     display:none;
 }
 
+.SLEEPING-SCHEDULE table{
+    flex-direction: column;
+    background-color: var(--card-color);
+    width:99%;
+    text-align: center;
+    border-radius: var(--border-radius-under-card);
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tbody td{
+    padding:0.5rem;
+}
+
+.show-files,.sleep-form,.form-table{
+    display: none;
+}
+
+.calendar-pic img{
+    max-width: 30%;
+}
+.calendar-pic{
+    display:flex;
+    flex-direction:row;
+    justify-content: flex-start;
+    align-items: center;
+    gap:3rem;
+}
 .info-child p{
     font-size: 1rem;
     color:var(--font-color );
 }
+form label{
+   margin-bottom:1rem;
+}
 
+form input,form select{
+    color: var(--font-color);
+    padding:0.5rem;
+    border-radius: var(--border-radius-under-card);
+    border:none;
+    background-color: var(--card-color);
+}
+
+.update button{
+    margin-top:2rem;
+    padding:0.5rem;
+}
+h2{
+    font-size: 2rem;
+}
+.bookmarks{
+    display: flex;
+    flex-direction: row;
+    gap:2rem;
+    justify-content: flex-start;
+    align-items: center;
+}
+.bookmarks span{
+    margin-top:0.3rem;
+    padding:0.2rem;
+    background-color: var(--card-color) ;
+    border-radius: var(--border-radius-under-card);
+}
+
+.timeline-img img{
+    max-width: 20%;
+}
+.timeline-img h2:hover{
+    cursor:pointer;
+}
+.timeline-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:2rem;
+}
+.date p{
+    text-align: center;
+}
+.calendar-meal img{
+    max-width:30%;
+}
+.calendar-meal p{
+    margin: 5rem;
+}
+.calendar-meal{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:2rem;
+}
 /*------------------------------------------RESPONSIVE--------------------------------------------------------------*/
 
 @media (max-width: 1800px){
