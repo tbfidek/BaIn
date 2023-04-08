@@ -111,7 +111,7 @@ body {
     align-items: center;
     /*margin-left: 2rem;*/
     /*margin-right: 2rem;*/
-    padding: 3rem ;
+    padding: 2rem ;
     background-color: var(--under-card-color);
     box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
     border-radius: var(--border-radius-under-card);
@@ -206,7 +206,6 @@ button:hover{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 1rem;
 }
 
 .form input {
