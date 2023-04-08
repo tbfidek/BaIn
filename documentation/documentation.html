@@ -2,309 +2,634 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <title>Documentation</title>
+    <meta charset="UTF-8">
+    <title>Documentation</title>
 </head>
 
 <body>
 
 <article>
-  <header>
-    <h1>
-      BaIn ( Baby Info Manager)
-    </h1>
-  </header>
+    <header>
+        <h1>
+            BaIn ( Baby Info Manager)
+        </h1>
+    </header>
+    <h2>Table of contents</h2>
+    <ul>
+        <li>
+            <a href="#authors">Authors</a>
+        </li>
+        <li>
+            <a href="#introduction">1. Introduction</a>
+            <ul>
+                <li><a href="#introduction-purpose">1.1 Purpose</a></li>
+                <li><a href=" #conventions">1.2 Document Conventions</a></li>
+                <li><a href="#audience">1.3 Intended Audience and Reading Suggestions</a></li>
+                <li><a href=" #product-scope">1.4 Product Scope</a></li>
+                <li><a href="#references">1.5 References</a></li>
+            </ul>
+        </li>
+        <li><a href="#overall">2. Overall Description</a>
+            <ul>
+                <li><a href="#product-perspective">2.1 Product Perspective</a></li>
+                <li><a href="#product-functions">2.2 Product Functions</a></li>
+                <li><a href="#users">2.3 User Classes and Characteristics</a></li>
+                <li><a href="#operating-environment">2.4 Operating Environment</a></li>
+                <li><a href="#documentation">2.5 User Documentation</a></li>
+                <li><a href="#dependencies">2.6 Assumptions and Dependencies</a></li>
+            </ul>
+        </li>
+        <li><a href="#external">3. External Interface Requirements</a>
+            <ul>
+                <li><a href="#user-interface">3.1 User Interfaces</a>
+                    <ul>
+                        <li><a href="#login-page">3.1.1 Login </a></li>
+                        <li><a href="#signup-page">3.1.2 Register </a></li>
+                        <li><a href="#main-page">3.1.3 Main menu</a></li>
+                        <li><a href="#side-panel">3.1.4 Side Panel</a></li>
+                        <li><a href="#edit-account-page">3.1.6 Edit Account</a></li>
+                    </ul>
+                </li>
+                <li><a href="#hardware-interface">3.2 Hardware Interfaces</a></li>
+                <li><a href="#software-interface">3.3 Software Interfaces</a></li>
+                <li><a href="#communication-interface">3.4 Communications Interfaces</a></li>
+            </ul>
+        </li>
+        <li><a href="#system-features">4. System Features</a>
+            <ul>
+                <li><a href="#management">4.1 Account Management</a>
+                    <ul>
+                        <li><a href="#management-1">4.1.1 Description and Priority</a></li>
+                        <li><a href="#management-2">4.1.2 Stimulus/Response</a></li>
+                        <li><a href="#management-3">4.1.3 Functional Requirements</a></li>
+                    </ul>
+                </li>
+                <li><a href="#sleep">4.2 Nap time</a>
+                    <ul>
+                        <li><a href="#sleep-1">4.2.1 Description and Priority</a></li>
+                        <li><a href="#sleep-2">4.2.2 Stimulus/Response</a></li>
+                        <li><a href="#sleep-3">4.2.3 Functional Requirements</a></li>
+                    </ul>
+                </li>
+                <li><a href="#meal">4.3 Meal time</a>
+                    <ul>
+                        <li><a href="#meal-1">4.3.1 Description and Priority</a></li>
+                        <li><a href="#meal-2">4.3.2 Stimulus/Response</a></li>
+                        <li><a href="#meal-3">4.3.3 Functional Requirements</a></li>
+                    </ul>
+                </li>
+                <li><a href="#gallery">4.4 Gallery</a>
+                    <ul>
+                        <li><a href="#gallery-1">4.4.1 Description and Priority</a></li>
+                        <li><a href="#gallery-2">4.4.2 Stimulus/Response</a></li>
+                        <li><a href="#gallery-3">4.4.3 Functional Requirements</a></li>
+                    </ul>
+                </li>
+                <li><a href="#medical">4.5 Medical History</a>
+                    <ul>
+                        <li><a href="#medical-1">4.5.1 Description and Priority</a></li>
+                        <li><a href="#medical-2">4.5.2 Stimulus/Response</a></li>
+                        <li><a href="#medical-3">4.5.3 Functional Requirements</a></li>
+                    </ul>
+                </li>
+                <li><a href="#likes">4.6 Likes</a>
+                    <ul>
+                        <li><a href="#likes-1">4.6.1 Description and Priority</a></li>
+                        <li><a href="#likes-2">4.6.2 Stimulus/Response</a></li>
+                        <li><a href="#likes-3">4.6.3 Functional Requirements</a></li>
+                    </ul>
+                </li>
+                <li><a href="#likes">4.7 Other features</a>
+                    <ul>
+                        <li><a href="#likes-1">4.7.1 Description and Priority</a></li>
+                        <li><a href="#likes-2">4.7.2 Stimulus/Response</a></li>
+                        <li><a href="#likes-3">4.7.3 Functional Requirements</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#non-functional">5. Other Nonfunctional Requirements</a>
+            <ul>
+                <li><a href="#safety">5.1 Safety Requirements</a></li>
+                <li><a href="#security">5.2 Security Requirements</a></li>
+            </ul>
+        </li>
+    </ul>
 
-  <div role="contentinfo">
-    <section typeof="sa:AuthorsList">
-      <h2>Authors</h2>
-      <ul>
-        <li typeof="sa:ContributorRole" property="schema:author">
+    <div role="contentinfo">
+        <section id="authors" typeof="sa:AuthorsList">
+            <h2>Authors</h2>
+            <ul>
+                <li typeof="sa:ContributorRole" property="schema:author">
                         <span typeof="schema:Person">
                           <meta property="schema:givenName" content="Daria">
                           <meta property="schema:additionalName" content="Elena">
                           <meta property="schema:familyName" content="Burghelea">
-                          <span property="schema:name">Burghelea P. Daria-Elena</span>
+                          <span property="schema:name">Burghelea Daria-Elena</span>
                         </span>
-          <ul>
-            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-              <a href="mailto:daria.burghelea@info.uaic.ro"
-                 property="schema:email">daria.burghelea@info.uaic.ro</a>
-            </li>
-          </ul>
-        </li>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="mailto:daria.burghelea@info.uaic.ro"
+                               property="schema:email">daria.burghelea@info.uaic.ro</a>
+                        </li>
+                    </ul>
+                </li>
 
-        <li typeof="sa:ContributorRole" property="schema:author">
+                <li typeof="sa:ContributorRole" property="schema:author">
                         <span typeof="schema:Person">
                           <meta property="schema:givenName" content="Amalia">
                           <meta property="schema:additionalName" content="Nicola">
                           <meta property="schema:familyName" content="Harton">
-                          <span property="schema:name">Harton P. Amalia-Nicola</span>
+                          <span property="schema:name">Harton Amalia-Nicola</span>
                         </span>
-          <ul>
-            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-              <a href="mailto:amalia.harton@info.uaic.ro"
-                 property="schema:email">amalia.harton@info.uaic.ro</a>
-            </li>
-          </ul>
-        <li typeof="sa:ContributorRole" property="schema:author">
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="mailto:amalia.harton@info.uaic.ro"
+                               property="schema:email">amalia.harton@info.uaic.ro</a>
+                        </li>
+                    </ul>
+                <li typeof="sa:ContributorRole" property="schema:author">
                             <span typeof="schema:Person">
                               <meta property="schema:givenName" content="Ioana">
                               <meta property="schema:familyName" content="Peste">
-                              <span property="schema:name">Peste M. Ioana</span>
+                              <span property="schema:name">Peste Ioana</span>
                             </span>
-          <ul>
-            <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
-              <a href="mailto:ioana.peste@info.uaic.ro"
-                 property="schema:email">ioana.peste@info.uaic.ro</a>
+                    <ul>
+                        <li property="schema:roleContactPoint" typeof="schema:ContactPoint">
+                            <a href="mailto:ioana.peste@info.uaic.ro"
+                               property="schema:email">impeste@gmail.ro</a>
+                        </li>
+                    </ul>
+                </li>
+
+            </ul>
+        </section>
+    </div>
+
+    <section id="introduction">
+        <h3>1. Introduction</h3>
+        <section id="introduction-purpose">
+            <h4>1.1 Purpose</h4>
+            <p>
+                kiddoCare is a web application for the BaIn (Baby Info Manager) project developed by the aforementioned
+                three students from the Faculty of Computer Science, Alexandru Ioan Cuza University.
+                The purpose of this document is to present a detailed description, the features, as well as specify the
+                requirements of the web application.
+                This application will provide users (families, couples, caretakers etc.) with a useful tool to monitor
+                and manage the resources needed to care for their children and to preserve memories of their children's
+                important moments.
+            </p>
+        </section>
+        <section id="conventions">
+            <h4> 1.2 Document Conventions</h4>
+            <ul>
+                <li>
+                    This document follows the IEEE Software Requirements Specification documentation template.
+                </li>
+                <li>
+                    <b>Bold text</b> is used for defining custom notions or accentuate important concepts.
+                </li>
+            </ul>
+        </section>
+        <section id="audience">
+            <h4>1.3 Intended Audience and Reading Suggestions</h4>
+            <p>
+                This document is intended for professors, students or developers, however any user, regardless of their
+                technological knowledge, can refer to the <b>User Interfaces</b> and <b>System Features</b> part to get
+                a better understanding of what the application offers.
+            </p>
+
+        </section>
+        <section id="product-scope">
+            <h4>1.4 Product Scope</h4>
+            <p>
+                The purpose of the application is to offer users help in terms of managing the resources needed to care
+                for their children. Users are able to register details in regard to their child's sleeping schedule,
+                meals, the medical history, the relationship with other children.
+                Based on the user's preferences, a chronological view (timeline) of their most important moments
+                (represented through text or different multimedia resources - photographs, recordings etc.) related to
+                each individual child is available for them, as well as the option to share any of these moments on a
+                social media platform.
+                The application allows for multiple users to be linked to one account, as to allow for families to have
+                access to the profiles of their children.
+                kiddoCare is an educational project developed by students for Web Technologies.
+            </p>
+        </section>
+        <section id="references">
+            <h4>1.5 References</h4>
+            <ul>
+                <li>Buraga Sabin-Corneliu, Site-ul Tehnologii Web, FII UAIC.</li>
+                <li>H Rick. IEEE-Template. GitHub</li>
+                <li>Berjon Robin. Ballesteros Sebastien. What is Scholarly HTML?</li>
+            </ul>
+        </section>
+    </section>
+
+    <section id="overall">
+        <h3>2. Overall Description</h3>
+        <section id="product-perspective">
+            <h4>2.1 Product Perspective</h4>
+            <p>kiddoCare (BaIn - Baby Info Manager) is an application meant to preserve children's data and memories,
+                developed by three students for the Web Techologies course.
+        </section>
+        <section id="product-functions">
+            <h4>2.2 Product Functions</h4>
+            <ul>
+                <li>Each user will have access to the following features:</li>
+                <ul>
+                    <li>create an account</li>
+                    <li>allows for multiple persons to be associated to one account</li>
+                    <li>login</li>
+                    <li>create child profile</li>
+                    <li>manage child profile (information regarding sleep, meals, medical history)</li>
+                    <li>manage (view, publish, delete) personal multimedia resources</li>
+                    <li>edit parent profile(name, password, profile picture, emails)</li>
+                    <li>edit child profile(name, details)</li>
+                    <li>upload multimedia resources from local storage</li>
+                    <li>share resources to social media platform (Twitter)</li>
+                    <li>import/export data in CSV/JSON format</li>
+                    <li>allows for tagging accounts in pictures</li>
+                    <li>allows for bookmarking multimedia resources (bookmarked resources form the timeline)</li>
+                    <li>dark mode</li>
+                </ul>
+            </ul>
+        </section>
+        <section id="users">
+            <h4>2.3 User Classes and Characteristics</h4>
+            <h5>2.3.1 Main Users</h5>
+            <ul>
+                <li>authenticated users that can be:</li>
+                <ul>
+                    <li>single parents with children</li>
+                    <li>families or couples with children</li>
+                    <li>caretakers such as nannies, legal guardians, other family members(ex: grandparents) that can be
+                        added later
+                    </li>
+                </ul>
+                <li>unauthenticated users</li>
+            </ul>
+            <h5>2.3.2 Characteristics</h5>
+            <li>Authenticated users will have access to all the app's functionalities such as managing the food and
+                sleep schedule or medical history, uploading and sharing multimedia resources etc.
             </li>
-          </ul>
-        </li>
-
-      </ul>
-    </section>
-  </div>
-
-  <section>
-    <h3>1. Introduction</h3>
-    <section>
-      <h4>1.1 Purpose</h4>
-      <p>
-        The purpose of this document is to present a detailed description of the web application BaIn (Baby Info Manager). This application will provide users (families or couples) with a useful tool to monitor and manage the resources needed to care for their children and to keep every memory of their child's life.
-      </p>
-    </section>
-
-    <section>
-      <h4>1.2 Intended Audience and Reading Suggestions</h4>
-      <p>
-
-        The users of this application are parents and guardians who need an efficient and intuitive solution to manage the resources needed to care for their children. Those who want to use the application can be of any age and level of knowledge of technology.
-      </p>
-
-    </section>
-    <section>
-      <h4>1.3 Product Scope</h4>
-      <p>
-        The purpose of the application is to offer users help in terms of managing the resources needed to care for their children, the feeding and sleeping schedule, the medical history, the relationship with other children, and the chronological view (timeline) of the most important moments related to each individual child.
-      </p>
+            <li>Unauthenticated users will be able to register for an account.</li>
+        </section>
+        <section id="operating-environment">
+            <h4>2.4 Operating Environment</h4>
+            <p>
+                The developed product can be used on any device with a web browser that supports HTML5, CSS and
+                JavaScript.
+            </p>
+        </section>
+        <section id="documentation">
+            <h4>2.5 User Documentation</h4>
+            <p>
+                Users can refer to this document for in-depth explanations regarding the web application's
+                functionalities.
+            </p>
+        </section>
+        <section id="dependencies">
+            <h4>2.6 Assumptions and Dependencies</h4>
+            <p>
+                The feature of sharing photos etc. on Twitter is dependent on their third party apps API. Changes in the
+                API may result in malfunctions.
+                Using a browser that does not support HTML5 or disabling JavaScript can result in users failing to use
+                the web app.
+            </p>
+        </section>
     </section>
 
-    <section>
-      <h4>1.4 References</h4>
-      <ul>
-        <li>Buraga Sabin-Corneliu, Site-ul Tehnologii Web, FII UAIC.</li>
-        <li>H Rick. IEEE-Template. GitHub</li>
-        <li>Berjon Robin. Ballesteros Sebastien. What is Scholarly HTML?</li>
-      </ul>
+    <section id="external">
+        <h3>3. External Interface Requirements</h3>
+
+        <section id="user-interface">
+            <h4>3.1 User Interfaces</h4>
+            Here is an overview of every page of the application and the functionalities each of them offers:
+            <ul>
+                <li id="login-page"><b>login page</b></li>
+                <ul>
+                    <li>email</li>
+                    <li>password</li>
+                    <li>login</li>
+                    <li>sign up</li>
+                    <li>documentation</li>
+                </ul>
+
+                <li id="signup-page"><b>signup page</b></li>
+                <ul>
+                    <li>choose family/single parent</li>
+                    <li>username</li>
+                    <li>email</li>
+                    <li>password</li>
+                    <li>add a picture</li>
+                    <li>information about child (name, date of birth, height, weight, picture, medical files) (can be
+                        added for multiple children)
+                    </li>
+                    <li>finish profile</li>
+                    <li>login (for already signed up)</li>
+                </ul>
+
+                <li id="main-page"><b>main page</b></li>
+                <ul>
+                    <li>information about the child</li>
+                    <li>sleep schedule</li>
+                    <li>feeding time</li>
+                    <li>medical history</li>
+                    <li>gallery</li>
+                    <li>likes</li>
+                    <li>edit child profile</li>
+                    <li>write in the daily journal</li>
+                    <li>add photos</li>
+                    <li>submit</li>
+                    <li>logout</li>
+
+                </ul>
+
+                <li id="side-panel"><b>side panel</b></li>
+                <ul>
+                    <li>overview of all added children</li>
+                    <li>add child</li>
+                    <li>import data</li>
+                    <li>export data</li>
+                    <li>dark mode</li>
+                </ul>
+
+                <li id="edit-account-page"><b>edit account page</b></li>
+                <ul>
+                    <li>change username</li>
+                    <li>change email</li>
+                    <li>add email</li>
+                    <li>change password</li>
+                    <li>add/remove child</li>
+                    <li>new profile picture</li>
+                </ul>
+            </ul>
+        </section>
+
+        <section id="hardware-interface">
+            <h4>3.2 Hardware Interfaces</h4>
+            <p>
+                This product does not need any hardware interfaces; it works on any device (computers, laptops, phones
+                etc.) that has a browser installed.
+            </p>
+        </section>
+
+        <section id="software-interface">
+            <h4>3.3 Software Interfaces</h4>
+            <p>
+                The minimum software requirements are a working browser, compatible with HTML5 and that has JavaScript
+                enabled.
+            <h5>Postgres Database</h5>
+            The database will be used to hold the account owner's information (username, email, password), as well as
+            the children's and an id for association with multimedia resources.
+            </p>
+        </section>
+
+        <section id="communication-interface">
+            <h4>3.4 Communications Interfaces</h4>
+            <p>
+                The application requires Internet connection. The communication standard that is to be used is HTTPS.
+            </p>
+        </section>
+
+        <section id="system-features">
+            <h3>4. System Features</h3>
+            <section id="management">
+                <h4>4.1 Account Management</h4>
+                <ul>
+                    <h5 id="management-1">4.1.1 Description and Priority</h5>
+                    A child care taker can register for an account through an email, password and username.
+                    Through the <b>Edit profile</b> pages, the account owners can change the details, including adding
+                    more emails, as to more relatives/ caregivers to have access to the child profile as well.
+                    For login, only email and password are required. The children's profiles are added here (name,
+                    height, weight, date of birth etc.), with the possibility of being edited later. They can also delete their account.
+                    <h5 id="management-2">4.1.2 Stimulus/Response</h5>
+                    <ul>
+                        <li>
+                            Once the user changes their information or their children's, the changed details will be
+                            updated in the database and will be shown on the web app.
+                        </li>
+                    </ul>
+                    <h5 id="management-3">4.1.3 Functional Requirements</h5>
+                    <ul>
+                        <li>
+                            The user must be logged in to their account.
+                        </li>
+                        <li>
+                            kiddoCare must store the changed details.
+                        </li>
+                    </ul>
+                </ul>
+            </section>
+            <section id="sleep">
+                <h4>4.2 Nap time</h4>
+                <ul>
+                    <h5 id="sleep-1">4.2.1 Description and Priority</h5>
+                    From the user's account, they can log the time of their children's sleeping schedule, as well as the
+                    quality of their sleep.
+                    <h5 id="sleep-2">4.2.2 Stimulus/Response</h5>
+                    <ul>
+                        <li>
+                            The user chooses an interval for the sleeping period.
+                        </li>
+                        <li>
+                            The user chooses the quality-level of their children's sleep.
+                        </li>
+                    </ul>
+                    <h5 id="sleep-3">4.2.3 Functional Requirements</h5>
+                    <ul>
+                        <li>
+                            The user must be logged in to their account.
+                        </li>
+                        <li>
+                            kiddoCare must allow user to pick a timeframe.
+                            kiddoCare must allow user to pick quality-level from a dropdown menu.
+                        </li>
+                    </ul>
+                </ul>
+            </section>
+            <section id="meal">
+                <h4>4.3 Meal time</h4>
+                <ul>
+                    <h5 id="meal-1">4.3.1 Description and Priority</h5>
+                    From the user's account, they can log their children's meal type (breakfast, lunch, dinner), as well
+                    as what did they eat, likes, dislikes and allergies.
+                    <h5 id="meal-2">4.3.2 Stimulus/Response</h5>
+                    <ul>
+                        <li>
+                            The user chooses meal type.
+                        </li>
+                        <li>
+                            The user describes the meal.
+                        </li>
+                        <li>
+                            The user marks down likes/dislikes/allergies.
+                        </li>
+                    </ul>
+                    <h5 id="meal-3">4.3.3 Functional Requirements</h5>
+                    <ul>
+                        <li>
+                            The user must be logged in to their account.
+                        </li>
+                        <li>
+                            kiddoCare must allow user to register likes/dislikes/allergies [dropdown menu].
+                            kiddoCare must allow user to pick meal type [dropdown menu].
+                            kiddoCare must allow user to describe the meal [textbox].
+                        </li>
+                    </ul>
+                </ul>
+            </section>
+            <section id="gallery">
+                <h4>4.4 Gallery</h4>
+                <ul>
+                    <h5 id="gallery-1">4.4.1 Description and Priority</h5>
+                    From the user's account, they can upload pictures and other media resources, as well as view all
+                    other added resources. They can filter it by date and choose to bookmark their favourite moments.
+                    <h5 id="gallery-2">4.4.2 Stimulus/Response</h5>
+                    <ul>
+                        <li>
+                            The user chooses multimedia resource and uploads it.
+                        </li>
+                        <li>
+                            The user can bookmark it.
+                        </li>
+                    </ul>
+                    <h5 id="gallery-3">4.4.3 Functional Requirements</h5>
+                    <ul>
+                        <li>
+                            The user must be logged in to their account.
+                        </li>
+                        <li>
+                            kiddoCare must allow user to upload files [upload button].
+                            kiddoCare must allow user to mark it as favourite [dropdown menu].
+                            kiddoCare must allow user to tag other users [textbox].
+                        </li>
+                    </ul>
+                </ul>
+            </section>
+            <section id="medical">
+                <h4>4.5 Medical</h4>
+                <ul>
+                    <h5 id="medical-1">4.5.1 Description and Priority</h5>
+                    From the user's account, they can upload files regarding the medical state of their children (such
+                    as blood test results, CT scans etc.).
+                    <h5 id="medical-2">4.5.2 Stimulus/Response</h5>
+                    <ul>
+                        <li>
+                            The user chooses PDF resource and uploads it.
+                        </li>
+                    </ul>
+
+
+                    <h5 id="medical-3">4.5.3 Functional Requirements</h5>
+                    <ul>
+                        <li>
+                            The user must be logged in to their account.
+                        </li>
+                        <li>
+                            kiddoCare must allow user to upload files [upload button].
+                        </li>
+                    </ul>
+                </ul>
+            </section>
+            <section id="likes">
+                <h4>4.6 Likes</h4>
+                <ul>
+                    <h5 id="likes-1">4.6.1 Description and Priority</h5>
+                    From the user's account, they can see a timeline of their favourite moments from their children's life (photos, journal inputs - first step, graduations etc.).
+                    <h5 id="likes-2">4.6.2 Stimulus/Response</h5>
+                    <ul>
+                        <li>
+                            The user chooses resources and bookmarks/favourites it.
+                        </li>
+                    </ul>
+
+                    <h5 id="likes-3">4.6.3 Functional Requirements</h5>
+                    <ul>
+                        <li>
+                            The user must be logged in to their account.
+                        </li>
+                        <li>
+                            The user must have bookmarked resources.
+                        </li>
+                        <li>
+                            kiddoCare must filter for every child by timestamp bookmarked resources.
+                        </li>
+                    </ul>
+                </ul>
+            </section>
+            <section id="others">
+                <h4>4.7 Other features</h4>
+                <ul>
+                    <h5 id="others-1">4.7.1 Description and Priority</h5>
+                    From the user's account, they can import/export their data under a CSV/JSON file, share their chosen multimedia resources (pictures or text snippets) on Twitter, as well as choose the theme (light/dark mode) for the web application.
+                    These constitute low priority features.
+                    <h5 id="others-2">4.7.2 Stimulus/Response</h5>
+                    <ol>
+                        <li>
+                            The user chooses to import/export data and the format [CSV/JSON].
+                        </li>
+                        <li>
+                            The user chooses to share moments from their children's life [Twitter].
+                        </li>
+                        <li>
+                            The user chooses display settings [dark/light mode].
+                        </li>
+                    </ol>
+
+                    <h5 id="others-3">4.7.3 Functional Requirements</h5>
+                    <ul>
+                        <li>
+                            The user must be logged in to their account.
+                        </li>
+                        <li>
+                            [1] The user must have registered data about their children.
+                            [2] The user must be logged into Twitter/ have valid Twitter credentials for logging in.
+                        </li>
+                        <li>
+                            [1] kiddoCare must recognise file type.
+                            [2] kiddoCare must implement an API that allows the user sharing information on Twitter, as well as validates their credentials.
+                            [3] kiddoCare must offer display options.
+                        </li>
+                    </ul>
+                </ul>
+            </section>
     </section>
 
-  </section>
+    <section id="non-functional">
+        <h3>5. Other Nonfunctional Requirements</h3>
 
-  <section>
-    <h3>2. Overall Description</h3>
+        <section id="safety">
+            <h4>5.1 Safety Requirements</h4>
+            <p>
+                The application will ensure the confidentiality of children's health data, personal details, and
+                family members' data.
+                This information will be kept private and protected against unauthorized access.
+            </p>
+        </section>
 
-    <section>
-      <h4>2.1 Product Perspective</h4>      
-                  <p>kiddoCare is an application developed by three students who want to help preserve children's data and memories. They want this application to be a substitute for a diary, a photo album, or a medical portfolio.</p>
-              </section>
-
-    <section>
-      <h4>2.2 Product Functions</h4>
-      <ul>
-        <li>Each user will have access to the following features:</li>
-        <ul>
-          <li>Create an account</li>
-          <li>Login</li>
-          <li>Create your child profile</li>
-          <li>Manage your child profile</li>
-          <li>Manage (view, publish, delete) personal multimedia resources</li>
-          <li>Edit parent profile(name, password, profile picture)</li>
-          <li>Gallery</li>
-          <li>Sleeping Schedule</li>
-          <li>Feeding Time</li>
-          <li>Medical History</li>
-          <li>Dark Mode</li>
-        </ul>
-      </ul>
-    </section>
-
-    <section>
-      <h4>2.3 User Classes and Characteristics</h4>
-      <h5>2.2.1 Main Users</h5>
-      <ul>
-        <li>Single parents with children</li>
-        <li>Families or couples with children</li>
-        <li>Caretakers such as nannies, legal guardians, other family members(ex: grandparents) that can be added by the parents</li>
-      </ul>
-      <h5>2.2.2 Characteristics</h5>
-      <ul>They will need functionalities such as managing the food schedule, managing the sleep schedule, recording multimedia resources, recording the medical history, relating to other children, and any other information they wish to add.</ul>
+        <section id="security">
+            <h4>5.2 Security Requirements</h4>
+            <p>
+                The users accounts are protected by a login system using bcrypt encryption of the passwords and
+                access tokens in order to maintain their privacy and keep their data safe.
+                Other security measures that are taken: prevention of SQL-injection attacks, blocking of multiple
+                consecutive requests coming from a user in order to prevent application slowdown.
+            </p>
+        </section>
+        <!--            <section id="software-attributes">-->
+        <!--                <h4>5.3 Software Quality Attributes</h4>-->
+        <!--                <ul>-->
+        <!--                    <li>Adaptability</li>-->
+        <!--                    <li>Usability</li>-->
+        <!--                    <li>Reliability</li>-->
+        <!--                    <li>Flexibility</li>-->
+        <!--                    <li>Maintainability</li>-->
+        <!--                </ul>-->
+        <!--            </section>-->
 
     </section>
-
-    <section>
-      <h4>2.4 Operating Environment</h4>
-      <p>The developed product can be used on computers and phones with a stable Internet connection. Can be used on any device with a web browser that supports HTML5, CSS and JavaScript.</p>
     </section>
-
-  </section>
-
-  <section>
-    <h3>3. External Interface Requirements</h3>
-
-    <section>
-      <h4>3.1 User Interfaces</h4>
-      <ul>
-        
-        <li><b>Sign Up Page</b></li>
-        <ul>
-        <li>Choose family/single parent</li>
-        <li>Name</li>
-        <li>Email</li>
-        <li>Password</li>
-        <li>Add a picture</li>
-        <li>Information about your child (name, date of birth, height, weight, picture, medical files)</li>
-        <li>Finish profile</li>
-        <li>About us</li>
-        </ul>
-        
-        <li><b>Login Page</b></li>
-          <ul>
-          <li>Email</li>
-          <li>Password</li>
-          <li>Login</li>
-          <li>Sign Up</li>
-          <li>About us</li>
-          </ul>
-       
-        <li><b>Main Page</b></li>
-        <ul>
-          <li>Information about your child</li>
-          <li>Sleep schedule</li>
-          <li>Feeding time</li>
-          <li>Medical history</li>
-          <li>Gallery</li>
-          <li>Edit child profile</li>
-          <li>Write your daily journal</li>
-          <li>Add photos</li>
-          <li>Submit</li>
-          <li>Logout</li>
-        </ul>
-
-        <li><b>Side Panel</b></li>
-          <ul>
-          <li>Add child</li>
-          <li>Save your data </li>
-          <li>Dark mode</li>
-          </ul>
-        
-        <li><b>Edit Account Page</b></li>
-          <ul>
-          <li>Change name</li>
-          <li>Change email </li>
-          <li>Change password</li>
-          <li>Add/remove child</li>
-          <li>New profile picture</li>
-          <li>Edit profile</li>
-          </ul>
-      </ul>
-    </section>
-
-    <section>
-      <h4>3.2 Hardware Interfaces</h4>
-      <p>
-        The supported device types are computers, laptops and phones.
-      </p>
-    </section>
-
-    <section>
-      <h4>3.3 Software Interfaces</h4>
-      <p>
-        The minimum software requirements are a working browser and a stable connection to the Internet.
-      </p>
-    </section>
-
-    <section>
-      <h4>3.4 Communications Interfaces</h4>
-      <p>
-        The application requires Internet connection. The communication standard that is to be used is HTTP.
-      </p>
-    </section>
-
-    <section>
-      <h3>4. System Features</h3>
-
-      <section>
-        <h4>4.1 Signup Page</h4>
-        <ul>
-          <li>Account credentials : the user can enter their credentials for creating an account: email, password, profile picture, and other care takers' email</li>
-          <li>Create new baby profile: add a new profile for their child, where they can enter their name, date of birth,profile picture, weight, height and medical files</li>
-          <li>Finish profile: creating a new account and redirecting to the main page</li>
-        </ul>
-        <h4>4.2 Login Page</h4>
-        <ul>
-          <li>Login credentials : the user can enter their credentials in order to enter into their account</li>
-          <li>Sign up : new users can create their account</li>
-          <li>Documentation : presented the documentation for our project</li>
-          <li>Dark Mode : switching between light/dark mode according to the user's preferences</li>
-        </ul>
-        <h4>4.3 Main Page</h4>
-        <ul>
-            <li>Import CSV/JSON</li>
-            <li>Export CSV/JSON</li>
-            <li>Share : the user can share the child's important steps on various social media platforms: Facebook, Twitter</li>
-            <li>Dark Mode : switching between light/dark mode according to the user's preferences</li>
-            <li>Add new child page : attaching a new child profile to the parent acount</li>
-            <li>Baby Profile : the user can see information about the child and enter a journal entry ( description about the child's day and multimedia resources)</li>
-            <li>Sleeping Schedule : the user can see information about the child's sleeping schedule and enter new data regarding their sleep</li>
-            <li>Feeding Time : the user can see information about the child's feeding schedule and enter new data regarding their meals</li>
-            <li>Medical History: the user can download the child's medical files</li>
-            <li>Gallery : the user can add new media resources and visit the child's gallery</li>
-            <li>Edit Child Profile: the user can edit the information about their child</li>
-            <li>Edit Account Profile : the user can edit his own information </li>
-            <li>Logout</li>
-        </ul>
-        <h4>4.4 Edit Account Page</h4>
-        <ul>
-          <li>Delete child profile : the user can delete child profiles that they no longer need/use</li>
-          <li>Edit parent profile : the user changes their information</li>
-          <li>Enter caretaker email for child access</li>
-        </ul>
-
-      </section>
-
-    </section>
-
-    <section>
-      <h3>5. Other Nonfunctional Requirements</h3>
-
-      <section>
-        <h4>5.1 Safety Requirements</h4>
-        <p>
-          The application will ensure the confidentiality of children's health data, personal details, and family members' data. This information will be kept private and protected against unauthorized access.
-        </p>
-      </section>
-
-      <section>
-        <h4>5.2 Security Requirements</h4>
-        <p>
-          The users accounts are protected by a login system using bcrypt encryption of the passwords and access tokens in order to maintain their privacy and keep their data safe.
-          Other security measures that are taken: prevention of SQL-injection attacks, blocking of multiple consecutive requests coming from a user in order to prevent application slowdown and blocking the users that have been reported for inappropriate photo uploads.
-        </p>
-      </section>
-
-      <section>
-        <h4>5.3 Software Quality Attributes</h4>
-        <ul>
-          <li>Adaptability</li>
-          <li>Usability</li>
-          <li>Reliability</li>
-          <li>Flexibility</li>
-          <li>Maintanability</li>
-        </ul>
-      </section>
-
-    </section>
-  </section>
 </article>
 </body>
 </html>
