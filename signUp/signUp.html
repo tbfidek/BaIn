@@ -25,12 +25,18 @@
                     <button type="button"><span class="material-symbols-rounded">add_a_photo</span></button>
                 </div>
                 <div class="child-information">
+                    <div class="choose-gender">
+                        <input type="radio" id="gender-female" name="gender-type">
+                        <label id="female" for="gender-female">female</label><br>
+                        <input type="radio" id="gender-male" name="gender-type">
+                        <label for="gender-male">male</label><br>
+                    </div>
                     <div class="form">
-                        <input placeholder="name" type="text" id="name" pattern="[a-b]" required>
-                        <input type="date" id="data" name="name" required>
+                        <input placeholder="name" type="text" id="name" name="name" pattern="[a-b]" required>
+                        <input type="date" id="data" name="date" required>
                         <div class="alignment">
-                            <input placeholder="height" type="text" id="height" name="details" pattern="[0-9]{10}" required>
-                            <input placeholder="weight" type="text" id="weight" name="details" pattern="[0-9]{10}" required>
+                            <input placeholder="height (cm)" type="text" id="height" name="details" pattern="[0-9]{10}" required>
+                            <input placeholder="weight (kg)" type="text" id="weight" name="details" pattern="[0-9]{10}" required>
                         </div>
                         <button type="button" class="medical">medical files
                             <span class="material-symbols-rounded upload">upload</span>
