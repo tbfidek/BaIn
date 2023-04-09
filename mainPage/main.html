@@ -18,6 +18,16 @@
 </head>
 
 <body>
+<header>
+    <div class="drop">
+        <span onclick="dropdown()" class="material-symbols-rounded">menu</span>
+    </div>
+    <div class="mobile-pic">
+        <a href="../editProfile/editProfile.html"><img src="../images/profile_pic.jpg" alt=""></a>
+        <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
+        <a href="../login/login.html"><span class="material-symbols-rounded">logout</span></a>
+    </div>
+</header>
 <div class="container">
     <div class="sidebar">
         <div class="child-profile">
@@ -47,13 +57,20 @@
             <div class="child-list" id="child-list">
                 <div class="child sidebutton text">child#</div>
             </div>
+            <span onclick="closeDropdown()" class="material-symbols-rounded mobile-on">expand_less</span>
 
         </div>
     </div>
     <div class="main">
         <div class="parent">
-            <div><p>Hello, #name! How is your baby today?</p></div>
-            <div>
+            <div class="mobile-on">
+                <img src="../images/baby_pic.jpg" alt="profileImage" class="child-pfp" onclick="showEditChildProfile()">
+                <p>Brontozaur</p>
+                <p>3MONTHS</p>
+                <p>H:55 W:55</p>
+            </div>
+            <div><p class="title">Hello, #name! How is your baby today?</p></div>
+            <div class="mobile-off">
                 <a href="../editProfile/editProfile.html"><img src="../images/profile_pic.jpg" alt=""></a>
                 <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
                 <a href="../login/login.html"><span class="material-symbols-rounded">logout</span></a>
@@ -85,10 +102,13 @@
                     <input type="file" id="add-photo" name="add-photo" accept="image/jpg, image/jpeg, image/png, video/mp4"><br><br>
                     <input type="submit" class="submit" value="Submit">
                 </form>
-                <div>
+                <div class="med">
                     <br>
                     <h2>Medical History</h2>
-                    <button>Upload file</button>
+                    <form onsubmit="return false">
+                        <input type="file"  name="add-photo" accept=".application/pdf"><br><br>
+                        <input type="submit" class="submit" value="Upload file">
+                    </form><br>
                     <form onsubmit="return false">
                         <label for="data">Date:</label><br>
                         <input type="date" id="data" name="date"><br><br>
@@ -98,8 +118,6 @@
                         <button>file1<span class="material-symbols-rounded">download</span></button>
                         <button>file2<span class="material-symbols-rounded">download</span></button>
                     </div>
-
-
                 </div>
             </div>
 
@@ -147,10 +165,11 @@
 
         </div>
         <div class="account-overview FEEDING-TIME">
-            <div>
+            <div class="feed">
                 <h2>Feeding Time</h2>
+                <button onclick="showAddMeal()">Add Meal</button>
             </div>
-            <button onclick="showAddMeal()">Add Meal</button>
+
             <div class="calendar-meal">
                 <img src="../images/calendar.jpg" alt="">
                 <p> Information regarding your child meal activity. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
@@ -217,7 +236,7 @@
                         <label for="date-pic">Pick a date:</label><br><br>
                         <input type="date" id="date-pic" name="date"><br><br>
                         <label for="add-pic">Add the image/video:</label><br><br>
-                        <input type="file" id="add-pic" name="add-photo" accept="image/jpg, image/jpeg, image/png, video/mp4"><br><br>
+                        <input type="file" id="add-pic" name="add-photo" accept="image/jpg, image/jpeg, image/png, video/mp4, .mp3,audio/*"><br><br>
                         <input onclick="removeAddOption()" type="submit" class="submit" value="Done">
                     </form>
                 </div>
@@ -235,6 +254,10 @@
                 <h2>Edit Child Profile</h2>
                 <div class="update">
                     <form class="form-child"><br>
+                            <input type="radio" id="gender-female" name="gender-type">
+                            <label id="female" for="gender-female">female</label><br><br>
+                            <input type="radio" id="gender-male" name="gender-type">
+                            <label for="gender-male">male</label><br><br>
                         <label for="bday">Change date of birth:</label><br>
                         <input type="date" id="bday" name="date"><br><br>
                         <input type="submit" class="submit" value="Submit">

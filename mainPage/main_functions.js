@@ -4,11 +4,6 @@ function themeToggle() {
 }
 
 // dc nu merge :(((
-function removeChild(element) {
-    console.log("alo");
-    element.parentNode.parentNode.removeChild(element.parentNode);
-}
-
 
 function addNewSection() {
     const firstSection = document.createElement('div');
@@ -174,23 +169,20 @@ Sleeping.forEach(schedule => {
     document.querySelector('table tbody').appendChild(tr);
 });
 
+function dropdown(){
+    let menu = document.querySelector('.sidebar');
+    menu.style.display='flex';
+    menu.style.width='100%';
+    menu = document.querySelector('.main');
+    menu.style.display='none';
+}
+function closeDropdown(){
+    let menu = document.querySelector('.sidebar');
+    menu.style.display='none';
+    menu = document.querySelector('.main');
+    menu.style.display='block';
 
-// function dropdown() {
-//     const menu = document.querySelector('.dropdown');
-//     const container = document.querySelector('.container');
-//     const root = document.querySelector(":root");
-//     const dropColor = getComputedStyle(root).getPropertyValue("--under-card-color");
-//     const originalColor = getComputedStyle(root).getPropertyValue("--background-color");
-//
-//     if (menu.style.display === 'block') {
-//         menu.style.display = 'none';
-//         container.style.visibility = 'visible' ;
-//         document.body.style.backgroundColor = originalColor;
-//     } else {
-//         menu.style.display = 'block';
-//         container.style.visibility = 'hidden' ;
-//         document.body.style.backgroundColor = dropColor;
-//     }
-// }
+}
+
 
 
