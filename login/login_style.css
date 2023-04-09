@@ -110,6 +110,9 @@ span:hover{
         margin-top:5rem;
         flex-direction: column;
     }
+    .right-part{
+        margin-bottom: 2rem;
+    }
 }
 
 @media (max-width: 500px){
