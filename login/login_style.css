@@ -94,35 +94,30 @@ span:hover{
     cursor: pointer;
 }
 
-section{
+.section{
     border-top: 2px solid var(--card-color);
     padding-top:2rem;
 
 }
 
 @media (max-width: 1000px){
-    .right-part section{
-        padding: 2rem;
-    }
-    .right-part div{
-        padding:1rem 1rem;
+    .section{
+        border-top: 2px solid var(--card-color);
+        padding-top:2rem;
 
     }
     .container{
         margin-top:5rem;
         flex-direction: column;
     }
-    .right-part section{
-        margin-bottom:5rem;
-    }
 }
 
 @media (max-width: 500px){
-    .right-part section{
+    .section{
         margin-bottom:0.5rem;
     }
 
-    section{
+    .section{
         border-top: 2px solid var(--card-color);
         padding-top:0.5rem;
 
