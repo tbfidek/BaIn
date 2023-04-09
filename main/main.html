@@ -56,16 +56,19 @@
             <div>
                 <a href="../editProfile/editProfile.html"><img src="../images/profile_pic.jpg" alt=""></a>
                 <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
-                <span class="material-symbols-rounded">logout</span>
+                <a href="../login/login.html"><span class="material-symbols-rounded">logout</span></a>
             </div>
         </div>
         <div class="account-overview OVERVIEW">
             <div class="journal-input">
                 <div>
                     <label for="description-day">Write in your daily journal:</label>
+<!--                    <label id="vertical-label" for="vertical">Write in your daily journal:</label>-->
                 </div>
                 <div>
                     <textarea rows="20" cols="100" placeholder=" My baby smiled today :)" id="description-day"
+                              name="description-day"></textarea>
+                    <textarea id="vertical" rows="20" cols="40" placeholder=" My baby smiled today :)"
                               name="description-day"></textarea>
                 </div>
                 <div>
