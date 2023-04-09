@@ -42,7 +42,7 @@ body {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-  }
+}
 
 .right-part{
     background-color: var(--under-card-color);
@@ -64,39 +64,84 @@ body {
 .logo h1{
     margin-bottom: 1rem;
 }
-  img {
-      background-color: var(--under-card-color);
-      box-shadow: var(--box-shadow);
-      padding:1rem;
-      margin-top: 2rem;
-      max-width:60%;
-      border-radius: 50%;
-  }
+img {
+    background-color: var(--under-card-color);
+    box-shadow: var(--box-shadow);
+    padding:1rem;
+    margin-top: 2rem;
+    max-width:60%;
+    border-radius: 50%;
+}
 
-  input,button{
-      background-color: var(--card-color);
-      border:none;
-      padding:1rem 4rem;
-      margin-bottom: 1rem;
-      border-radius: var(--border-radius-card);
-      box-shadow: var(--box-shadow);
-      font-size: 1rem;
-  }
- button:hover{
-      font-weight: bolder;
-  }
+input,span{
+    background-color: var(--card-color);
+    border:none;
+    padding:1rem 3rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: var(--border-radius-card);
+    box-shadow: var(--box-shadow);
+    font-size: 1rem;
+}
 
-  section{
-      border-top: 2px solid var(--card-color);
-      padding-top:1rem;
-  }
+span{
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+span:hover{
+    background: #9c9992;
+    cursor: pointer;
+}
+
+section{
+    border-top: 2px solid var(--card-color);
+    padding-top:2rem;
+
+}
 
 @media (max-width: 1000px){
+    .right-part section{
+        padding: 2rem;
+    }
+    .right-part div{
+        padding:1rem 1rem;
+
+    }
     .container{
-        margin-top:20rem;
+        margin-top:5rem;
         flex-direction: column;
     }
     .right-part section{
         margin-bottom:5rem;
+    }
+}
+
+@media (max-width: 500px){
+    .right-part section{
+        margin-bottom:0.5rem;
+    }
+
+    section{
+        border-top: 2px solid var(--card-color);
+        padding-top:0.5rem;
+
+    }
+    input,span{
+        background-color: var(--card-color);
+        border:none;
+        padding:1rem 2rem;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        border-radius: var(--border-radius-card);
+        box-shadow: var(--box-shadow);
+        font-size: 1rem;
+    }
+
+    span{
+        margin-left: 0.2rem;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
     }
 }
