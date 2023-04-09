@@ -46,9 +46,9 @@ body {
 }
 
 .left-button, .right-button {
-    padding: 0.5rem 1rem;
+    padding: 0.3rem;
     border-radius: 5px;
-    background-color: var(--primary-color);
+    background-color: var(--card-color);
     font-size: 1rem;
     font-weight: bold;
     text-transform: uppercase;

@@ -398,9 +398,10 @@ input[name="gender-type"]{
     }
 
     .banner {
-        width: 94%;
+        width: 100%;
         padding: 1rem 10rem;
         font-size: 1.4rem;
+        border-radius: 0;
     }
     .left-parent-info, .right-parent-info {
         width: 80%;

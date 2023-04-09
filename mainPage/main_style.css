@@ -69,7 +69,15 @@ header{
     max-width:35%;
     cursor: pointer;
     margin-right: 1rem;
+    transition: all 2s ease;
+
 }
+.child-pfp:hover{
+    max-width:37%;
+    box-shadow: var(--box-shadow);
+
+}
+
 
 .maintext{
     font-size: 1.5rem;
@@ -156,6 +164,7 @@ header{
 .parent p{
     margin-left: 2rem;
     font-size: 2.5rem;
+    transition: all 1s ease-out;
 }
 .parent span{
     margin-top: 1rem;
@@ -609,3 +618,4 @@ a, a:visited{
     height:0;
     width:0;
 }
+

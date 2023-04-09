@@ -184,5 +184,18 @@ function closeDropdown(){
 
 }
 
+function toggleSidebar() {
+    let sidebar = document.querySelector(".sidebar");
+    if (window.innerWidth < 1000) {
+        sidebar.style.display = "none";
+    } else {
+        sidebar.style.display = "flex";
+        sidebar.style.width = "20rem";
+    }
+}
+
+window.addEventListener("resize", toggleSidebar);
+
+
 
 
