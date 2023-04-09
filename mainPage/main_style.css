@@ -115,7 +115,7 @@ body{
 
 }
 
-.search span:hover, .sidebutton:hover, span:hover, .parent span:hover, .account-overview input[type=submit]:hover, input[type=file]::file-selector-button:hover{
+.file-input button:hover, input[type=date]:hover, .search span:hover, .sidebutton:hover, span:hover, .parent span:hover, .account-overview input[type=submit]:hover, input[type=file]::file-selector-button:hover{
     background: #9c9992;
     cursor: pointer;
 }
@@ -208,21 +208,7 @@ textarea {
     background-color: var(--card-color);
 }
 
-/*.account-overview input[type=submit], input[type=file]::file-selector-button {*/
-/*    background-color: var(--card-color);*/
-/*    border-radius: var(--border-radius-card);*/
-/*    padding:0.6rem;*/
-/*    margin-top: 1rem;*/
-/*    margin-bottom: 0.5rem;*/
-/*    box-shadow: 1px 5px 5px #3c3744;*/
-/*    border: none;*/
-/*    font-family: 'Righteous', cursive, sans-serif;*/
-/*    transition: background .2s ease-in-out;*/
-/*}*/
-/*.account-overview input[type=submit]{*/
-/*    margin-bottom: 2rem;*/
-/*    margin-top: 0.5rem;*/
-/*}*/
+
 
 .account-overview button {
     display: flex;
@@ -257,13 +243,14 @@ tbody td{
     padding:0.5rem;
 }
 
-.show-files,.sleep-form,.form-table{
+.show-files, .sleep-form, .form-table{
     display: none;
 }
 
 .calendar-pic img{
     max-width: 30%;
 }
+
 .calendar-pic{
     display:flex;
     flex-direction:row;
@@ -271,22 +258,37 @@ tbody td{
     align-items: center;
     gap:3rem;
 }
+
 .info-child p{
     font-size: 1rem;
     color:var(--font-color );
 }
+
 form label{
    margin-bottom:1rem;
 }
 
-form input,form select{
+form input[type=date], form input[type=submit], form select{
     color: var(--font-color);
     padding:0.5rem;
     border-radius: var(--border-radius-under-card);
     border:none;
     background-color: var(--card-color);
-}
+    box-shadow: 1px 5px 5px #3c3744;
 
+}
+.account-overview input[type=file]::file-selector-button {
+    background-color: var(--card-color);
+    border-radius: var(--border-radius-card);
+    padding:0.6rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    font-family: 'Righteous', cursive, sans-serif;
+    transition: background .2s ease-in-out;
+    box-shadow: 1px 5px 5px #3c3744;
+
+}
 .update button{
     margin-top:2rem;
     padding:0.5rem;
@@ -311,9 +313,11 @@ h2{
 .timeline-img img{
     max-width: 20%;
 }
+
 .timeline-img h2:hover{
     cursor:pointer;
 }
+
 .timeline-img{
     display: flex;
     flex-direction: row;
@@ -321,21 +325,32 @@ h2{
     align-items: center;
     gap:2rem;
 }
+
 .date p{
     text-align: center;
 }
+
 .calendar-meal img{
     max-width:30%;
 }
+
 .calendar-meal p{
     margin: 5rem;
 }
+
 .calendar-meal{
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap:2rem;
+}
+input:hover {
+
+}
+
+#vertical {
+    display: none;
 }
 /*------------------------------------------RESPONSIVE--------------------------------------------------------------*/
 
@@ -360,7 +375,8 @@ h2{
         margin-bottom: 1rem;
     }
     .account-overview {
-        margin: 2rem;
+        flex-direction: row;
+        margin: 1rem;
         padding: 2rem;
     }
     textarea {
@@ -370,25 +386,35 @@ h2{
         background-color: var(--card-color);
 
     }
-
+    .file-input{
+        display: flex;
+        flex-direction: column;
+    }
 
 }
 
 @media (max-width: 1500px) {
+
+    body{
+        overflow: visible;
+    }
+
     .sidebar {
-        width: 15rem;
+        width: 16rem;
+        min-height: 100vh;
+    }
+
+    .overview , .feeding , .sleeping , .likes , .child , .gallery{
+        height: 3rem;
+        width:12rem;
+        font-size: 1.2rem;
     }
 
     .child-pfp {
         margin-left: 1rem;
     }
 
-    /*.child name p {*/
-    /*    font-size: smaller;*/
-    /*}*/
-
     .child-profile {
-
         justify-content: flex-start;
         gap: 0;
     }
@@ -396,35 +422,44 @@ h2{
     .text {
         margin-left: 0;
     }
+
     .search span{
         padding:0.3rem;
     }
-}
-
-@media screen and (max-width: 1000px){
-    .main {
-        width: 50%;
-    }
-    .parent div{
-        display: flex;
-        flex-direction: row;
-        justify-content: space-evenly;
-        align-items: center;
-    }
-    .account-overview{
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-        align-items: center;
-        margin: 2rem;
-        padding: 2rem;
-        /*width:10%;*/
-    }
-    .sidebar{
-        width:15rem;
+    .parent p{
+        margin-left: 2rem;
+        font-size: 1.5rem;
     }
 
+    #description-day{
+        display: none;
+    }
+    #vertical {
+        display: inline;
+    }
+
+    .account-overview input[type=submit], input[type=file]::file-selector-button {
+        background-color: var(--card-color);
+        border-radius: var(--border-radius-card);
+        padding:0.6rem;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+        border: none;
+        font-family: 'Righteous', cursive, sans-serif;
+        transition: background .2s ease-in-out;
+        box-shadow: 1px 5px 5px #3c3744;
+
+    }
+    /*.account-overview input[type=submit]{*/
+    /*    margin-bottom: 2rem;*/
+    /*    margin-top: 0.5rem;*/
+    /*}*/
+
+
 }
+/* @media (max-width: 1000px) */
+
+
 @media (max-width:550px) {
 
     .image{
