@@ -235,24 +235,23 @@
         </section>
         <section id="product-functions">
             <h4>2.2 Product Functions</h4>
+            Each user will have access to the following features:
             <ul>
-                <li>Each user will have access to the following features:</li>
-                <ul>
-                    <li>create an account</li>
-                    <li>allows for multiple persons to be associated to one account</li>
-                    <li>login</li>
-                    <li>create child profile</li>
-                    <li>manage child profile (information regarding sleep, meals, medical history)</li>
-                    <li>manage (view, publish, delete) personal multimedia resources</li>
-                    <li>edit parent profile(name, password, profile picture, emails)</li>
-                    <li>edit child profile(name, details)</li>
-                    <li>upload multimedia resources from local storage</li>
-                    <li>share resources to social media platform (Twitter)</li>
-                    <li>import/export data in CSV/JSON format</li>
-                    <li>allows for tagging accounts in pictures</li>
-                    <li>allows for bookmarking multimedia resources (bookmarked resources form the timeline)</li>
-                    <li>dark mode</li>
-                </ul>
+                <li>create an account</li>
+                <li>allows for multiple persons to be associated to one account</li>
+                <li>login</li>
+                <li>create child profile</li>
+                <li>manage child profile (information regarding sleep, meals, medical history)</li>
+                <li>manage (view, publish, delete) personal multimedia resources</li>
+                <li>edit parent profile(name, password, profile picture, emails)</li>
+                <li>edit child profile(name, details)</li>
+                <li>upload multimedia resources from local storage</li>
+                <li>share resources to social media platform (Twitter)</li>
+                <li>import/export data in CSV/JSON format</li>
+                <li>allows for tagging accounts in pictures</li>
+                <li>allows for bookmarking multimedia resources (bookmarked resources form the timeline)</li>
+                <li>dark mode</li>
+
             </ul>
         </section>
         <section id="users">
@@ -260,20 +259,23 @@
             <h5>2.3.1 Main Users</h5>
             <ul>
                 <li>authenticated users that can be:</li>
-                <ul>
+                <li><ul>
                     <li>single parents with children</li>
                     <li>families or couples with children</li>
                     <li>caretakers such as nannies, legal guardians, other family members(ex: grandparents) that can be
                         added later
                     </li>
-                </ul>
+                </ul></li>
                 <li>unauthenticated users</li>
             </ul>
             <h5>2.3.2 Characteristics</h5>
-            <li>Authenticated users will have access to all the app's functionalities such as managing the food and
-                sleep schedule or medical history, uploading and sharing multimedia resources etc.
-            </li>
-            <li>Unauthenticated users will be able to register for an account.</li>
+            <ul>
+                <li>Authenticated users will have access to all the app's functionalities such as managing the food and
+                    sleep schedule or medical history, uploading and sharing multimedia resources etc.
+                </li>
+                <li>Unauthenticated users will be able to register for an account.</li>
+            </ul>
+
         </section>
         <section id="operating-environment">
             <h4>2.4 Operating Environment</h4>
@@ -308,16 +310,16 @@
             Here is an overview of every page of the application and the functionalities each of them offers:
             <ul>
                 <li id="login-page"><b>login page</b></li>
-                <ul>
+                <li style="list-style: none"><ul>
                     <li>email</li>
                     <li>password</li>
                     <li>login</li>
                     <li>sign up</li>
                     <li>documentation</li>
-                </ul>
+                </ul></li>
 
                 <li id="signup-page"><b>signup page</b></li>
-                <ul>
+                <li style="list-style: none"><ul>
                     <li>choose family/single parent</li>
                     <li>username</li>
                     <li>email</li>
@@ -328,10 +330,10 @@
                     </li>
                     <li>finish profile</li>
                     <li>login (for already signed up)</li>
-                </ul>
+                </ul></li>
 
                 <li id="main-page"><b>main page</b></li>
-                <ul>
+                <li style="list-style: none"><ul>
                     <li>information about the child</li>
                     <li>sleep schedule</li>
                     <li>feeding time</li>
@@ -343,27 +345,26 @@
                     <li>add photos</li>
                     <li>submit</li>
                     <li>logout</li>
-
-                </ul>
+                </ul></li>
 
                 <li id="side-panel"><b>side panel</b></li>
-                <ul>
+                <li style="list-style: none"><ul>
                     <li>overview of all added children</li>
                     <li>add child</li>
                     <li>import data</li>
                     <li>export data</li>
                     <li>dark mode</li>
-                </ul>
+                </ul></li>
 
                 <li id="edit-account-page"><b>edit account page</b></li>
-                <ul>
+                <li style="list-style: none"><ul>
                     <li>change username</li>
                     <li>change email</li>
                     <li>add email</li>
                     <li>change password</li>
                     <li>add/remove child</li>
                     <li>new profile picture</li>
-                </ul>
+                </ul></li>
             </ul>
         </section>
 
@@ -383,7 +384,7 @@
             <h5>Postgres Database</h5>
             The database will be used to hold the account owner's information (username, email, password), as well as
             the children's and an id for association with multimedia resources.
-            </p>
+
         </section>
 
         <section id="communication-interface">
@@ -397,13 +398,14 @@
             <h3>4. System Features</h3>
             <section id="management">
                 <h4>4.1 Account Management</h4>
-                <ul>
-                    <h5 id="management-1">4.1.1 Description and Priority</h5>
+
+                   <h5 id="management-1">4.1.1 Description and Priority</h5>
                     A child care taker can register for an account through an email, password and username.
-                    Through the <b>Edit profile</b> pages, the account owners can change the details, including adding
+                    Through the 'Edit profile pages', the account owners can change the details, including adding
                     more emails, as to more relatives/ caregivers to have access to the child profile as well.
                     For login, only email and password are required. The children's profiles are added here (name,
-                    height, weight, date of birth etc.), with the possibility of being edited later. They can also delete their account.
+                    height, weight, date of birth etc.), with the possibility of being edited later. They can also
+                    delete their account. This is a medium-priority feature of the app.
                     <h5 id="management-2">4.1.2 Stimulus/Response</h5>
                     <ul>
                         <li>
@@ -420,14 +422,14 @@
                             kiddoCare must store the changed details.
                         </li>
                     </ul>
-                </ul>
+
             </section>
             <section id="sleep">
                 <h4>4.2 Nap time</h4>
-                <ul>
+
                     <h5 id="sleep-1">4.2.1 Description and Priority</h5>
                     From the user's account, they can log the time of their children's sleeping schedule, as well as the
-                    quality of their sleep.
+                    quality of their sleep. This is a main feature of the app.
                     <h5 id="sleep-2">4.2.2 Stimulus/Response</h5>
                     <ul>
                         <li>
@@ -447,14 +449,14 @@
                             kiddoCare must allow user to pick quality-level from a dropdown menu.
                         </li>
                     </ul>
-                </ul>
+
             </section>
             <section id="meal">
                 <h4>4.3 Meal time</h4>
-                <ul>
+
                     <h5 id="meal-1">4.3.1 Description and Priority</h5>
                     From the user's account, they can log their children's meal type (breakfast, lunch, dinner), as well
-                    as what did they eat, likes, dislikes and allergies.
+                    as what did they eat, likes, dislikes and allergies. This is a main feature of the app.
                     <h5 id="meal-2">4.3.2 Stimulus/Response</h5>
                     <ul>
                         <li>
@@ -478,14 +480,14 @@
                             kiddoCare must allow user to describe the meal [textbox].
                         </li>
                     </ul>
-                </ul>
+
             </section>
             <section id="gallery">
                 <h4>4.4 Gallery</h4>
-                <ul>
                     <h5 id="gallery-1">4.4.1 Description and Priority</h5>
                     From the user's account, they can upload pictures and other media resources, as well as view all
                     other added resources. They can filter it by date and choose to bookmark their favourite moments.
+                    This is a main feature of the app.
                     <h5 id="gallery-2">4.4.2 Stimulus/Response</h5>
                     <ul>
                         <li>
@@ -506,14 +508,12 @@
                             kiddoCare must allow user to tag other users [textbox].
                         </li>
                     </ul>
-                </ul>
             </section>
             <section id="medical">
                 <h4>4.5 Medical</h4>
-                <ul>
                     <h5 id="medical-1">4.5.1 Description and Priority</h5>
                     From the user's account, they can upload files regarding the medical state of their children (such
-                    as blood test results, CT scans etc.).
+                    as blood test results, CT scans etc.). This is a main feature of the app.
                     <h5 id="medical-2">4.5.2 Stimulus/Response</h5>
                     <ul>
                         <li>
@@ -531,13 +531,12 @@
                             kiddoCare must allow user to upload files [upload button].
                         </li>
                     </ul>
-                </ul>
             </section>
             <section id="likes">
                 <h4>4.6 Likes</h4>
-                <ul>
                     <h5 id="likes-1">4.6.1 Description and Priority</h5>
-                    From the user's account, they can see a timeline of their favourite moments from their children's life (photos, journal inputs - first step, graduations etc.).
+                    From the user's account, they can see a timeline of their favourite moments from their children's
+                    life (photos, journal inputs - first step, graduations etc.). This is a main feature of the app.
                     <h5 id="likes-2">4.6.2 Stimulus/Response</h5>
                     <ul>
                         <li>
@@ -557,13 +556,13 @@
                             kiddoCare must filter for every child by timestamp bookmarked resources.
                         </li>
                     </ul>
-                </ul>
             </section>
             <section id="others">
                 <h4>4.7 Other features</h4>
-                <ul>
                     <h5 id="others-1">4.7.1 Description and Priority</h5>
-                    From the user's account, they can import/export their data under a CSV/JSON file, share their chosen multimedia resources (pictures or text snippets) on Twitter, as well as choose the theme (light/dark mode) for the web application.
+                    From the user's account, they can import/export their data under a CSV/JSON file, share their chosen
+                    multimedia resources (pictures or text snippets) on Twitter, as well as choose the theme (light/dark
+                    mode) for the web application.
                     These constitute low priority features.
                     <h5 id="others-2">4.7.2 Stimulus/Response</h5>
                     <ol>
@@ -589,47 +588,51 @@
                         </li>
                         <li>
                             [1] kiddoCare must recognise file type.
-                            [2] kiddoCare must implement an API that allows the user sharing information on Twitter, as well as validates their credentials.
+                        </li>
+                        <li>
+                            [2] kiddoCare must implement an API that allows the user sharing information on Twitter, as
+                            well as validates their credentials.
+                            </li>
+                        <li>
                             [3] kiddoCare must offer display options.
                         </li>
                     </ul>
-                </ul>
             </section>
-    </section>
-
-    <section id="non-functional">
-        <h3>5. Other Nonfunctional Requirements</h3>
-
-        <section id="safety">
-            <h4>5.1 Safety Requirements</h4>
-            <p>
-                The application will ensure the confidentiality of children's health data, personal details, and
-                family members' data.
-                This information will be kept private and protected against unauthorized access.
-            </p>
         </section>
 
-        <section id="security">
-            <h4>5.2 Security Requirements</h4>
-            <p>
-                The users accounts are protected by a login system using bcrypt encryption of the passwords and
-                access tokens in order to maintain their privacy and keep their data safe.
-                Other security measures that are taken: prevention of SQL-injection attacks, blocking of multiple
-                consecutive requests coming from a user in order to prevent application slowdown.
-            </p>
-        </section>
-        <!--            <section id="software-attributes">-->
-        <!--                <h4>5.3 Software Quality Attributes</h4>-->
-        <!--                <ul>-->
-        <!--                    <li>Adaptability</li>-->
-        <!--                    <li>Usability</li>-->
-        <!--                    <li>Reliability</li>-->
-        <!--                    <li>Flexibility</li>-->
-        <!--                    <li>Maintainability</li>-->
-        <!--                </ul>-->
-        <!--            </section>-->
+        <section id="non-functional">
+            <h3>5. Other Nonfunctional Requirements</h3>
 
-    </section>
+            <section id="safety">
+                <h4>5.1 Safety Requirements</h4>
+                <p>
+                    The application will ensure the confidentiality of children's health data, personal details, and
+                    family members' data.
+                    This information will be kept private and protected against unauthorized access.
+                </p>
+            </section>
+
+            <section id="security">
+                <h4>5.2 Security Requirements</h4>
+                <p>
+                    The users accounts are protected by a login system using bcrypt encryption of the passwords and
+                    access tokens in order to maintain their privacy and keep their data safe.
+                    Other security measures that are taken: prevention of SQL-injection attacks, blocking of multiple
+                    consecutive requests coming from a user in order to prevent application slowdown.
+                </p>
+            </section>
+            <!--            <section id="software-attributes">-->
+            <!--                <h4>5.3 Software Quality Attributes</h4>-->
+            <!--                <ul>-->
+            <!--                    <li>Adaptability</li>-->
+            <!--                    <li>Usability</li>-->
+            <!--                    <li>Reliability</li>-->
+            <!--                    <li>Flexibility</li>-->
+            <!--                    <li>Maintainability</li>-->
+            <!--                </ul>-->
+            <!--            </section>-->
+
+        </section>
     </section>
 </article>
 </body>
