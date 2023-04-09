@@ -468,3 +468,40 @@ input:hover {
     }
 
 }
+
+@media (max-width: 800px) {
+    .container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .sidebar {
+      width: 60%;
+      margin-bottom: 2rem;
+    }
+    .main {
+      width: 80%;
+    }
+    .parent {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .parent p {
+      margin-left: 0;
+      margin-bottom: 1rem;
+    }
+    .parent img {
+      float: none;
+      max-width: 40%;
+      margin: 0;
+    }
+    .account-overview {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .account-overview label {
+      margin-bottom: 0.5rem;
+    }
+  }
+
