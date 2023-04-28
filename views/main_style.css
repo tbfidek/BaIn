@@ -8,7 +8,7 @@
     --box-shadow: 1px 5px 5px #3c3744;
     --box-shadow-under: 0 1rem 2rem  #22162b ;
     --font-color: black;
-    --background-img: url("../images/bg.jpg");
+    --background-img: url("../public/images/bg.jpg");
     --sidebar-shadow: #3c3744;
 }
 
@@ -20,7 +20,7 @@
     --box-shadow-under: 0 1rem 3rem #2e2e4f;
     --font-color: #C1BDB3;
     --sidebar-shadow: #2e2e4f;
-    --background-img: url("../images/darkbg.jpg");
+    --background-img: url("../public/images/darkbg.jpg");
 }
 
 *{

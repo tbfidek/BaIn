@@ -1,0 +1,459 @@
+:root {
+    --background-color: #7F7979;
+    --card-color: #C1BDB3;
+    --under-card-color: #5F5B6B;
+    --border-radius-card: 5px;
+    --border-radius-under-card: 10px;
+    --box-shadow: 1px 5px 5px #3c3744;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Righteous', cursive, sans-serif;
+}
+
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 20rem;
+
+    font-size: 1.7rem;
+    font-weight: bold;
+    background-color: var(--under-card-color);
+    border-radius: 20px;
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+}
+
+body {
+    background-image: url("../public/images/bg.jpg");
+    background-color: var(--background-color);
+    /*overflow: hidden;*/
+}
+
+.signup {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-top: 1rem;
+
+}
+
+.signup-box {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap:2rem;
+    margin-bottom:2rem;
+    margin-top: 2rem;
+
+}
+
+.left-parent-info, .right-parent-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+    padding: 2rem;
+    background-color: var(--under-card-color);
+    box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25);
+    border-radius: var(--border-radius-under-card);
+}
+/*__________________________________________________left-side__________________________________________________*/
+.pfp-parent{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.5rem;
+}
+
+.profile-picture button {
+    padding: 5rem;
+    border-radius: 50%;
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border: none;
+    margin-bottom: 2rem;
+}
+
+.child-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.child-list div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.child-list button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    margin-top: 1rem;
+    padding: 0.5rem;
+    font-size: 1rem;
+
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border-radius: var(--border-radius-card);
+    border: none;
+}
+.child-list button:hover{
+    background: #9c9992;
+    cursor: pointer;
+}
+
+span:hover{
+    cursor: pointer;
+}
+
+.pfp {
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+
+    margin-top: 1rem;
+    padding: 1.2rem;
+    border-radius: 50%;
+
+}
+
+.registered-child {
+    width: 15rem;
+    margin-left: 1rem;
+}
+/*__________________________________________________right-side__________________________________________________*/
+
+.div-family {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    font-size: 1.2rem;
+    gap: 0.5rem;
+}
+
+.div-family, .div-family label:hover, .div-family input:hover{
+    cursor:pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.form input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    padding:0.8rem 1rem;
+    font-size: 1rem;
+
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    border: none;
+}
+
+.family-options{
+    display: none;
+}
+
+.modify-profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 1rem;
+}
+
+.modify-profile button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
+
+    padding: 0.5rem 0.5rem;
+    font-size: 1.2rem;
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    border: none;
+}
+
+.modify-profile button:hover{
+    background: #9c9992;
+    cursor: pointer;
+}
+
+.already-exists {
+    display: flex;
+    flex-direction: row;
+    /*margin-top: 1rem;*/
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+
+}
+/*__________________________________________________pop-up__________________________________________________*/
+
+.pop-up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    box-shadow: 0 2rem 10rem #363949;
+    border-radius: 10px;
+    border: none;
+    z-index: 10;
+    width: 500px;
+    max-width: 80%;
+    max-height: 90%;
+    padding: 1rem 1rem;
+    transition: 200ms ease-in-out;
+    visibility: hidden;
+
+}
+
+.pop-up.active {
+    visibility: visible;
+}
+
+.signup-box.active, .banner.active {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    pointer-events: none;
+}
+
+.pop-up-profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*margin-top: 1rem;*/
+    /*margin-bottom: 1rem;*/
+    padding: 2rem;
+}
+
+.pfp-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.pop-up button{
+    display: flex;
+    flex-direction: row;
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    border: none;
+
+}
+
+.profile-picture-child button{
+    padding: 4rem;
+    border-radius: 50%;
+}
+input[name="name"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 0.5rem;
+}
+input[name="date"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2.8rem;
+    margin-top: 1rem;
+}
+
+input[name="details"]{
+    margin-left: 0.4rem;
+    width: 7.2rem;
+}
+
+input[name="gender-type"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+/*input:invalid {*/
+/*    border: 2px solid red;*/
+/*}*/
+
+/* for height and weight boxes */
+
+.alignment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+
+}
+
+.choose-gender {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    gap: 0.5rem;
+}
+
+
+.choose-gender, .choose-gender label:hover, .choose-gender input:hover{
+    cursor:pointer;
+}
+
+.medical{
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    padding: 0.7rem 2.3rem;
+    font-size: 1rem;
+}
+
+.medical div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.upload {
+    display: flex;
+    margin-left: 2rem;
+
+}
+
+.finish {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+
+}
+
+.finish:hover, .medical:hover, input[name="name"]:hover, .profile-picture-child button:hover{
+    background: #9c9992;
+    cursor: pointer;
+}
+
+/*__________________________________________________responsive__________________________________________________*/
+
+
+@media (max-width: 820px) {
+    body{
+        overflow: visible;
+    }
+    .signup-box {
+        width: 94%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+        margin-bottom:2rem;
+    }
+
+    .banner {
+        width: 100%;
+        padding: 1rem 10rem;
+        font-size: 1.4rem;
+        border-radius: 0;
+    }
+    .left-parent-info, .right-parent-info {
+        width: 80%;
+        padding: 0.5rem;
+    }
+
+}
+@media (max-width: 500px){
+
+    .profile-picture button {
+        padding: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .child-list div {
+        gap: 0.5rem;
+    }
+
+    .child-list button {
+        margin-top: 0.5rem;
+        padding: 0.5rem;
+        font-size: 0.7rem;
+    }
+    .pfp {
+        padding: 1rem;
+    }
+
+    .registered-child {
+        width: 10rem;
+        margin-left: 0.5rem;
+    }
+
+    .div-family {
+        font-size: 1rem;
+        gap: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+    }
+
+    .remove-child{
+        padding: 0.3rem;
+    }
+    #fam {
+        display: flex;
+        align-items: center;
+    }
+}
+
+
+@media (max-width:1400px){
+    .signup{
+        margin-top:0;
+    }
+}

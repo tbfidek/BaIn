@@ -3,8 +3,6 @@ function themeToggle() {
     element.classList.toggle("dark-theme");
 }
 
-// dc nu merge :(((
-
 function addNewSection() {
     const firstSection = document.createElement('div');
 
