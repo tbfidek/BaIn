@@ -36,7 +36,7 @@ header {
 }
 
 body {
-    background-image: url("../public/images/bg.jpg");
+    background-image: url("/images/bg.jpg");
     background-color: var(--background-color);
     /*overflow: hidden;*/
 }

@@ -26,10 +26,10 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
+
 body {
-    background-image: url("../public/images/bg.jpg");
+    background-image: url("/images/bg.jpg");
 }
 
 .banner {
