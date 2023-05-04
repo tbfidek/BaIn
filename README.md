@@ -1,6 +1,6 @@
 ## BaIn (Baby Info Manager)
 
-Website: https://tbfidek.github.io/web/login/login.html
+Website: https://tbfidek.github.io/web/views/login.html
 
 Sa se dezvolte o aplicatie Web care sa permita utilizatorilor autentificati -- eventual,
 familii sau cupluri de persoane -- gestiunea resurselor privitoare la ingrijirea unui copil 
