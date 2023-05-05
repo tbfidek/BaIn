@@ -5,11 +5,22 @@ import database from './config.js';
 const pool = new Pool(database);
 
 pool.connect((err, client, release) => {
-    if (err) throw err;
+    if (err) {
+        console.error('Error acquiring client', err.stack);
+        return;
+    }
     console.log('Connected!');
 
-    // Do some database operations here...
+    const sql = 'SELECT * FROM users';
+    client.query(sql, (err, result) => {
+        release();
+        if (err) {
+            console.error('Error executing query', err.stack);
+            return;
+        }
+        console.log('Result:', result.rows);
 
-    release();
-    console.log('Connection released!');
+        pool.end();
+        console.log('Pool closed!');
+    });
 });
