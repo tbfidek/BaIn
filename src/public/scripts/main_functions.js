@@ -84,6 +84,7 @@ function showTimeline() {
 }
 
 function showGallery() {
+    renderCalendar();
     const gallery = document.querySelector('.GALLERY');
     gallery.style.display = 'block';
     let others = document.querySelector('.OVERVIEW');

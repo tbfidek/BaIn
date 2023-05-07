@@ -34,7 +34,7 @@ body{
     color: var(--font-color);
     background-image: var(--background-img);
 }
-header{
+header {
     display:none;
 }
 
@@ -345,9 +345,9 @@ h2{
     max-width:30%;
 }
 
-.calendar-meal p{
-    margin: 5rem;
-}
+/*.calendar-meal p{*/
+/*    margin: 5rem;*/
+/*}*/
 
 .calendar-meal{
     display: flex;
@@ -476,13 +476,15 @@ a, a:visited{
 
 }
  @media (max-width: 1000px) {
-     header{
-         background-color: var(--under-card-color);
+     header {
          display: flex;
          flex-direction: row;
          justify-content: space-between;
          align-items: center;
          width:100%;
+     }
+     .sticky-header{
+         background-color: var(--under-card-color);
          box-shadow: var(--box-shadow);
          top:0;
          position: sticky;
