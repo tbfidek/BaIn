@@ -1,0 +1,49 @@
+:root {
+    --background-color: #7F7979;
+    --card-color: #C1BDB3;
+    --under-card-color: #5F5B6B;
+    --border-radius-card: 5px;
+    --border-radius-under-card: 10px;
+    --box-shadow: 1px 5px 5px #3c3744;
+    --primary-color: #5F5B6B;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Righteous', cursive, sans-serif;
+} 
+
+.container {
+    background-color: #7F7979;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+}
+
+h1 {
+    font-size: 18rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+p {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 4rem;
+    }
+    p {
+        font-size: 1.5rem;
+    }
+}

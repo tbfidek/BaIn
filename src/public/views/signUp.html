@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kiddoCare</title>
+    <link rel="stylesheet" href="/css/signup_style.css">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+    <script src="/scripts/signup_functions.js"></script>
+</head>
+
+<body>
+<header>
+    <div class="banner">kiddoCare</div>
+    <div class="pop-up" id="pop">
+        <div class="pop-up-profile">
+            <form class="pfp-child">
+                <div class="profile-picture-child">
+                    <button type="button"><span class="material-symbols-rounded">add_a_photo</span></button>
+                </div>
+                <div class="child-information">
+                    <div class="choose-gender">
+                        <input type="radio" id="gender-female" name="gender-type">
+                        <label id="female" for="gender-female">female</label><br>
+                        <input type="radio" id="gender-male" name="gender-type">
+                        <label for="gender-male">male</label><br>
+                    </div>
+                    <div class="form">
+                        <input placeholder="name" type="text" id="name" name="name" pattern="[a-b]" required>
+                        <input type="date" id="data" name="date" required>
+                        <div class="alignment">
+                            <input placeholder="height (cm)" type="text" id="height" name="details" pattern="[0-9]{10}" required>
+                            <input placeholder="weight (kg)" type="text" id="weight" name="details" pattern="[0-9]{10}" required>
+                        </div>
+                        <button type="button" class="medical">medical files
+                            <span class="material-symbols-rounded upload">upload</span>
+                        </button>
+                        <button type="button" class="finish" id="gata" >finish profile</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</header>
+<div class="signup">
+    <div class="signup-box">
+        <div class="left-parent-info">
+            <div class="pfp-parent">
+                <div class="profile-picture">
+                    <button><span class="material-symbols-rounded">add_a_photo</span></button>
+                </div>
+            </div>
+
+            <div class="child-list" id="baby-id">
+            </div>
+        </div>
+        <div class="right-parent-info">
+            <div class="signup-form">
+                <div class="div-family">
+                    <input type="radio" id="family" name="family-type" onclick="handleRadioClick('flex')">
+                    <label id="fam" for="family">family</label><br>
+                    <input type="radio" id="parent" name="family-type" onclick="handleRadioClick('none')">
+                    <label for="parent">single parent</label><br>
+                </div>
+                <div class="form">
+                    <input placeholder="parent1 name" type="text">
+                    <input type="email" placeholder="example@gmail.com">
+                    <input type="password" placeholder="********">
+                </div>
+                <div class="form family-options">
+                    <input placeholder="parent2 name" type="text">
+                    <input type="email" placeholder="example@gmail.com">
+                </div>
+                <div class="modify-profile">
+                    <a href="/views/main.html"><button type="button" id="done">finish profile</button></a>
+                    <button type="button" id="continue" onclick=""><span class="material-symbols-rounded">person_add</span></button>
+                </div>
+
+            </div>
+            <p class="already-exists">
+                Already have an account? <a href="/views/login.html" style="color: #C1BDB3">Login here</a>
+            </p>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

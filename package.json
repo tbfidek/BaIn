@@ -1,0 +1,21 @@
+{
+  "name": "tw",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Website: https://tbfidek.github.io/web/login/login.html",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "dependencies": {
+    "pg": "^8.10.0",
+    "serve-static": "^1.15.0"
+  }
+}
