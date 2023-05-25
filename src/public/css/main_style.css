@@ -239,7 +239,7 @@ textarea {
     display:none;
 }
 
-.SLEEPING-SCHEDULE table{
+.SLEEPING-SCHEDULE table, .FEEDING-TIME table{
     flex-direction: column;
     background-color: var(--card-color);
     width:99%;
