@@ -48,7 +48,6 @@
                 <span onclick="addNewSection()" class="material-symbols-rounded">person_add</span>
                 <span class="material-symbols-rounded">cloud_upload<a href=""></a></span>
                 <span class="material-symbols-rounded">cloud_download<a href=""></a></span>
-                <span class="material-symbols-rounded">share<a href=""></a></span>
             </div>
 
             <div onclick="showOverview()" class="overview sidebutton text">Overview</div>
@@ -158,12 +157,6 @@
                 <tbody>
                 </tbody>
             </table>
-<!--                                <section class="sleep-info">-->
-<!--                                    <section class="sleep-left">-->
-<!--                                        <h3>Overview of your child's sleep</h3>-->
-<!--                                        <p>summary of their sleep</p>-->
-<!--                                    </section>-->
-
 
         </div>
         <div class="account-overview FEEDING-TIME">
@@ -173,8 +166,18 @@
             </div>
 
             <div class="calendar-meal">
-                <p>tabel ca la meal time?</p>
-                <p> Information regarding your child meal activity. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Food</th>
+                        <th>Type</th>
+                        <th>Quality</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
 
             <div class ="form-table">
@@ -204,7 +207,7 @@
         </div>
         <div class="account-overview LIKES">
             <div>
-                <h2>Timeline</h2>
+                <h2>Timeline - 10 years in memories</h2>
                 <div class="date">
                     <div class="timeline-img">
                         <h2>&lt;</h2>
@@ -225,7 +228,6 @@
                     <h2>Gallery</h2>
                     <div class="bookmarks">
                         <button onclick="showAddOption()">Add Media File</button>
-                        <span class="material-symbols-rounded">bookmark</span>
                     </div>
                     <form class="form-add-image" onsubmit="return false"><br>
                         <label for="date-pic">Pick a date:</label><br><br>
@@ -260,6 +262,11 @@
                     <div>
                         <img src="/images/ex2.jpg" alt="">
                         <p>journal</p>
+                        <div class="buttons">
+                            <span class="material-symbols-rounded">bookmark</span>
+                            <span class="material-symbols-rounded">share<a href=""></a></span>
+                        </div>
+
                     </div>
 
                 </div>

@@ -239,7 +239,7 @@ textarea {
     display:none;
 }
 
-.SLEEPING-SCHEDULE table{
+.SLEEPING-SCHEDULE table, .FEEDING-TIME table{
     flex-direction: column;
     background-color: var(--card-color);
     width:99%;
@@ -475,52 +475,52 @@ a, a:visited{
     color:var(--font-color);
 
 }
- @media (max-width: 1000px) {
-     header {
-         display: flex;
-         flex-direction: row;
-         justify-content: space-between;
-         align-items: center;
-         width:100%;
-     }
-     .sticky-header{
-         background-color: var(--under-card-color);
-         box-shadow: var(--box-shadow);
-         top:0;
-         position: sticky;
-     }
-     .drop{
-         margin-left:1rem;
-     }
-     .mobile-pic img{
-         float:right;
-         margin-right:1rem;
-     }
-     .mobile-pic{
-         display:flex;
-         flex-direction: row;
-         justify-content: flex-end;
-         align-items: center;
-         margin-right:1rem;
-     }
-     header span{
-         padding:0.3rem;
-         margin-right:1rem;
-         border-radius: var(--border-radius-card);
-         background-color: var(--card-color);
-     }
-     header img{
-         border-radius: 50%;
-         max-width:10%;
-         margin:0.5rem 0;
-     }
+@media (max-width: 1000px) {
+    header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width:100%;
+    }
+    .sticky-header{
+        background-color: var(--under-card-color);
+        box-shadow: var(--box-shadow);
+        top:0;
+        position: sticky;
+    }
+    .drop{
+        margin-left:1rem;
+    }
+    .mobile-pic img{
+        float:right;
+        margin-right:1rem;
+    }
+    .mobile-pic{
+        display:flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+        margin-right:1rem;
+    }
+    header span{
+        padding:0.3rem;
+        margin-right:1rem;
+        border-radius: var(--border-radius-card);
+        background-color: var(--card-color);
+    }
+    header img{
+        border-radius: 50%;
+        max-width:10%;
+        margin:0.5rem 0;
+    }
 
-     .med{
-         display: flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-     }
+    .med{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
     .container {
         flex-direction: column;
         align-items: center;
@@ -538,35 +538,35 @@ a, a:visited{
         text-align: center;
     }
     .parent .mobile-off  {
-       display:none;
+        display:none;
     }
     .sidebar .child-pfp{
         margin-top:3rem;
     }
-     .parent .mobile-on {
-         display:flex;
-         flex-direction: column;
-         justify-content: center;
-         align-items: center;
-         margin-bottom:1rem;
-     }
-     .overview, .feeding, .sleeping, .likes, .child, .gallery{
-         width:20rem;
-         text-align:center;
-         margin-right: 0;
-     }
-     .links .mobile-on{
-         margin-top: 2rem;
-         /*padding:0.3rem;*/
-         box-shadow: var(--box-shadow);
-         border-radius: var(--border-radius-under-card);
-         background-color: var(--card-color);
-         display: block;
-         text-align: center;
-     }
-     .parent p{
-         margin:0;
-     }
+    .parent .mobile-on {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-bottom:1rem;
+    }
+    .overview, .feeding, .sleeping, .likes, .child, .gallery{
+        width:20rem;
+        text-align:center;
+        margin-right: 0;
+    }
+    .links .mobile-on{
+        margin-top: 2rem;
+        /*padding:0.3rem;*/
+        box-shadow: var(--box-shadow);
+        border-radius: var(--border-radius-under-card);
+        background-color: var(--card-color);
+        display: block;
+        text-align: center;
+    }
+    .parent p{
+        margin:0;
+    }
     .parent .title{
         font-size: 2rem;
     }
@@ -622,3 +622,8 @@ a, a:visited{
     width:0;
 }
 
+.buttons span{
+    background-color: var(--card-color);
+    padding:0.2rem;
+    border-radius: var(--border-radius-card);
+}
