@@ -58,11 +58,6 @@ CREATE TABLE nap_records (
                              sleep_quality VARCHAR(5) NOT NULL CHECK (sleep_quality IN ('Great', 'Fussy', 'Bad'))
 );
 
-INSERT INTO meal_records (child_account_id, meal_date, meal_description, meal_type, meal_option)
-VALUES (1, '2023-05-08', 'Scrambled eggs and toast', 'Breakfast', 'Liked');
-
-INSERT INTO nap_records (child_account_id, nap_date, start_time, end_time, sleep_quality)
-VALUES (1, '2023-05-08', '14:00:00', '15:30:00', 'Great');
 
 INSERT INTO users (name, email, password, salt)
 VALUES ('John Doe', 'john@example.com', 'password123', 'somesalt');

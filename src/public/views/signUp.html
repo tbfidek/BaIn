@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kiddoCare</title>
-    <link rel="stylesheet" href="/css/signup_style.css">
+    <link rel="stylesheet" href="../css/signup_style.css">
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,15 +20,15 @@
     <div class="banner">kiddoCare</div>
     <div class="pop-up" id="pop">
         <div class="pop-up-profile">
-            <form class="pfp-child">
+            <form class="pfp-child" id="pfp-child">
                 <div class="profile-picture-child">
                     <button type="button"><span class="material-symbols-rounded">add_a_photo</span></button>
                 </div>
                 <div class="child-information">
                     <div class="choose-gender">
-                        <input type="radio" id="gender-female" name="gender-type">
+                        <input type="radio" id="gender-female" value="1" name="gender-type">
                         <label id="female" for="gender-female">female</label><br>
-                        <input type="radio" id="gender-male" name="gender-type">
+                        <input type="radio" id="gender-male" value="0" name="gender-type">
                         <label for="gender-male">male</label><br>
                     </div>
                     <div class="form">
@@ -61,30 +61,31 @@
             </div>
         </div>
         <div class="right-parent-info">
-            <div class="signup-form">
+            <form class="signup-form" id="signupform">
                 <div class="div-family">
-                    <input type="radio" id="family" name="family-type" onclick="handleRadioClick('flex')">
+                    <input type="radio" id="family" name="family-type" value="1" onclick="handleRadioClick('flex')">
                     <label id="fam" for="family">family</label><br>
-                    <input type="radio" id="parent" name="family-type" onclick="handleRadioClick('none')">
+                    <input type="radio" id="parent" name="family-type" value="0" onclick="handleRadioClick('none')">
                     <label for="parent">single parent</label><br>
                 </div>
                 <div class="form">
-                    <input placeholder="parent1 name" type="text">
+                    <input placeholder="parent1 name" type="text" name="username">
                     <input type="email" placeholder="example@gmail.com">
-                    <input type="password" placeholder="********">
+                    <input type="password" placeholder="********" name="pw">
                 </div>
                 <div class="form family-options">
                     <input placeholder="parent2 name" type="text">
                     <input type="email" placeholder="example@gmail.com">
                 </div>
                 <div class="modify-profile">
-                    <a href="/views/main.html"><button type="button" id="done">finish profile</button></a>
+                    <!--                    <a href="/views/main.html"><button type="button" id="done">finish profile</button></a>-->
+                    <button type="button" id="done" onclick="registerAccount()">finish profile</button>
                     <button type="button" id="continue" onclick=""><span class="material-symbols-rounded">person_add</span></button>
                 </div>
 
-            </div>
+            </form>
             <p class="already-exists">
-                Already have an account? <a href="/views/login.html" style="color: #C1BDB3">Login here</a>
+                Already have an account? <a href="../views/login.html" style="color: #C1BDB3">Login here</a>
             </p>
         </div>
 
