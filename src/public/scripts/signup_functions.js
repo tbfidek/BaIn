@@ -186,22 +186,22 @@ async function createRelations(){
 async function registerAccount() {
     console.log(child_ids);
     if (child_counter === 0) {
-        console.log("nu se poate");
+        alert("Please add at least one child.");
         return;
     }
     var form = document.getElementById("signupform");
     var familytype = document.querySelector('input[name="family-type"]:checked');
     if (familytype == null) {
-        console.log("select family type");
+        alert("Please select a family type.");
         return;
     }
 
     if (form.elements[2].value === "" || form.elements[3].value === "" || form.elements[4].value === "") {
-        console.log("nup");
+        alert("Please fill in all fields.");
         return;
     }
     if (familytype.value === "1" && (form.elements[5].value === "" || form.elements[6].value === "")) {
-        console.log("nup a doua persoana");
+        alert("Please fill in all fields for the second person.");
         return;
     }
     postAccount(form.elements[2].value, form.elements[3].value, form.elements[4].value)
@@ -217,7 +217,6 @@ async function registerAccount() {
             return parent_id;
         })
         .then((parent_id) => {
-            // Redirect to the main page
             window.location.href = "http://localhost:3000/views/main.html";
             return parent_id;
         })
