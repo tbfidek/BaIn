@@ -2,8 +2,8 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/script.sql" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/controllers/signUpHandler.js" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/database.js" dialect="GenericSQL" />
-    <file url="file://$PROJECT_DIR$/src/public/scripts/signup_handler.js" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/server.js" dialect="GenericSQL" />
   </component>
 </project>

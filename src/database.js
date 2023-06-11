@@ -8,7 +8,9 @@ pool.connect((err, client, release) => {
     console.log('Connected!');
 
 
-    // release();
-    // console.log('Connection released!');
+    pool.on('close', () => {
+        console.log('Connection closed!');
+        release(); // Release the client
+    });
 });
 export default pool;

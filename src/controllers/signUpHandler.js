@@ -30,6 +30,7 @@ export function handleSignUp(req, res){
             .then(() => {
                 res.statusCode = 201;
                 res.setHeader('Content-Type', 'application/json');
+                res.setHeader("Set-Cookie", "loggedIn=true");
                 res.end(JSON.stringify({ message: 'User created successfully', id: id_p + 1 }));
             })
             .catch((err) => {

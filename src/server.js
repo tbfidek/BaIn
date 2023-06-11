@@ -1,5 +1,5 @@
 import * as http from "http";
-import path, {dirname} from "path";
+import path, { dirname } from "path";
 import serveStatic from 'serve-static';
 import { fileURLToPath } from 'url';
 
@@ -10,6 +10,7 @@ import { handleLogin } from './controllers/loginHandler.js';
 import { handleDeleteChild } from './controllers/deleteChildHandler.js';
 
 import req_url from 'url';
+import * as fs from "fs";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
@@ -22,30 +23,43 @@ const server = http.createServer((req, res) => {
     const parsedUrl = req_url.parse(req.url, true);
     const { pathname } = parsedUrl;
     serve(req, res, () => {
+        // res.statusCode = 404;
+        // res.setHeader('Content-Type', 'text/html');
+        // res.end(fs.readFileSync(path.join(__dirname, 'public/views', 'errorPage.html'), 'utf8'));
+        // return;
     });
 
     const url = req.url;
-    if(url.match(/main/)){
+    if (url.match(/main/) || url.match(/editProfile/)) {
+        if (req.headers.cookie && req.headers.cookie.includes("loggedIn=true")) {
 
+        } else {
+            //if not logged in
+            res.statusCode = 302;
+            res.setHeader("Location", "/views/login.html");
+            res.end();
+            return;
+        }
     }
+
     if (req.method === 'POST' && pathname === '/signup') {
-        handleSignUp(req,res);
+        handleSignUp(req, res);
     }
 
     if (req.method === 'POST' && pathname === '/addchild') {
-        handleAddChild(req,res);
+        handleAddChild(req, res);
     }
 
     if (req.method === 'DELETE' && pathname === '/deletechild') {
-        handleDeleteChild(req,res);
+        handleDeleteChild(req, res);
     }
 
     if (req.method === 'POST' && pathname === '/addchildtoparent') {
-        handleAddChildToParent(req,res);
+        handleAddChildToParent(req, res);
     }
 
     if (req.method === 'POST' && pathname === '/login') {
-        handleLogin(req,res);
+        handleLogin(req, res);
     }
 });
 
@@ -54,7 +68,6 @@ server.listen(port, () => {
 });
 
 process.on('SIGINT', function () {
-    // db.close();
     server.close();
     process.exit();
 });
