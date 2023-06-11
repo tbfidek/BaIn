@@ -9,6 +9,7 @@ export function handleAddChildToParent(req,res){
         const obj = JSON.parse(body);
         const { child_id, parent_id } = obj;
 
+        console.log(obj);
         const query = {
             text: 'INSERT INTO users_child_accounts (user_id, account_id) VALUES ($1, $2)',
             values: [parent_id, child_id],

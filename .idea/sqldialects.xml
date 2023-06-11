@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/controllers/EditProfileDataRetriever.js" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/controllers/addChildHandler.js" dialect="GenericSQL" />
+    <file url="file://$PROJECT_DIR$/src/controllers/addChildToParentHandler.js" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/controllers/deleteChildHandler.js" dialect="GenericSQL" />
     <file url="file://$PROJECT_DIR$/src/controllers/signUpHandler.js" dialect="GenericSQL" />
   </component>

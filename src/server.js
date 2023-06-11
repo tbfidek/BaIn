@@ -8,7 +8,9 @@ import { handleAddChild } from './controllers/addChildHandler.js';
 import { handleAddChildToParent } from './controllers/addChildToParentHandler.js';
 import { handleLogin } from './controllers/loginHandler.js';
 import { handleDeleteChild } from './controllers/deleteChildHandler.js';
-import {handleLogout} from "./controllers/logoutHandler.js";
+import { handleLogout } from "./controllers/logoutHandler.js";
+import { retrieveUserData } from "./controllers/EditProfileDataRetriever.js";
+import {decryptId, decryptLogin} from "./controllers/cookieDecrypt.js";
 
 import req_url from 'url';
 import * as fs from "fs";
@@ -33,40 +35,8 @@ const server = http.createServer((req, res) => {
 
     const url = req.url;
     if (url.match(/main/) || url.match(/editProfile/)) {
-        const cookie = req.headers.cookie;
-        if (!cookie || !cookie.includes("loggedToken")) {
-            res.statusCode = 302;
-            res.setHeader("Location", "/views/login.html");
-            res.end();
-            return;
-        }
-
-        const token = cookie
-            .split(";")
-            .map((cookie) => cookie.trim())
-            .find((cookie) => cookie.startsWith("loggedToken="))
-            .split("=")[1];
-
-        jwt.verify(token, "secretKey", (err, decoded) => {
-            if (err) {
-                res.statusCode = 401;
-                res.setHeader("Content-Type", "application/json");
-                res.end(JSON.stringify({ message: "Invalid token" }));
-                return;
-            }
-
-            const logged = decoded.logged;
-            // console.log("logged:", logged);
-            if (logged === false) {
-                // If not logged in
-                res.statusCode = 302;
-                res.setHeader("Location", "/views/login.html");
-                res.end();
-                return;
-            }
-        });
+        decryptLogin(req,res);
     }
-
 
     if (req.method === 'POST' && pathname === '/signup') {
         handleSignUp(req, res);
@@ -90,6 +60,10 @@ const server = http.createServer((req, res) => {
     if (req.method === 'POST' && pathname === '/logout') {
         handleLogout(req,res);
     }
+    if (req.method === 'GET' && pathname === '/editProfile') {
+        retrieveUserData(req, res);
+    }
+
 });
 
 server.listen(port, () => {
