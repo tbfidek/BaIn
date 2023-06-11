@@ -8,6 +8,7 @@ import { handleAddChild } from './controllers/addChildHandler.js';
 import { handleAddChildToParent } from './controllers/addChildToParentHandler.js';
 import { handleLogin } from './controllers/loginHandler.js';
 import { handleDeleteChild } from './controllers/deleteChildHandler.js';
+import {handleLogout} from "./controllers/logoutHandler.js";
 
 import req_url from 'url';
 import * as fs from "fs";
@@ -60,6 +61,9 @@ const server = http.createServer((req, res) => {
 
     if (req.method === 'POST' && pathname === '/login') {
         handleLogin(req, res);
+    }
+    if (req.method === 'POST' && pathname === '/logout') {
+        handleLogout(req,res);
     }
 });
 
