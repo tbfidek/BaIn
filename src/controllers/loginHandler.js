@@ -36,12 +36,11 @@ export function handleLogin(req, res) {
                         .update(combinedPassword)
                         .digest("hex");
 
-                    console.log(user.salt);
-                    console.log(hashedPassword);
-                    console.log(user.password);
+                    // console.log(user.salt);
+                    // console.log(hashedPassword);
+                    // console.log(user.password);
 
-                    //dc nu matchuieste parola aici
-                    if (user.password) {
+                    if (user.password === hashedPassword) {
                         res.statusCode = 302;
                         res.setHeader("Location", "http://localhost:3000/views/main.html");
                         const loggedToken = jwt.sign({ logged: true }, "secretKey", { expiresIn: "30d" });
