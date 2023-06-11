@@ -43,9 +43,10 @@ export function handleLogin(req, res) {
                     if (user.password) {
                         res.statusCode = 302;
                         res.setHeader("Location", "http://localhost:3000/views/main.html");
+                        const loggedInCookie = `loggedIn=true; Path=/; HttpOnly; Secure`;
+                        const userIdCookie = `userId=${user.user_id}; Path=/; HttpOnly; Secure`;
 
-                        res.setHeader("Set-Cookie", "loggedIn=true");
-
+                        res.setHeader("Set-Cookie", [loggedInCookie, userIdCookie]);
                         res.end();
                     } else {
                         res.statusCode = 401;

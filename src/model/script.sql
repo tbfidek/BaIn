@@ -59,20 +59,20 @@ CREATE TABLE nap_records (
 );
 
 
-INSERT INTO users (name, email, password, salt)
-VALUES ('John Doe', 'john@example.com', 'password123', 'somesalt');
-
-INSERT INTO child_accounts (name, birthday, weight, height, gender)
-VALUES ('Sarah Doe', '2020-01-01', 12.5, 70.0, 'Female');
-
-INSERT INTO users_child_accounts (user_id, account_id)
-VALUES (1, 1);
-
-INSERT INTO child_media (child_account_id, media_type, media_data, media_date, description)
-VALUES (1, 'image', '\x...', '2023-06-01', 'Description of the media');
-
-INSERT INTO meal_records (child_account_id, meal_date, meal_description, meal_type, meal_option)
-VALUES (1, '2023-05-08', 'Scrambled eggs and toast', 'Breakfast', 'Liked');
-
-INSERT INTO nap_records (child_account_id, nap_date, start_time, end_time, sleep_quality)
-VALUES (1, '2023-05-08', '14:00:00', '15:30:00', 'Great');
+-- INSERT INTO users (name, email, password, salt)
+-- VALUES ('John Doe', 'john@example.com', 'password123', 'somesalt');
+--
+-- INSERT INTO child_accounts (name, birthday, weight, height, gender)
+-- VALUES ('Sarah Doe', '2020-01-01', 12.5, 70.0, 'Female');
+--
+-- INSERT INTO users_child_accounts (user_id, account_id)
+-- VALUES (1, 1);
+--
+-- INSERT INTO child_media (child_account_id, media_type, media_data, media_date, description)
+-- VALUES (1, 'image', '\x...', '2023-06-01', 'Description of the media');
+--
+-- INSERT INTO meal_records (child_account_id, meal_date, meal_description, meal_type, meal_option)
+-- VALUES (1, '2023-05-08', 'Scrambled eggs and toast', 'Breakfast', 'Liked');
+--
+-- INSERT INTO nap_records (child_account_id, nap_date, start_time, end_time, sleep_quality)
+-- VALUES (1, '2023-05-08', '14:00:00', '15:30:00', 'Great');

@@ -30,7 +30,10 @@ export function handleSignUp(req, res){
             .then(() => {
                 res.statusCode = 201;
                 res.setHeader('Content-Type', 'application/json');
-                res.setHeader("Set-Cookie", "loggedIn=true");
+                const loggedInCookie = `loggedIn=true; Path=/; HttpOnly; Secure`;
+                const userIdCookie = `userId=${id_p + 1}; Path=/; HttpOnly; Secure`;
+
+                res.setHeader("Set-Cookie", [loggedInCookie, userIdCookie]);
                 res.end(JSON.stringify({ message: 'User created successfully', id: id_p + 1 }));
             })
             .catch((err) => {
