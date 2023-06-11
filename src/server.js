@@ -11,6 +11,7 @@ import { handleDeleteChild } from './controllers/deleteChildHandler.js';
 import { handleLogout } from "./controllers/logoutHandler.js";
 import { retrieveUserData } from "./controllers/EditProfileDataRetriever.js";
 import {decryptId, decryptLogin} from "./controllers/cookieDecrypt.js";
+import {updateUserEmail, updateUserName, updateUserPassword} from './controllers/updateProfileHandler.js';
 
 import req_url from 'url';
 import * as fs from "fs";
@@ -62,6 +63,15 @@ const server = http.createServer((req, res) => {
     }
     if (req.method === 'GET' && pathname === '/editProfile') {
         retrieveUserData(req, res);
+    }
+    if (req.method === 'POST' && pathname === '/updateName') {
+        updateUserName(req, res);
+    }
+    if (req.method === 'POST' && pathname === '/updateEmail') {
+        updateUserEmail(req, res);
+    }
+    if (req.method === 'POST' && pathname === '/updatePassword') {
+        updateUserPassword(req, res);
     }
 
 });

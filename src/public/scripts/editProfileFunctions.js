@@ -40,4 +40,83 @@ function populateInfo() {
 }
 
 
+function updateName() {
+    const nameInput = document.getElementById('nameInput');
+    const newName = nameInput.value;
+
+    const data = { name: newName };
+
+    fetch('/updateName', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Failed to update name. Please try again.');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('An error occurred');
+        });
+}
+
+function updateEmail() {
+    const nameInput = document.getElementById('emailInput');
+    const newEmail = nameInput.value;
+
+    const data = { email: newEmail };
+
+    fetch('/updateEmail', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Failed to update email. Please try again.');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('An error occurred');
+        });
+}
+
+function updatePassword() {
+    const passwordInput = document.getElementById('passwordInput');
+    const newPassword = passwordInput.value;
+
+    const data = { password: newPassword };
+
+    fetch('/updatePassword', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert("Password changed");
+            } else {
+                alert('Failed to update email. Please try again.');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('An error occurred');
+        });
+}
+
 window.onload = populateInfo;
+
