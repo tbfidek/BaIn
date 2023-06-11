@@ -12,6 +12,7 @@ import {handleLogout} from "./controllers/logoutHandler.js";
 
 import req_url from 'url';
 import * as fs from "fs";
+import jwt from "jsonwebtoken";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
@@ -32,16 +33,40 @@ const server = http.createServer((req, res) => {
 
     const url = req.url;
     if (url.match(/main/) || url.match(/editProfile/)) {
-        if (req.headers.cookie && req.headers.cookie.includes("loggedIn=true")) {
-
-        } else {
-            //if not logged in
+        const cookie = req.headers.cookie;
+        if (!cookie || !cookie.includes("loggedToken")) {
             res.statusCode = 302;
             res.setHeader("Location", "/views/login.html");
             res.end();
             return;
         }
+
+        const token = cookie
+            .split(";")
+            .map((cookie) => cookie.trim())
+            .find((cookie) => cookie.startsWith("loggedToken="))
+            .split("=")[1];
+
+        jwt.verify(token, "secretKey", (err, decoded) => {
+            if (err) {
+                res.statusCode = 401;
+                res.setHeader("Content-Type", "application/json");
+                res.end(JSON.stringify({ message: "Invalid token" }));
+                return;
+            }
+
+            const logged = decoded.logged;
+            // console.log("logged:", logged);
+            if (logged === false) {
+                // If not logged in
+                res.statusCode = 302;
+                res.setHeader("Location", "/views/login.html");
+                res.end();
+                return;
+            }
+        });
     }
+
 
     if (req.method === 'POST' && pathname === '/signup') {
         handleSignUp(req, res);

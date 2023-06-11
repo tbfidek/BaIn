@@ -1,5 +1,6 @@
 import pool from "../database.js";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
 export function handleSignUp(req, res){
     let body = '';
     req.on('data', (chunk) => {
@@ -30,10 +31,12 @@ export function handleSignUp(req, res){
             .then(() => {
                 res.statusCode = 201;
                 res.setHeader('Content-Type', 'application/json');
-                const loggedInCookie = `loggedIn=true; Path=/; HttpOnly; Secure`;
-                const userIdCookie = `userId=${id_p + 1}; Path=/; HttpOnly; Secure`;
+                const loggedToken = jwt.sign({ logged: true }, "secretKey", { expiresIn: "30d" });
+                const loggedCookie = `loggedToken=${loggedToken}; Path=/; HttpOnly; Secure`;
+                const idToken = jwt.sign({ userId: id_p + 1}, "secretKey", { expiresIn: "30d" });
+                const tokenCookie = `idToken=${idToken}; Path=/; HttpOnly; Secure`;
 
-                res.setHeader("Set-Cookie", [loggedInCookie, userIdCookie]);
+                res.setHeader("Set-Cookie", [loggedCookie, tokenCookie]);
                 res.end(JSON.stringify({ message: 'User created successfully', id: id_p + 1 }));
             })
             .catch((err) => {
