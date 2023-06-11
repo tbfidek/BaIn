@@ -15,26 +15,32 @@ import {updateUserEmail, updateUserName, updateUserPassword} from './controllers
 
 import req_url from 'url';
 import * as fs from "fs";
-import jwt from "jsonwebtoken";
+
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
 
+
 let serve = serveStatic(path.join(__dirname, 'public'), {
     index: ['/views/login.html'],
-});
+})
 
 const server = http.createServer((req, res) => {
     const parsedUrl = req_url.parse(req.url, true);
-    const { pathname } = parsedUrl;
-    serve(req, res, () => {
-        // res.statusCode = 404;
-        // res.setHeader('Content-Type', 'text/html');
-        // res.end(fs.readFileSync(path.join(__dirname, 'public/views', 'errorPage.html'), 'utf8'));
-        // return;
-    });
-
     const url = req.url;
+    const { pathname } = parsedUrl;
+        if (url.match(/\/css\/.*/) || url.match(/\/scripts\/.*/) ||  url.match(/\/views\/.*/) || url.match(/\/images\/.*/) ||  url.match(/\/documnetation\/.*/) ||  url.match(/.*/)){
+            serve(req, res, () => {
+            })
+        }
+        else{
+            res.statusCode = 404;
+            res.setHeader('Content-Type', 'text/html');
+            res.end(fs.readFileSync(path.join(__dirname, 'public/views', 'errorPage.html'), 'utf8'));
+            return;
+        }
+
+
     if (url.match(/main/) || url.match(/editProfile/)) {
         decryptLogin(req,res);
     }
