@@ -12,8 +12,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Righteous:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
-    <link rel="stylesheet" href="/css/mainStyle.css">
-    <link rel="stylesheet" href="/css/calendar.css">
+    <link rel="stylesheet" href="../css/mainStyle.css">
+    <link rel="stylesheet" href="../css/calendar.css">
 </head>
 
 <body>
@@ -26,8 +26,38 @@
         <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
         <span class="material-symbols-rounded logoutButton" onclick="logout()">logout</span>
     </div>
+
 </header>
 <div class="container">
+    <div class="pop-up" id="pop">
+        <div class="pop-up-profile">
+            <form class="pfp-child" id="pfp-child">
+                <div class="profile-picture-child">
+                    <button type="button"><span class="material-symbols-rounded">add_a_photo</span></button>
+                </div>
+                <div class="child-information">
+                    <div class="choose-gender">
+                        <input type="radio" id="gender-female-pop" value="1" name="gender-type">
+                        <label id="female-pop" for="gender-female">female</label><br>
+                        <input type="radio" id="gender-male-pop" value="0" name="gender-type">
+                        <label for="gender-male">male</label><br>
+                    </div>
+                    <div class="form">
+                        <input placeholder="name" type="text" id="name-pop" name="name" pattern="[a-b]" required>
+                        <input type="date" id="data-pop" name="date" required>
+                        <div class="alignment">
+                            <input placeholder="height (cm)" type="text" id="height-pop" name="details" pattern="[0-9]{10}" required>
+                            <input placeholder="weight (kg)" type="text" id="weight-pop" name="details" pattern="[0-9]{10}" required>
+                        </div>
+                        <button type="button" class="medical">medical files
+                            <span class="material-symbols-rounded upload">upload</span>
+                        </button>
+                        <button type="button" class="finish" id="gata" onclick="checkChild()">finish profile</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="sidebar">
         <div class="child-profile">
             <img src="/images/baby_pic.jpg" alt="profileImage" class="child-pfp" onclick="showEditChildProfile()">
@@ -42,9 +72,9 @@
         </div>
         <div class="links">
             <div class="search">
-                <span onclick="addNewSection()" class="material-symbols-rounded">person_add</span>
-                <span class="material-symbols-rounded">cloud_upload<a href=""></a></span>
-                <span class="material-symbols-rounded">cloud_download<a href=""></a></span>
+                <button type="button" id="continue" onclick="openPopup()" class="material-symbols-rounded">person_add</button>
+                <button type="button" class="material-symbols-rounded">cloud_upload<a href=""></a></button>
+                <button type="button" class="material-symbols-rounded">cloud_download<a href=""></a></button>
             </div>
 
             <div onclick="showOverview()" class="overview sidebutton text">Overview</div>
@@ -53,7 +83,7 @@
             <div onclick="showTimeline()" class="likes sidebutton text">Timeline</div>
             <div onclick="showGallery()" class="gallery sidebutton text">Gallery</div>
             <div class="child-list" id="child-list">
-                <div class="child sidebutton text">child#</div>
+                <!-- <div class="child sidebutton text">child#</div> -->
             </div>
             <span onclick="closeDropdown()" class="material-symbols-rounded mobile-on">expand_less</span>
 
@@ -276,10 +306,10 @@
                 <h2>Edit Child Profile</h2>
                 <div class="update">
                     <form class="form-child"><br>
-                            <input type="radio" id="gender-female" name="gender-type">
-                            <label id="female" for="gender-female">female</label><br><br>
-                            <input type="radio" id="gender-male" name="gender-type">
-                            <label for="gender-male">male</label><br><br>
+                        <input type="radio" id="gender-female" name="gender-type">
+                        <label id="female" for="gender-female">female</label><br><br>
+                        <input type="radio" id="gender-male" name="gender-type">
+                        <label for="gender-male">male</label><br><br>
                         <label for="bday">Change date of birth:</label><br>
                         <input type="date" id="bday" name="date"><br><br>
                         <input type="submit" class="submit" value="Submit">
@@ -307,8 +337,8 @@
     </div>
 
 </div>
-<script src="/scripts/calendar.js" ></script>
-<script src="/scripts/mainFunctions.js" ></script>
-<script src="/scripts/editProfileFunctions.js"></script>
+<script src="../scripts/calendar.js" ></script>
+<script src="../scripts/mainFunctions.js" ></script>
+<script src="../scripts/editProfileFunctions.js"></script>
 </body>
 </html>

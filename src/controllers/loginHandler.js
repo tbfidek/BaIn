@@ -24,23 +24,15 @@ export function handleLogin(req, res) {
                     res.end(JSON.stringify({ message: "Add your credentials" }));
                     return;
                 } else {
-                    console.log(result.rows[0]);
-                    console.log("login pass:" + pw);
                     const user = result.rows[0];
                     const salt = user.salt;
-
                     const combinedPassword = pw + salt;
-
                     const hashedPassword = crypto
                         .createHash("sha256")
                         .update(combinedPassword)
                         .digest("hex");
 
-                    // console.log(user.salt);
-                    console.log(hashedPassword);
-                    console.log(user.password);
-//user.password === hashedPassword
-                    if (user.password) {
+                    if (user.password === hashedPassword) {
                         res.statusCode = 302;
                         res.setHeader("Location", "http://localhost:3000/views/main.html");
                         const loggedToken = jwt.sign({ logged: true }, "secretKey", { expiresIn: "30d" });

@@ -8,9 +8,9 @@ export function handleSignUp(req, res){
     });
     req.on('end', () => {
         const obj = JSON.parse(body);
-        const { username, email, pw } = obj;
+        const { username, email, password } = obj;
         const salt = crypto.randomBytes(16).toString('hex');
-        const combinedPassword = pw + salt;
+        const combinedPassword = password + salt;
 
         const hashedPassword = crypto
             .createHash('sha256')

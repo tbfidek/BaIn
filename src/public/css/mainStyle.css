@@ -114,7 +114,7 @@ header {
     margin-bottom: 2rem;
 }
 
-.search span{
+.search button{
     background-color: var(--card-color);
     padding: 0.5rem;
     margin-right:1rem;
@@ -124,7 +124,7 @@ header {
 
 }
 
-.file-input button:hover, input[type=date]:hover, .search span:hover, .sidebutton:hover, span:hover, .parent span:hover, .account-overview input[type=submit]:hover, input[type=file]::file-selector-button:hover{
+.file-input button:hover, input[type=date]:hover, .search button:hover, .sidebutton:hover, span:hover, .parent span:hover, .account-overview input[type=submit]:hover, input[type=file]::file-selector-button:hover{
     background: #9c9992;
     cursor: pointer;
 }
@@ -384,7 +384,7 @@ input:hover {
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
-    .search span{
+    .search button{
         margin-bottom: 1rem;
     }
     .account-overview {
@@ -436,7 +436,7 @@ input:hover {
         margin-left: 0;
     }
 
-    .search span{
+    .search button{
         padding:0.3rem;
     }
     .parent p{
@@ -626,4 +626,345 @@ a, a:visited{
     background-color: var(--card-color);
     padding:0.2rem;
     border-radius: var(--border-radius-card);
+}
+
+
+.pop-up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    box-shadow: 0 2rem 10rem #363949;
+    border-radius: 10px;
+    border: none;
+    z-index: 10;
+    width: 500px;
+    max-width: 80%;
+    max-height: 90%;
+    padding: 1rem 1rem;
+    transition: 200ms ease-in-out;
+    visibility: hidden;
+
+}
+
+.pop-up.active {
+    visibility: visible;
+}
+
+/*.signup-box.active, .banner.active {*/
+/*    filter: blur(5px);*/
+/*    -webkit-filter: blur(5px);*/
+/*    pointer-events: none;*/
+/*}*/
+
+.pop-up-profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /*margin-top: 1rem;*/
+    /*margin-bottom: 1rem;*/
+    padding: 2rem;
+}
+
+.pfp-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.pop-up button{
+    display: flex;
+    flex-direction: row;
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    border: none;
+
+}
+
+.profile-picture-child button{
+    padding: 4rem;
+    border-radius: 50%;
+}
+input[name="name"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 0.5rem;
+}
+input[name="date"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2.8rem;
+    margin-top: 1rem;
+}
+
+input[name="details"]{
+    margin-left: 0.4rem;
+    width: 7.2rem;
+}
+
+input[name="gender-type"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+/*input:invalid {*/
+/*    border: 2px solid red;*/
+/*}*/
+
+/* for height and weight boxes */
+
+.alignment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+
+}
+
+.choose-gender {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    gap: 0.5rem;
+}
+
+
+.choose-gender, .choose-gender label:hover, .choose-gender input:hover{
+    cursor:pointer;
+}
+
+.medical{
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    padding: 0.7rem 2.3rem;
+    font-size: 1rem;
+}
+
+.medical div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.upload {
+    display: flex;
+    margin-left: 2rem;
+
+}
+
+.finish {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+
+}
+
+.finish:hover, .medical:hover, input[name="name"]:hover, .profile-picture-child button:hover{
+    background: #9c9992;
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1rem;
+}
+
+.form input {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0.5rem;
+
+    padding:0.8rem 1rem;
+    font-size: 1rem;
+
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    border: none;
+}
+
+.pop-up {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--background-color);
+    box-shadow: 0 2rem 10rem #363949;
+    border-radius: 10px;
+    border: none;
+    z-index: 10;
+    width: 500px;
+    max-width: 80%;
+    max-height: 90%;
+    padding: 1rem 1rem;
+    transition: 200ms ease-in-out;
+    visibility: hidden;
+
+}
+
+.pop-up.active {
+    visibility: visible;
+}
+
+.main.active, .sidebar.active, .account-overview.active {
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    pointer-events: none;
+}
+
+.pop-up-profile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.pfp-child{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+.pop-up button{
+    display: flex;
+    flex-direction: row;
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    border: none;
+
+}
+
+.profile-picture-child button{
+    padding: 4rem;
+    border-radius: 50%;
+}
+input[name="name"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    margin-bottom: 0.5rem;
+}
+input[name="date"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2.8rem;
+    margin-top: 1rem;
+}
+
+input[name="details"]{
+    margin-left: 0.4rem;
+    width: 7.2rem;
+}
+
+input[name="gender-type"]{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+/*input:invalid {*/
+/*    border: 2px solid red;*/
+/*}*/
+
+/* for height and weight boxes */
+
+.alignment {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1rem;
+
+}
+
+.choose-gender {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 2rem;
+    margin-right: 2rem;
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    gap: 0.5rem;
+}
+
+
+.choose-gender, .choose-gender label:hover, .choose-gender input:hover{
+    cursor:pointer;
+}
+
+.medical{
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    padding: 0.7rem 2.3rem;
+    font-size: 1rem;
+}
+
+.medical div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.upload {
+    display: flex;
+    margin-left: 2rem;
+
+}
+
+.finish {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+    padding: 0.5rem 0.5rem;
+    font-size: 1rem;
+
+}
+
+.finish:hover, .medical:hover, input[name="name-pop"]:hover, .profile-picture-child button:hover{
+    background: #9c9992;
+    cursor: pointer;
 }

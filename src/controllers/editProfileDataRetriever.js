@@ -9,14 +9,15 @@ export function retrieveUserData(req, res) {
         values: [userId],
     };
     //BUG LA USER_ID??????????
+    console.log("id parinte: " + userId);
     const childrenQuery = {
         text: `
             SELECT c.name AS child_name
             FROM child_accounts AS c
-            JOIN users_child_accounts AS uca ON c.account_id = uca.account_id`
-//              WHERE uca.user_id = $1
-        // `,
-        // values: [userId],
+            JOIN users_child_accounts AS uca ON c.account_id = uca.account_id
+             WHERE uca.user_id = $1
+        `,
+        values: [userId],
     };
 
     Promise.all([pool.query(userQuery), pool.query(childrenQuery)])
@@ -32,6 +33,7 @@ export function retrieveUserData(req, res) {
             const children = childrenResult.rows;
             console.log(children);
             const userData = {
+                id: userId,
                 name: user.name,
                 email: user.email,
                 children: children,
