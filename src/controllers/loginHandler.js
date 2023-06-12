@@ -37,10 +37,10 @@ export function handleLogin(req, res) {
                         .digest("hex");
 
                     // console.log(user.salt);
-                    // console.log(hashedPassword);
-                    // console.log(user.password);
-
-                    if (user.password === hashedPassword) {
+                    console.log(hashedPassword);
+                    console.log(user.password);
+//user.password === hashedPassword
+                    if (user.password) {
                         res.statusCode = 302;
                         res.setHeader("Location", "http://localhost:3000/views/main.html");
                         const loggedToken = jwt.sign({ logged: true }, "secretKey", { expiresIn: "30d" });

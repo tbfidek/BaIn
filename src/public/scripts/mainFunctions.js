@@ -215,3 +215,24 @@ function logout() {
         });
 }
 
+// function help(){
+//     // Retrieve data from the server
+//     fetch('/retrieveUserData')
+//         .then(response => response.json())
+//         .then(data => {
+//             const mainTitle = document.querySelector('.main-title');
+//
+//             const paragraph = document.createElement('p');
+//             paragraph.textContent = 'This is a paragraph inside the main title div';
+//
+//
+//             mainTitle.appendChild(paragraph);
+//
+//         })
+//         .catch(error => {
+//             console.error(error);
+//             // Handle any errors that occur during the request
+//         });
+//
+// }
+// window.onload = help;

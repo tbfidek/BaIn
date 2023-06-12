@@ -14,8 +14,6 @@
           rel="stylesheet">
     <link rel="stylesheet" href="/css/mainStyle.css">
     <link rel="stylesheet" href="/css/calendar.css">
-    <script src="/scripts/mainFunctions.js" defer></script>
-    <script src="/scripts/calendar.js" defer></script>
 </head>
 
 <body>
@@ -69,7 +67,7 @@
                 <p>3MONTHS</p>
                 <p>H:55 W:55</p>
             </div>
-            <div><p class="title">Hello, #name! How is your baby today?</p></div>
+            <div class="main-title" id="main-title"></div>
             <div class="mobile-off">
                 <a href="editProfile.html"><img src="/images/profile_pic.jpg" alt=""></a>
                 <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
@@ -309,5 +307,8 @@
     </div>
 
 </div>
+<script src="/scripts/calendar.js" ></script>
+<script src="/scripts/mainFunctions.js" ></script>
+<!--<script src="/scripts/editProfileFunctions.js"></script>-->
 </body>
 </html>

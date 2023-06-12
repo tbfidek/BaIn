@@ -9,13 +9,11 @@ import { handleAddChildToParent } from './controllers/addChildToParentHandler.js
 import { handleLogin } from './controllers/loginHandler.js';
 import { handleDeleteChild } from './controllers/deleteChildHandler.js';
 import { handleLogout } from "./controllers/logoutHandler.js";
-import { retrieveUserData } from "./controllers/EditProfileDataRetriever.js";
-import {decryptId, decryptLogin} from "./controllers/cookieDecrypt.js";
-import {updateUserEmail, updateUserName, updateUserPassword} from './controllers/updateProfileHandler.js';
+import { retrieveUserData } from "./controllers/editProfileDataRetriever.js";
+import { decryptLogin } from "./controllers/cookieDecrypt.js";
+import { updateUserEmail, updateUserName, updateUserPassword } from './controllers/updateProfileHandler.js';
 
 import req_url from 'url';
-import * as fs from "fs";
-
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
@@ -29,17 +27,25 @@ const server = http.createServer((req, res) => {
     const parsedUrl = req_url.parse(req.url, true);
     const url = req.url;
     const { pathname } = parsedUrl;
-        if (url.match(/\/css\/.*/) || url.match(/\/scripts\/.*/) ||  url.match(/\/views\/.*/) || url.match(/\/images\/.*/) ||  url.match(/\/documnetation\/.*/) ||  url.match(/.*/)){
+        // 404 nu merge
+        // if (url.match(/\/css\/.*/) || url.match(/\/scripts\/.*/)
+        //     ||  url.match(/\/views\/.*/)
+            // ||  url.match(/\/views\/editProfile.html/)
+            // ||  url.match(/\/views\/login.html/)
+            // ||  url.match(/\/views\/main.html/)
+            // ||  url.match(/\/views\/signUp.html/)
+            // || url.match(/\/images\/.*/)
+            // ||  url.match(/\/documentation\/.*/)
+            // ||  url === '/'){
             serve(req, res, () => {
             })
-        }
-        else{
-            res.statusCode = 404;
-            res.setHeader('Content-Type', 'text/html');
-            res.end(fs.readFileSync(path.join(__dirname, 'public/views', 'errorPage.html'), 'utf8'));
-            return;
-        }
-
+        // }
+        // else{
+        //     res.statusCode = 404;
+        //     res.setHeader('Content-Type', 'text/html');
+        //     res.end(fs.readFileSync(path.join(__dirname, 'public/views', 'errorPage.html'), 'utf8'));
+        //     return;
+        // }
 
     if (url.match(/main/) || url.match(/editProfile/)) {
         decryptLogin(req,res);
@@ -70,6 +76,9 @@ const server = http.createServer((req, res) => {
     if (req.method === 'GET' && pathname === '/editProfile') {
         retrieveUserData(req, res);
     }
+    // if (req.method === 'GET' && pathname === '/retrieveUserData') {
+    //     retrieveUserData(req, res);
+    // }
     if (req.method === 'POST' && pathname === '/updateName') {
         updateUserName(req, res);
     }
