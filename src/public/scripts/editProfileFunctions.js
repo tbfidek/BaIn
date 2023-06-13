@@ -1,21 +1,25 @@
+let user_info = null;
+
+
 function removeChildElement(event) {
     event.preventDefault();
     const parentDiv = event.target.closest('div');
     parentDiv.remove();
-  }
+}
 
-  document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     const removeButtons = document.querySelectorAll('.remove-child');
     removeButtons.forEach((button) => {
-      button.addEventListener('click', removeChildElement);
+        button.addEventListener('click', removeChildElement);
     });
-  });
+});
 
 
 function populateInfo() {
     fetch('/editProfile')
         .then(response => response.json())
         .then(userData => {
+            user_info = userData;
             const infoParentDiv = document.getElementById('info-parent');
             infoParentDiv.innerHTML = `
                 <h2>${userData.name}</h2>
@@ -123,9 +127,10 @@ function addChild() {
     const codeInput = document.getElementById('codeInput');
     const childCode = codeInput.value;
 
-    const data = { code: childCode };
+    const data = { "child_id": childCode, "parent_id": user_info.id };
 
-    fetch('/addChild', {
+
+    fetch('/addchildtoparent', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

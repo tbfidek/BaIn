@@ -9,14 +9,14 @@ export function handleAddChildToParent(req, res) {
     });
     req.on('end', () => {
         const obj = JSON.parse(body);
-        const { code } = obj;
+        const { child_id } = obj;
 
-        console.log("id child:" + code);
+        console.log("id child:" + child_id);
         console.log("user id: " + idUser);
 
         const checkQuery = {
             text: 'SELECT * FROM users_child_accounts WHERE user_id = $1 AND account_id = $2',
-            values: [idUser, code],
+            values: [idUser, child_id],
         };
         pool.query(checkQuery)
             .then((result) => {
@@ -27,7 +27,7 @@ export function handleAddChildToParent(req, res) {
                 } else {
                     const insertQuery = {
                         text: 'INSERT INTO users_child_accounts (user_id, account_id) VALUES ($1, $2)',
-                        values: [idUser, code],
+                        values: [idUser, child_id],
                     };
                     pool.query(insertQuery)
                         .then(() => {

@@ -52,7 +52,7 @@
                         <button type="button" class="medical">medical files
                             <span class="material-symbols-rounded upload">upload</span>
                         </button>
-                        <button type="button" class="finish" id="gata" onclick="checkChild()">finish profile</button>
+                        <button type="button" class="finish" id="gata" onclick="">finish profile</button>
                     </div>
                 </div>
             </form>
@@ -62,10 +62,10 @@
         <div class="child-profile">
             <img src="/images/baby_pic.jpg" alt="profileImage" class="child-pfp" onclick="showEditChildProfile()">
             <div class="child-name">
-                <p class="text maintext">Brontozaur</p>
+                <p class="text maintext" id="child-name">Brontozaur</p>
                 <div class="info-child">
-                    <p class="text maintext">3MONTHS</p>
-                    <p class="text maintext">H:55 W:55</p>
+                    <p class="text maintext" id="child-age">3MONTHS</p>
+                    <p class="text maintext" id="child-stats">H:55 W:55</p>
                 </div>
 
             </div>
@@ -115,13 +115,13 @@
                     <textarea id="vertical" rows="20" cols="40" placeholder=" My baby smiled today :)"
                               name="description-day"></textarea>
                 </div>
-                <div>
-                    <label for="shopping-list">Write down what you need:</label>
-                </div>
-                <div>
-                    <textarea rows="10" cols="40" placeholder=" gift ideas, groceries, appointments" id="shopping-list"
-                              name="shopping-list"></textarea>
-                </div>
+                <!--                <div>-->
+                <!--                    <label for="shopping-list">Write down what you need:</label>-->
+                <!--                </div>-->
+                <!--                <div>-->
+                <!--                    <textarea rows="10" cols="40" placeholder=" gift ideas, groceries, appointments" id="shopping-list"-->
+                <!--                              name="shopping-list"></textarea>-->
+                <!--                </div>-->
             </div>
             <div class="file-input">
                 <form onsubmit="return false">

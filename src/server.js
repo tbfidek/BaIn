@@ -4,6 +4,7 @@ import serveStatic from 'serve-static';
 import { fileURLToPath } from 'url';
 
 import { handleSignUp } from './controllers/signUpHandler.js';
+import { retrieveChildData } from "./controllers/childDataRetriever.js";
 import { handleAddChild } from './controllers/addChildHandler.js';
 import { handleAddChildToParent } from './controllers/addChildToParentHandler.js';
 import { handleLogin } from './controllers/loginHandler.js';
@@ -46,7 +47,6 @@ const server = http.createServer((req, res) => {
     //     res.end(fs.readFileSync(path.join(__dirname, 'public/views', 'errorPage.html'), 'utf8'));
     //     return;
     // }
-
     if (url.match(/main/) || url.match(/editProfile/)) {
         decryptLogin(req,res);
     }
@@ -60,8 +60,8 @@ const server = http.createServer((req, res) => {
     }
 
     // if (req.method === 'DELETE' && pathname === '/deletechild') {
-    //     handleDeleteChild(req, res);
-    // }
+    //handleDeleteChild(req, res);
+    //}
 
     if (req.method === 'POST' && pathname === '/addchildtoparent') {
         handleAddChildToParent(req, res);
@@ -78,6 +78,9 @@ const server = http.createServer((req, res) => {
     }
     if (req.method === 'GET' && pathname === '/retrieveUserData') {
         retrieveUserData(req, res);
+    }
+    if (req.method === 'POST' && pathname === '/retrieveChildData') {
+        retrieveChildData(req, res);
     }
     if (req.method === 'POST' && pathname === '/updateName') {
         updateUserName(req, res);

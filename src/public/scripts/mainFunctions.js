@@ -4,10 +4,15 @@ let blurr = null;
 let child_counter = 0;
 let user_id = null;
 
+
+//aici se tine informatiile despre copilul selectat (id, nume, gender, weight etc)
+let selected_child = null;
+
 let button_finish_child_profile = null;
 let button_add_child_profile = null;
 let last_child_id = 1;
 let child_ids = [];
+
 
 window.onload = function () {
     console.log("incarcat");
@@ -40,13 +45,19 @@ async function checkChild(){
         console.log("nu-i bun");
         return;
     }
+    console.log("inainte de insert");
     insertChild(form.elements[3].value, form.elements[4].value, form.elements[5].value, form.elements[6].value, (gendertype.value === "1" ? "female" : "male"));
-    await new Promise(r => setTimeout(r, 100));
+    await new Promise(r => setTimeout(r, 1000));
     addChildList();
     closePopup();
-
+    console.log("chestieeeeeeeeeeee " + form.elements[3].value);
+    populateChildData(form.elements[3].value);
 }
-
+function hidePopupOnEscapeKey(event) {
+    if (event.key === "Escape") {
+        closePopup();
+    }
+}
 function closePopup() {
     blur.classList.remove('active');
     blurr.classList.remove('active');
@@ -100,6 +111,7 @@ async function deleteChild(child_id){
 
 
 async function insertChild(name, birthday, width, weight, gender){
+    console.log("apel functie");
     fetch("http://localhost:3000/addchild", {
         method: "POST",
         body: JSON.stringify({
@@ -135,7 +147,7 @@ async function insertChild(name, birthday, width, weight, gender){
                 .then((response) => response.json())
                 .then((json) => console.log(json));
         });
-    await new Promise(r => setTimeout(r, 500));
+    //await new Promise(r => setTimeout(r, 500));
 
 }
 
@@ -332,6 +344,9 @@ function logout() {
 }
 
 function populateUserData() {
+    if(selected_child != null){
+        console.log(selected_child.name);
+    }
     fetch('/retrieveUserData')
         .then(response => response.json())
         .then(data => {
@@ -340,11 +355,13 @@ function populateUserData() {
 
             const childList = document.getElementById('child-list');
             childList.innerHTML = ''; // Clear existing content
-
             data.children.forEach(child => {
                 const childDiv = document.createElement('div');
                 childDiv.className = 'child sidebutton text';
                 childDiv.textContent = child.child_name;
+                childDiv.addEventListener('click', function() {
+                    populateChildData(child.child_name);
+                });
                 childList.appendChild(childDiv);
             });
 
@@ -360,7 +377,82 @@ function populateUserData() {
         });
 }
 
+// function populateChildData(child_name) {
+//     fetch("http://localhost:3000/retrieveChildData", {
+//         method: "POST",
+//         body: JSON.stringify({
+//             "user_id": user_id,
+//             "child_name": child_name
+//         }),
+//         headers: {
+//             'Accept': 'application/json',
+//             'Content-Type': 'application/json'
+//         }
+//     })
+//         .then((response) => response.json())
+//         .then((json) => {
+//             selected_child = json;
+//             child_name_text = document.querySelector("#child-name");
+//             child_age_text = document.querySelector("#child-age");
+//             child_stats_text = document.querySelector("#child-stats");
+//             if(child_name_text != null && child_age_text != null && child_stats_text != null){
+//                 child_name_text.textContent = json.name;
+//                 child_age_text.textContent = json.birthday;
+//                 child_stats_text.textContent = "H:" + json.height + " W:" + json.weight;
+//             }
+//         });
+// }
+function populateChildData(child_name) {
+    fetch("http://localhost:3000/retrieveChildData", {
+        method: "POST",
+        body: JSON.stringify({
+            "user_id": user_id,
+            "child_name": child_name
+        }),
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+        .then((response) => response.json())
+        .then((json) => {
+            selected_child = json;
+            child_name_text = document.querySelector("#child-name");
+            child_age_text = document.querySelector("#child-age");
+            child_stats_text = document.querySelector("#child-stats");
+            if(child_name_text != null && child_age_text != null && child_stats_text != null){
+                child_name_text.textContent = json.name;
+                child_age_text.textContent = calculateAge(json.birthday);
+                child_stats_text.textContent = "W:" + json.height + "kg" + " H:" + json.weight + "cm";
+            }
+        });
+}
+
+function calculateAge(birthday) {
+    var birthDate = new Date(birthday);
+    var currentDate = new Date();
+
+    var monthsDiff = (currentDate.getFullYear() - birthDate.getFullYear()) * 12;
+    monthsDiff -= birthDate.getMonth() + 1;
+    monthsDiff += currentDate.getMonth();
+
+    if (monthsDiff < 1) {
+        var daysDiff = Math.floor((currentDate - birthDate) / (1000 * 60 * 60 * 24));
+        return daysDiff + " days";
+    } else if (monthsDiff >= 36) {
+        var years = Math.floor(monthsDiff / 12);
+        var months = monthsDiff % 12;
+        var ageString = years + " years";
+        if (months > 0) {
+            ageString += " " + months + " months";
+        }
+        return ageString;
+    } else {
+        return monthsDiff + " months";
+    }
+}
 window.addEventListener('load', () => {
+    document.addEventListener("keydown", hidePopupOnEscapeKey);
     populateUserData();
 
     const pollingInterval = 5000;

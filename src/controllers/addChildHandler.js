@@ -1,6 +1,7 @@
 import pool from "../database.js";
 
 export function handleAddChild(req,res){
+    console.log("apelhandler")
     let body = '';
     req.on('data', (chunk) => {
         body += chunk.toString();
