@@ -40,7 +40,15 @@ export function updateUserEmail(req, res) {
     req.on('end', () => {
         const { email } = JSON.parse(body);
 
-        // Check if the email already exists
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailPattern.test(email)) {
+            res.statusCode = 400;
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify({ message: "Invalid email format" }));
+            return;
+        }
+
         const checkQuery = {
             text: 'SELECT * FROM users WHERE email = $1',
             values: [email],
@@ -48,12 +56,11 @@ export function updateUserEmail(req, res) {
         pool.query(checkQuery)
             .then((result) => {
                 if (result.rows.length > 0) {
-                    // Email already exists
                     res.statusCode = 400;
                     res.setHeader('Content-Type', 'application/json');
                     res.end(JSON.stringify({ message: "Email already exists" }));
                 } else {
-                    // Update the email
+
                     const updateQuery = {
                         text: 'UPDATE users SET email = $1 WHERE user_id = $2',
                         values: [email, userId],
@@ -80,6 +87,7 @@ export function updateUserEmail(req, res) {
             });
     });
 }
+
 
 export function updateUserPassword(req, res) {
     let userId = decryptId(req,res);
