@@ -100,7 +100,10 @@ function updateEmail() {
 function updatePassword() {
     const passwordInput = document.getElementById('passwordInput');
     const newPassword = passwordInput.value;
-
+    if (newPassword === '') {
+        alert('Password cannot be empty');
+        return;
+    }
     const data = { password: newPassword };
 
     fetch('/updatePassword', {
@@ -114,7 +117,7 @@ function updatePassword() {
             if (response.ok) {
                 alert("Password changed");
             } else {
-                alert('Failed to update email. Please try again.');
+                alert('Failed to update password. Please try again.');
             }
         })
         .catch((error) => {
