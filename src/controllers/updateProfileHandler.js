@@ -32,7 +32,7 @@ export function updateUserName(req, res) {
 }
 
 export function updateUserEmail(req, res) {
-    let userId = decryptId(req,res);
+    let userId = decryptId(req, res);
     let body = '';
     req.on('data', (chunk) => {
         body += chunk.toString();
@@ -40,15 +40,37 @@ export function updateUserEmail(req, res) {
     req.on('end', () => {
         const { email } = JSON.parse(body);
 
-        const query = {
-            text: 'UPDATE users SET email = $1 WHERE user_id = $2',
-            values: [email, userId],
+        // Check if the email already exists
+        const checkQuery = {
+            text: 'SELECT * FROM users WHERE email = $1',
+            values: [email],
         };
-        pool.query(query)
-            .then(() => {
-                res.statusCode = 201;
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({ message: "Email updated successfully"}));
+        pool.query(checkQuery)
+            .then((result) => {
+                if (result.rows.length > 0) {
+                    // Email already exists
+                    res.statusCode = 400;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.end(JSON.stringify({ message: "Email already exists" }));
+                } else {
+                    // Update the email
+                    const updateQuery = {
+                        text: 'UPDATE users SET email = $1 WHERE user_id = $2',
+                        values: [email, userId],
+                    };
+                    pool.query(updateQuery)
+                        .then(() => {
+                            res.statusCode = 201;
+                            res.setHeader('Content-Type', 'application/json');
+                            res.end(JSON.stringify({ message: "Email updated successfully" }));
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                            res.statusCode = 500;
+                            res.setHeader('Content-Type', 'application/json');
+                            res.end(JSON.stringify({ message: 'Server error' }));
+                        });
+                }
             })
             .catch((err) => {
                 console.error(err);
@@ -56,7 +78,6 @@ export function updateUserEmail(req, res) {
                 res.setHeader('Content-Type', 'application/json');
                 res.end(JSON.stringify({ message: 'Server error' }));
             });
-
     });
 }
 

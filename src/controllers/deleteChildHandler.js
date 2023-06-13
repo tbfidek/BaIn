@@ -1,16 +1,19 @@
 import pool from "../database.js";
+import {decryptId} from "./cookieDecrypt.js";
 
 export function handleDeleteChild(req,res){
+    let idUser = decryptId(req,res);
     let body = '';
     req.on('data', (chunk) => {
         body += chunk.toString();
     });
     req.on('end', async () => {
         const obj = JSON.parse(body);
-        const { child_id } = obj;
+        const { code } = obj;
+        console.log("sterg copilu: " + code + "cu parintele :" + idUser);
         const query = {
-            text: 'DELETE from child_accounts where account_id=$1',
-            values: [child_id],
+            text: 'DELETE from users_child_accounts where account_id=$1 and user_id=$2',
+            values: [code, idUser],
         };
         pool.query(query)
             .then(() => {

@@ -18,7 +18,7 @@ function populateInfo() {
         .then(userData => {
             const infoParentDiv = document.getElementById('info-parent');
             infoParentDiv.innerHTML = `
-                <h3>${userData.name}</h3>
+                <h2>${userData.name}</h2>
                 <h3>${userData.email}</h3>
             `;
 
@@ -27,9 +27,10 @@ function populateInfo() {
 
             userData.children.forEach(child => {
                 const childDiv = document.createElement('div');
-                childDiv.innerHTML = `
+                childDiv.innerHTML = `      
+                    <button class="remove-child" onclick="deleteConnectionToChild(${child.child_id})"><span class="material-symbols-rounded">close</span></button>  
                     <button class="registered-child">${child.child_name}</button>
-                    <button class="remove-child"><span class="material-symbols-rounded">close</span></button>
+                    <button class="id">ID: ${child.child_id}</button>    
                 `;
                 childListDiv.appendChild(childDiv);
             });
@@ -118,7 +119,64 @@ function updatePassword() {
         });
 }
 
-window.onload = populateInfo;
+function addChild() {
+    const codeInput = document.getElementById('codeInput');
+    const childCode = codeInput.value;
+
+    const data = { code: childCode };
+
+    fetch('/addChild', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert("Child added");
+            } else {
+                alert('Failed to add child. Please try again.');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('An error occurred');
+        });
+}
+
+function deleteConnectionToChild(childCode) {
+
+    const data = { code: childCode };
+
+    fetch('/removeChild', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (response.ok) {
+                alert("Deleted child connection");
+            } else {
+                alert("Failed to delete connection. Please try again.");
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('An error occurred');
+        });
+}
+
+window.addEventListener('load', () => {
+    populateInfo();
+
+    const pollingInterval = 5000;
+
+    setInterval(populateInfo, pollingInterval);
+});
+
 
 function logout() {
     fetch('/logout', {

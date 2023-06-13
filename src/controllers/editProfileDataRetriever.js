@@ -8,11 +8,11 @@ export function retrieveUserData(req, res) {
         text: "SELECT * FROM users WHERE user_id = $1",
         values: [userId],
     };
-    //BUG LA USER_ID??????????
+
     console.log("id parinte: " + userId);
     const childrenQuery = {
         text: `
-            SELECT c.name AS child_name
+            SELECT c.account_id AS child_id, c.name AS child_name
             FROM child_accounts AS c
             JOIN users_child_accounts AS uca ON c.account_id = uca.account_id
              WHERE uca.user_id = $1

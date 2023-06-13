@@ -59,9 +59,9 @@ const server = http.createServer((req, res) => {
         handleAddChild(req, res);
     }
 
-    if (req.method === 'DELETE' && pathname === '/deletechild') {
-        handleDeleteChild(req, res);
-    }
+    // if (req.method === 'DELETE' && pathname === '/deletechild') {
+    //     handleDeleteChild(req, res);
+    // }
 
     if (req.method === 'POST' && pathname === '/addchildtoparent') {
         handleAddChildToParent(req, res);
@@ -88,7 +88,12 @@ const server = http.createServer((req, res) => {
     if (req.method === 'POST' && pathname === '/updatePassword') {
         updateUserPassword(req, res);
     }
-
+    if (req.method === 'POST' && pathname === '/addChild') {
+        handleAddChildToParent(req, res);
+    }
+    if (req.method === 'POST' && pathname === '/removeChild') {
+        handleDeleteChild(req, res);
+    }
 });
 
 server.listen(port, () => {

@@ -337,32 +337,34 @@ function populateUserData() {
         .then(data => {
             const mainTitle = document.querySelector('.main-title');
             user_id = data.id;
-            addNewSection(data.children);
+
+            const childList = document.getElementById('child-list');
+            childList.innerHTML = ''; // Clear existing content
+
+            data.children.forEach(child => {
+                const childDiv = document.createElement('div');
+                childDiv.className = 'child sidebutton text';
+                childDiv.textContent = child.child_name;
+                childList.appendChild(childDiv);
+            });
+
             const paragraph = document.createElement('p');
             paragraph.textContent = `Hello, ${data.name}! How is your baby today?`;
 
+            mainTitle.innerHTML = '';
             mainTitle.appendChild(paragraph);
+
         })
         .catch(error => {
             console.error(error);
         });
 }
 
-function addNewSection(list) {
-    for(var i = 0; i < list.length; ++i){
-        const firstSection = document.createElement('div');
+window.addEventListener('load', () => {
+    populateUserData();
 
-        firstSection.innerHTML = `<div class="child sidebutton text">${list[i].child_name}</div>`;
+    const pollingInterval = 5000;
 
-        document.getElementById("child-list").appendChild(firstSection);
-    }
-    //pt mobile
-    // const secondSection = document.createElement('section');
-    //
-    // secondSection.innerHTML = `<h2>Baby </h2>
-    //                         <span onclick='removeChild(this)' class='material-symbols-rounded'>person_remove</span>`;
-    //
-    // document.getElementById("babyID-mobile").appendChild(secondSection);
-}
+    setInterval(populateUserData, pollingInterval);
+});
 
-window.addEventListener('load',()=> populateUserData());
