@@ -37,6 +37,7 @@ export function retrieveUserData(req, res) {
                 name: user.name,
                 email: user.email,
                 children: children,
+                profile_image: user.profile_image
             };
 
             res.statusCode = 200;

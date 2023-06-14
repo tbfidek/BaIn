@@ -12,11 +12,13 @@ import { handleDeleteChild } from "./controllers/deleteChildHandler.js";
 import { handleLogout } from "./controllers/logoutHandler.js";
 import { retrieveUserData } from "./controllers/editProfileDataRetriever.js";
 import { decryptLogin } from "./controllers/cookieDecrypt.js";
+
 import mealTimeController from "./controllers/mealController.js";
 import {
   updateUserEmail,
   updateUserName,
   updateUserPassword,
+    updatePicture
 } from "./controllers/updateProfileHandler.js";
 
 import req_url from "url";
@@ -99,6 +101,9 @@ const server = http.createServer((req, res) => {
   }
   if (req.method === "POST" && pathname === "/removeChild") {
     handleDeleteChild(req, res);
+  }
+  if (req.method === 'POST' && pathname === '/updatePicture') {
+    updatePicture(req, res);
   }
   if (pathname.startsWith("/meal")) {
     mealTimeController(req, res);

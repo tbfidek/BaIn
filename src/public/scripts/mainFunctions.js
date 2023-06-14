@@ -527,6 +527,11 @@ function populateUserData() {
         childList.appendChild(childDiv);
       });
 
+      const json = JSON.parse(JSON.stringify(data.profile_image));
+      const asciiArray = json.data;
+      const string = String.fromCharCode(...asciiArray);
+      document.getElementById("main-profile-pic").src = `${string}`;
+      document.getElementById("mobile-main-profile-pic").src = `${string}`;
       const paragraph = document.createElement("p");
       paragraph.textContent = `Hello, ${data.name}! How is your baby today?`;
 
@@ -538,31 +543,6 @@ function populateUserData() {
     });
 }
 
-// function populateChildData(child_name) {
-//     fetch("http://localhost:3000/retrieveChildData", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             "user_id": user_id,
-//             "child_name": child_name
-//         }),
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//         .then((response) => response.json())
-//         .then((json) => {
-//             selected_child = json;
-//             child_name_text = document.querySelector("#child-name");
-//             child_age_text = document.querySelector("#child-age");
-//             child_stats_text = document.querySelector("#child-stats");
-//             if(child_name_text != null && child_age_text != null && child_stats_text != null){
-//                 child_name_text.textContent = json.name;
-//                 child_age_text.textContent = json.birthday;
-//                 child_stats_text.textContent = "H:" + json.height + " W:" + json.weight;
-//             }
-//         });
-// }
 function populateChildData(child_name) {
   fetch("http://localhost:3000/retrieveChildData", {
     method: "POST",

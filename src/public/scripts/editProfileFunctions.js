@@ -1,6 +1,16 @@
 let user_info = null;
+const image_input = document.querySelector("#profile-pic");
+var uploaded_image = "";
 
-
+image_input.addEventListener("change", function(){
+    const reader = new FileReader();
+    reader.readAsDataURL(this.files[0]);
+    reader.addEventListener("load", () => {
+        uploaded_image = reader.result;
+        document.querySelector("#pfp").src = `${uploaded_image}`;
+        updatePicture(uploaded_image);
+    });
+})
 function removeChildElement(event) {
     event.preventDefault();
     const parentDiv = event.target.closest('div');
@@ -25,7 +35,12 @@ function populateInfo() {
                 <h2>${userData.name}</h2>
                 <h3>${userData.email}</h3>
             `;
-
+            const json = JSON.parse(JSON.stringify(user_info.profile_image));
+            if(json != null){
+                const asciiArray = json.data;
+                const string = String.fromCharCode(...asciiArray);
+                document.querySelector("#pfp").src = `${string}`;
+            }
             const childListDiv = document.querySelector('.child-list');
             childListDiv.innerHTML = '';
 
@@ -118,6 +133,30 @@ function updatePassword() {
                 alert("Password changed");
             } else {
                 alert('Failed to update password. Please try again.');
+            }
+        })
+        .catch((error) => {
+            console.error(error);
+            alert('An error occurred');
+        });
+}
+
+function updatePicture(image) {
+
+    const data = { image_data: image };
+
+    fetch('/updatePicture', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+        .then((response) => {
+            if (response.ok) {
+                location.reload();
+            } else {
+                alert('Failed to update picture. Please try again.');
             }
         })
         .catch((error) => {

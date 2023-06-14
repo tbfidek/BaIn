@@ -124,3 +124,31 @@ export function updateUserPassword(req, res) {
 
     });
 }
+export function updatePicture(req, res) {
+    let userId = decryptId(req,res);
+    let body = '';
+    req.on('data', (chunk) => {
+        body += chunk.toString();
+    });
+    req.on('end', () => {
+        const { image_data } = JSON.parse(body);
+
+        const query = {
+            text: 'UPDATE users SET profile_image = $1 WHERE user_id = $2',
+            values: [image_data, userId],
+        };
+        pool.query(query)
+            .then(() => {
+                res.statusCode = 201;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ message: "Picture updated successfully"}));
+            })
+            .catch((err) => {
+                console.error(err);
+                res.statusCode = 500;
+                res.setHeader('Content-Type', 'application/json');
+                res.end(JSON.stringify({ message: 'Server error' }));
+            });
+
+    });
+}
