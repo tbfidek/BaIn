@@ -41,6 +41,7 @@ CREATE TABLE users_child_accounts (
 
 CREATE TABLE meal_records (
                               id SERIAL PRIMARY KEY,
+                              user_id INTEGER REFERENCES users(user_id),
                               child_account_id INTEGER REFERENCES child_accounts(account_id),
                               meal_date DATE NOT NULL,
                               meal_description VARCHAR(255) NOT NULL,
@@ -51,6 +52,7 @@ CREATE TABLE meal_records (
 
 CREATE TABLE nap_records (
                              id SERIAL PRIMARY KEY,
+                             user_id INTEGER REFERENCES users(user_id),
                              child_account_id INTEGER REFERENCES child_accounts(account_id),
                              nap_date DATE NOT NULL,
                              start_time TIME NOT NULL,
