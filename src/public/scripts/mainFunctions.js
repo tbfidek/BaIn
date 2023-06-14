@@ -92,18 +92,6 @@ function addChildList() {
   //console.log(child_counter);
 }
 
-function removeChildList(nr) {
-  //document.querySelector(".child" + nr).remove();
-  //const index = child_ids.indexOf(nr);
-  //if(nr > -1){
-  //child_ids.splice(index, 1);
-  //}
-  deleteChild(nr);
-  child_counter--;
-
-  //console.log(child_counter);
-}
-
 async function deleteChild(child_id) {
   fetch("http://localhost:3000/deletechild", {
     method: "DELETE",
@@ -170,8 +158,8 @@ function showOverview() {
   others.style.display = "none";
   others = document.querySelector(".FEEDING-TIME");
   others.style.display = "none";
-  others = document.querySelector(".LIKES");
-  others.style.display = "none";
+  // others = document.querySelector(".LIKES");
+  // others.style.display = "none";
   others = document.querySelector(".GALLERY");
   others.style.display = "none";
   others = document.querySelector(".EDIT-CHILD");
@@ -189,8 +177,8 @@ function showSleepingSchedule() {
   others.style.display = "none";
   others = document.querySelector(".FEEDING-TIME");
   others.style.display = "none";
-  others = document.querySelector(".LIKES");
-  others.style.display = "none";
+  // others = document.querySelector(".LIKES");
+  // others.style.display = "none";
   others = document.querySelector(".GALLERY");
   others.style.display = "none";
   others = document.querySelector(".EDIT-CHILD");
@@ -204,8 +192,8 @@ function showFeedingTime() {
   others.style.display = "none";
   others = document.querySelector(".SLEEPING-SCHEDULE");
   others.style.display = "none";
-  others = document.querySelector(".LIKES");
-  others.style.display = "none";
+  // others = document.querySelector(".LIKES");
+  // others.style.display = "none";
   others = document.querySelector(".GALLERY");
   others.style.display = "none";
   others = document.querySelector(".EDIT-CHILD");
@@ -213,20 +201,20 @@ function showFeedingTime() {
   populateMealTable();
 }
 
-function showTimeline() {
-  const medicalHistory = document.querySelector(".LIKES");
-  medicalHistory.style.display = "block";
-  let others = document.querySelector(".OVERVIEW");
-  others.style.display = "none";
-  others = document.querySelector(".SLEEPING-SCHEDULE");
-  others.style.display = "none";
-  others = document.querySelector(".FEEDING-TIME");
-  others.style.display = "none";
-  others = document.querySelector(".GALLERY");
-  others.style.display = "none";
-  others = document.querySelector(".EDIT-CHILD");
-  others.style.display = "none";
-}
+// function showTimeline() {
+//   const medicalHistory = document.querySelector(".LIKES");
+//   medicalHistory.style.display = "block";
+//   let others = document.querySelector(".OVERVIEW");
+//   others.style.display = "none";
+//   others = document.querySelector(".SLEEPING-SCHEDULE");
+//   others.style.display = "none";
+//   others = document.querySelector(".FEEDING-TIME");
+//   others.style.display = "none";
+//   others = document.querySelector(".GALLERY");
+//   others.style.display = "none";
+//   others = document.querySelector(".EDIT-CHILD");
+//   others.style.display = "none";
+// }
 
 function showGallery() {
   renderCalendar();
@@ -238,8 +226,8 @@ function showGallery() {
   others.style.display = "none";
   others = document.querySelector(".FEEDING-TIME");
   others.style.display = "none";
-  others = document.querySelector(".LIKES");
-  others.style.display = "none";
+  // others = document.querySelector(".LIKES");
+  // others.style.display = "none";
   others = document.querySelector(".EDIT-CHILD");
   others.style.display = "none";
 }
@@ -253,8 +241,8 @@ function showEditChildProfile() {
   others.style.display = "none";
   others = document.querySelector(".FEEDING-TIME");
   others.style.display = "none";
-  others = document.querySelector(".LIKES");
-  others.style.display = "none";
+  // others = document.querySelector(".LIKES");
+  // others.style.display = "none";
   others = document.querySelector(".GALLERY");
   others.style.display = "none";
 }
@@ -528,10 +516,12 @@ function populateUserData() {
       });
 
       const json = JSON.parse(JSON.stringify(data.profile_image));
-      const asciiArray = json.data;
-      const string = String.fromCharCode(...asciiArray);
-      document.getElementById("main-profile-pic").src = `${string}`;
-      document.getElementById("mobile-main-profile-pic").src = `${string}`;
+      if(json != null) {
+        const asciiArray = json.data;
+        const string = String.fromCharCode(...asciiArray);
+        document.getElementById("main-profile-pic").src = `${string}`;
+        document.getElementById("mobile-main-profile-pic").src = `${string}`;
+      }
       const paragraph = document.createElement("p");
       paragraph.textContent = `Hello, ${data.name}! How is your baby today?`;
 

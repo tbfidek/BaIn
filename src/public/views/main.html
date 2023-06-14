@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>kiddoCare</title>
     <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link href="https://fonts.googleapis.com/css2?family=Righteous:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
+          rel="stylesheet">
     <link rel="stylesheet" href="../css/mainStyle.css">
     <link rel="stylesheet" href="../css/calendar.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -26,349 +26,370 @@
 </head>
 
 <body>
-    <header class="sticky-header">
-        <div class="drop">
-            <span onclick="dropdown()" class="material-symbols-rounded">menu</span>
-        </div>
-        <div class="mobile-pic">
-            <a href="/views/editProfile.html"><img id="mobile-main-profile-pic" src="/images/profile_pic.jpg" alt=""></a>
-            <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
-            <span class="material-symbols-rounded logoutButton" onclick="logout()">logout</span>
-        </div>
+<header class="sticky-header">
+    <div class="drop">
+        <span onclick="dropdown()" class="material-symbols-rounded">menu</span>
+    </div>
+    <div class="mobile-pic">
+        <a href="/views/editProfile.html"><img id="mobile-main-profile-pic" src="/images/profile_pic.jpg" alt=""></a>
+        <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
+        <span class="material-symbols-rounded logoutButton" onclick="logout()">logout</span>
+    </div>
 
-    </header>
-    <div class="container">
-        <div class="pop-up" id="pop">
-            <div class="pop-up-profile">
-                <form class="pfp-child" id="pfp-child">
-                    <div class="profile-picture-child">
-                        <button type="button"><span class="material-symbols-rounded">add_a_photo</span></button>
+</header>
+<div class="container">
+    <div class="pop-up" id="pop">
+        <div class="pop-up-profile">
+            <form class="pfp-child" id="pfp-child">
+                <div class="profile-picture-child">
+                    <button type="button"><span class="material-symbols-rounded">add_a_photo</span></button>
+                </div>
+                <div class="child-information">
+                    <div class="choose-gender">
+                        <input type="radio" id="gender-female-pop" value="1" name="gender-type">
+                        <label id="female-pop" for="gender-female">female</label><br>
+                        <input type="radio" id="gender-male-pop" value="0" name="gender-type">
+                        <label for="gender-male">male</label><br>
                     </div>
-                    <div class="child-information">
-                        <div class="choose-gender">
-                            <input type="radio" id="gender-female-pop" value="1" name="gender-type">
-                            <label id="female-pop" for="gender-female">female</label><br>
-                            <input type="radio" id="gender-male-pop" value="0" name="gender-type">
-                            <label for="gender-male">male</label><br>
+                    <div class="form">
+                        <input placeholder="name" type="text" id="name-pop" name="name" pattern="[a-b]" required>
+                        <input type="date" id="data-pop" name="date" required>
+                        <div class="alignment">
+                            <input placeholder="height (cm)" type="text" id="height-pop" name="details"
+                                   pattern="[0-9]{10}" required>
+                            <input placeholder="weight (kg)" type="text" id="weight-pop" name="details"
+                                   pattern="[0-9]{10}" required>
                         </div>
-                        <div class="form">
-                            <input placeholder="name" type="text" id="name-pop" name="name" pattern="[a-b]" required>
-                            <input type="date" id="data-pop" name="date" required>
-                            <div class="alignment">
-                                <input placeholder="height (cm)" type="text" id="height-pop" name="details"
-                                    pattern="[0-9]{10}" required>
-                                <input placeholder="weight (kg)" type="text" id="weight-pop" name="details"
-                                    pattern="[0-9]{10}" required>
-                            </div>
-                            <button type="button" class="medical">medical files
-                                <span class="material-symbols-rounded upload">upload</span>
-                            </button>
-                            <button type="button" class="finish" id="gata" onclick="">finish profile</button>
-                        </div>
+<!--                        <button type="button" class="medical">medical files-->
+<!--                            <span class="material-symbols-rounded upload">upload</span>-->
+<!--                        </button>-->
+                        <button type="button" class="finish" id="gata" onclick="">finish profile</button>
                     </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="sidebar">
+        <div class="child-profile">
+            <img src="/images/baby_pic.jpg" alt="profileImage" class="child-pfp" onclick="showEditChildProfile()">
+            <div class="child-name">
+                <p class="text maintext" id="child-name">Brontozaur</p>
+                <div class="info-child">
+                    <p class="text maintext" id="child-age">3MONTHS</p>
+                    <p class="text maintext" id="child-stats">H:55 W:55</p>
+                </div>
+
+            </div>
+        </div>
+        <div class="links">
+            <div class="search">
+                <button type="button" id="continue" onclick="openPopup()"
+                        class="material-symbols-rounded">person_add
+                </button>
+                <button type="button" class="material-symbols-rounded">cloud_upload<a href=""></a></button>
+                <button type="button" class="material-symbols-rounded">cloud_download<a href=""></a></button>
+            </div>
+
+            <div onclick="showOverview()" class="likes sidebutton text">Timeline</div>
+            <div onclick="showFeedingTime()" class="feeding sidebutton text">Meal Time</div>
+            <div onclick="showSleepingSchedule()" class="sleeping sidebutton text">Nap Time</div>
+<!--            <div onclick="showTimeline()" class="likes sidebutton text">Timeline</div>-->
+            <div onclick="showGallery()" class="gallery sidebutton text">Gallery</div>
+            <div class="child-list" id="child-list">
+                <!-- <div class="child sidebutton text">child#</div> -->
+            </div>
+            <span onclick="closeDropdown()" class="material-symbols-rounded mobile-on">expand_less</span>
+
+        </div>
+    </div>
+    <div class="main">
+        <div class="parent">
+            <div class="mobile-on">
+                <img src="/images/baby_pic.jpg" alt="profileImage" class="child-pfp"
+                     onclick="showEditChildProfile()">
+                <p>Brontozaur</p>
+                <p>3MONTHS</p>
+                <p>H:55 W:55</p>
+            </div>
+            <div class="main-title" id="main-title"></div>
+            <div class="mobile-off">
+                <a href="editProfile.html"><img id="main-profile-pic" src="/images/profile_pic.jpg" alt=""></a>
+                <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
+                <span class="material-symbols-rounded logoutButton" onclick="logout()">logout</span>
+            </div>
+        </div>
+        <div class="account-overview OVERVIEW">
+            <div>
+                <h2>Timeline - 10 years in memories</h2>
+                <div class="date">
+                    <div class="timeline-img">
+                        <h2>&lt;</h2>
+                        <img src="/images/ex1.jpg" alt="">
+                        <img src="/images/ex2.jpg" alt="">
+                        <img src="/images/baby_pic.jpg" alt="">
+                        <h2>&gt;</h2>
+                    </div>
+                    <p>10.04.2023</p>
+                    <p>first word</p>
+                </div>
+            </div>
+<!--            <div class="journal-input">-->
+<!--                <div>-->
+<!--                    <label for="description-day">Write in your daily journal:</label>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                        <textarea rows="20" cols="100" placeholder=" My baby smiled today :)" id="description-day"-->
+<!--                                  name="description-day"></textarea>-->
+<!--                    <textarea id="vertical" rows="20" cols="40" placeholder=" My baby smiled today :)"-->
+<!--                              name="description-day"></textarea>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                    <label for="shopping-list">Write down what you need:</label>-->
+<!--                </div>-->
+<!--                <div>-->
+<!--                                        <textarea rows="10" cols="40" placeholder=" gift ideas, groceries, appointments"-->
+<!--                                                  id="shopping-list"-->
+<!--                                                  name="shopping-list"></textarea>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="file-input">-->
+<!--                <form onsubmit="return false">-->
+<!--                    <label for="add-photo">Add today's image/video:</label><br><br>-->
+<!--                    <input type="file" id="add-photo" name="add-photo"-->
+<!--                           accept="image/jpg, image/jpeg, image/png, video/mp4"><br><br>-->
+<!--                    <input type="submit" class="submit" value="Submit">-->
+<!--                </form>-->
+<!--                <div class="med">-->
+<!--                    <br>-->
+<!--                    <h2>Medical History</h2>-->
+<!--                    <form onsubmit="return false">-->
+<!--                        <input type="file" name="add-photo" accept=".application/pdf"><br><br>-->
+<!--                        <input type="submit" class="submit" value="Upload file">-->
+<!--                    </form>-->
+<!--                    <br>-->
+<!--                    <form onsubmit="return false">-->
+<!--                        <label for="data">Date:</label><br>-->
+<!--                        <input type="date" id="data" name="date"><br><br>-->
+<!--                        <input onclick="showFiles()" type="submit" class="submit" value="Submit">-->
+<!--                    </form>-->
+<!--                    <div class="show-files">-->
+<!--                        <button>file1<span class="material-symbols-rounded">download</span></button>-->
+<!--                        <button>file2<span class="material-symbols-rounded">download</span></button>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+        </div>
+        <div class="account-overview SLEEPING-SCHEDULE">
+            <div class="log-sleep">
+                <h2>Nap Time</h2>
+                <button onclick="showAddSleep()">Log Sleep</button>
+            </div>
+            <form id="napFormDate">
+                <label for="datepicker-nap">Select date:</label>
+                <input type="text" id="datepicker-nap" readonly>
+                <button type="submit">Submit</button>
+            </form>
+            <div class="calendar-sleep">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start time</th>
+                        <th>End Time</th>
+                        <th>Quality</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="sleep-form">
+                <form onsubmit="return false">
+                    <label for="nap_date">Date:</label><br>
+                    <input type="date" id="nap_date" name="nap_date"><br><br>
+                    <label for="start_time">Start time:</label><br>
+                    <input type="time" id="start_time" name="start_time"><br><br>
+                    <label for="end_time">End time:</label><br>
+                    <input type="time" id="end_time" name="end_time"><br><br>
+                    <label for="sleep_quality">Sleep Quality:</label><br><br>
+                    <select id="sleep_quality" name="sleep_quality">
+                        <option value="Great">Great</option>
+                        <option value="Fussy">Fussy</option>
+                        <option value="Bad">Bad</option>
+                    </select><br><br>
+                    <input onclick="removeAddSleep()" type="submit" class="submitNap" value="Submit">
                 </form>
             </div>
+
+
         </div>
-        <div class="sidebar">
-            <div class="child-profile">
-                <img src="/images/baby_pic.jpg" alt="profileImage" class="child-pfp" onclick="showEditChildProfile()">
-                <div class="child-name">
-                    <p class="text maintext" id="child-name">Brontozaur</p>
-                    <div class="info-child">
-                        <p class="text maintext" id="child-age">3MONTHS</p>
-                        <p class="text maintext" id="child-stats">H:55 W:55</p>
-                    </div>
-
-                </div>
+        <div class="account-overview FEEDING-TIME">
+            <div class="feed">
+                <h2>Feeding Time</h2>
+                <button onclick="showAddMeal()">Add Meal</button>
             </div>
-            <div class="links">
-                <div class="search">
-                    <button type="button" id="continue" onclick="openPopup()"
-                        class="material-symbols-rounded">person_add</button>
-                    <button type="button" class="material-symbols-rounded">cloud_upload<a href=""></a></button>
-                    <button type="button" class="material-symbols-rounded">cloud_download<a href=""></a></button>
-                </div>
-
-                <div onclick="showOverview()" class="overview sidebutton text">Overview</div>
-                <div onclick="showFeedingTime()" class="feeding sidebutton text">Meal Time</div>
-                <div onclick="showSleepingSchedule()" class="sleeping sidebutton text">Nap Time</div>
-                <div onclick="showTimeline()" class="likes sidebutton text">Timeline</div>
-                <div onclick="showGallery()" class="gallery sidebutton text">Gallery</div>
-                <div class="child-list" id="child-list">
-                    <!-- <div class="child sidebutton text">child#</div> -->
-                </div>
-                <span onclick="closeDropdown()" class="material-symbols-rounded mobile-on">expand_less</span>
-
+            <form id="mealFormDate">
+                <label for="datepicker-meal">Select date:</label>
+                <input type="text" id="datepicker-meal" readonly>
+                <button type="submit">Search</button>
+            </form>
+            <div class="calendar-meal">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Food</th>
+                        <th>Type</th>
+                        <th>Quality</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
             </div>
+
+            <div class="form-table">
+                <form onsubmit="return false">
+                    <label for="meal_date">Date:</label><br>
+                    <input type="date" id="meal_date" name="meal_date"><br><br>
+                    <label for="meal_description">What did they eat?:</label><br>
+                    <input type="text" id="meal_description" name="meal_description"><br><br>
+                    <input type="radio" id="Breakfast" name="meal_type">
+                    <label for="Breakfast">Breakfast</label><br>
+                    <input type="radio" id="Lunch" name="meal_type">
+                    <label for="Lunch">Lunch</label><br>
+                    <input type="radio" id="Dinner" name="meal_type">
+                    <label for="Dinner">Dinner</label><br>
+                    <input type="radio" id="Snack" name="meal_type">
+                    <label for="Snack">Snack</label><br><br>
+                    <label for="meal_option">Option:</label><br><br>
+                    <select id="meal_option" name="meal_option">
+                        <option value="Liked">Liked</option>
+                        <option value="Disliked">Disliked</option>
+                        <option value="Allergy">Allergy</option>
+                    </select><br><br>
+                    <input onclick="removeAddMeal()" type="submit" class="submitMeal" value="Submit">
+                </form>
+            </div>
+
+
         </div>
-        <div class="main">
-            <div class="parent">
-                <div class="mobile-on">
-                    <img src="/images/baby_pic.jpg" alt="profileImage" class="child-pfp"
-                        onclick="showEditChildProfile()">
-                    <p>Brontozaur</p>
-                    <p>3MONTHS</p>
-                    <p>H:55 W:55</p>
+<!--        <div class="account-overview LIKES">-->
+
+
+<!--        </div>-->
+        <div class="account-overview GALLERY">
+            <div class="section">
+                <div class="log-sleep">
+                    <h2>Gallery</h2>
+                    <div class="bookmarks">
+                        <button onclick="showAddOption()">Add Media File</button>
+                    </div>
+                    <form class="form-add-image" onsubmit="return false"><br>
+                        <label for="date-pic">Pick a date:</label><br><br>
+                        <input type="date" id="date-pic" name="date"><br><br>
+                        <label for="add-pic">Add the image/video:</label><br><br>
+                        <input type="file" id="add-pic" name="add-photo"
+                               accept="image/jpg, image/jpeg, image/png, video/mp4, .mp3,audio/*"><br><br>
+                        <input onclick="removeAddOption()" type="submit" class="submit" value="Done">
+                    </form>
                 </div>
-                <div class="main-title" id="main-title"></div>
-                <div class="mobile-off">
-                    <a href="editProfile.html"><img id="main-profile-pic" src="/images/profile_pic.jpg" alt=""></a>
-                    <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
-                    <span class="material-symbols-rounded logoutButton" onclick="logout()">logout</span>
+                <div class="calendar-pic">
+                    <div class="wrapper">
+                        <header>
+                            <p class="current-date"></p>
+                            <div class="icons">
+                                <span class="material-symbols-rounded prev">chevron_left</span>
+                                <span class="material-symbols-rounded next">chevron_right</span>
+                            </div>
+                        </header>
+                        <div class="calendar">
+                            <ul class="weeks">
+                                <li>Sun</li>
+                                <li>Mon</li>
+                                <li>Tue</li>
+                                <li>Wed</li>
+                                <li>Thu</li>
+                                <li>Fri</li>
+                                <li>Sat</li>
+                            </ul>
+                            <ul class="days"></ul>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="/images/ex2.jpg" alt="">
+                        <p>journal</p>
+                        <div class="buttons">
+                            <span class="material-symbols-rounded">bookmark</span>
+                            <span class="material-symbols-rounded">share<a href=""></a></span>
+                        </div>
+
+                    </div>
+
                 </div>
+
+                <br>
             </div>
-            <div class="account-overview OVERVIEW">
-                <div class="journal-input">
-                    <div>
-                        <label for="description-day">Write in your daily journal:</label>
-                    </div>
-                    <div>
-                        <textarea rows="20" cols="100" placeholder=" My baby smiled today :)" id="description-day"
-                            name="description-day"></textarea>
-                        <textarea id="vertical" rows="20" cols="40" placeholder=" My baby smiled today :)"
-                            name="description-day"></textarea>
-                    </div>
-                    <!--                <div>-->
-                    <!--                    <label for="shopping-list">Write down what you need:</label>-->
-                    <!--                </div>-->
-                    <!--                <div>-->
-                    <!--                    <textarea rows="10" cols="40" placeholder=" gift ideas, groceries, appointments" id="shopping-list"-->
-                    <!--                              name="shopping-list"></textarea>-->
-                    <!--                </div>-->
-                </div>
-                <div class="file-input">
-                    <form onsubmit="return false">
-                        <label for="add-photo">Add today's image/video:</label><br><br>
-                        <input type="file" id="add-photo" name="add-photo"
-                            accept="image/jpg, image/jpeg, image/png, video/mp4"><br><br>
+
+        </div>
+        <div class="account-overview EDIT-CHILD">
+            <div class="section">
+                <h2>Edit Child Profile</h2>
+                <div class="update">
+                    <form class="form-child"><br>
+                        <input type="radio" id="gender-female" name="gender-type">
+                        <label id="female" for="gender-female">female</label><br><br>
+                        <input type="radio" id="gender-male" name="gender-type">
+                        <label for="gender-male">male</label><br><br>
+                        <label for="bday">Change date of birth:</label><br>
+                        <input type="date" id="bday" name="date"><br><br>
                         <input type="submit" class="submit" value="Submit">
                     </form>
-                    <div class="med">
-                        <br>
-                        <h2>Medical History</h2>
-                        <form onsubmit="return false">
-                            <input type="file" name="add-photo" accept=".application/pdf"><br><br>
-                            <input type="submit" class="submit" value="Upload file">
-                        </form><br>
-                        <form onsubmit="return false">
-                            <label for="data">Date:</label><br>
-                            <input type="date" id="data" name="date"><br><br>
-                            <input onclick="showFiles()" type="submit" class="submit" value="Submit">
-                        </form>
-                        <div class="show-files">
-                            <button>file1<span class="material-symbols-rounded">download</span></button>
-                            <button>file2<span class="material-symbols-rounded">download</span></button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            <div class="account-overview SLEEPING-SCHEDULE">
-                <div class="log-sleep">
-                    <h2>Nap Time</h2>
-                    <button onclick="showAddSleep()">Log Sleep</button>
-                </div>
-                <form id="napFormDate">
-                    <label for="datepicker-nap">Select date:</label>
-                    <input type="text" id="datepicker-nap" readonly>
-                    <button type="submit">Submit</button>
-                </form>
-                <div class="calendar-sleep">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Start time</th>
-                                <th>End Time</th>
-                                <th>Quality</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="sleep-form">
-                    <form onsubmit="return false">
-                        <label for="nap_date">Date:</label><br>
-                        <input type="date" id="nap_date" name="nap_date"><br><br>
-                        <label for="start_time">Start time:</label><br>
-                        <input type="time" id="start_time" name="start_time"><br><br>
-                        <label for="end_time">End time:</label><br>
-                        <input type="time" id="end_time" name="end_time"><br><br>
-                        <label for="sleep_quality">Sleep Quality:</label><br><br>
-                        <select id="sleep_quality" name="sleep_quality">
-                            <option value="Great">Great</option>
-                            <option value="Fussy">Fussy</option>
-                            <option value="Bad">Bad</option>
-                        </select><br><br>
-                        <input onclick="removeAddSleep()" type="submit" class="submitNap" value="Submit">
+                    <form class="form-child"><br>
+                        <label for="name">Change name :</label><br>
+                        <input type="text" id="name" name="name" placeholder="Change baby name"><br><br>
+                        <input type="submit" class="submit" value="Submit">
                     </form>
-                </div>
-
-
-
-            </div>
-            <div class="account-overview FEEDING-TIME">
-                <div class="feed">
-                    <h2>Feeding Time</h2>
-                    <button onclick="showAddMeal()">Add Meal</button>
-                </div>
-                <form id="mealFormDate">
-                    <label for="datepicker-meal">Select date:</label>
-                    <input type="text" id="datepicker-meal" readonly>
-                    <button type="submit">Search</button>
-                </form>
-                <div class="calendar-meal">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Food</th>
-                                <th>Type</th>
-                                <th>Quality</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-
-                <div class="form-table">
-                    <form onsubmit="return false">
-                        <label for="meal_date">Date:</label><br>
-                        <input type="date" id="meal_date" name="meal_date"><br><br>
-                        <label for="meal_description">What did they eat?:</label><br>
-                        <input type="text" id="meal_description" name="meal_description"><br><br>
-                        <input type="radio" id="Breakfast" name="meal_type">
-                        <label for="Breakfast">Breakfast</label><br>
-                        <input type="radio" id="Lunch" name="meal_type">
-                        <label for="Lunch">Lunch</label><br>
-                        <input type="radio" id="Dinner" name="meal_type">
-                        <label for="Dinner">Dinner</label><br>
-                        <input type="radio" id="Snack" name="meal_type">
-                        <label for="Snack">Snack</label><br><br>
-                        <label for="meal_option">Option:</label><br><br>
-                        <select id="meal_option" name="meal_option">
-                            <option value="Liked">Liked</option>
-                            <option value="Disliked">Disliked</option>
-                            <option value="Allergy">Allergy</option>
-                        </select><br><br>
-                        <input onclick="removeAddMeal()" type="submit" class="submitMeal" value="Submit">
+                    <form class="form-child"><br>
+                        <label for="height">Change height:</label><br>
+                        <input type="number" id="height" name="name" min="0"><br><br>
+                        <input type="submit" class="submit" value="Submit">
                     </form>
+                    <form class="form-child"><br>
+                        <label for="weight">Change weight:</label><br>
+                        <input type="number" id="weight" name="name" min="0"><br><br>
+                        <input type="submit" class="submit" value="Submit">
+                    </form>
+                    <button>update profile pic</button>
                 </div>
-
-
-            </div>
-            <div class="account-overview LIKES">
-                <div>
-                    <h2>Timeline - 10 years in memories</h2>
-                    <div class="date">
-                        <div class="timeline-img">
-                            <h2>&lt;</h2>
-                            <img src="/images/ex1.jpg" alt="">
-                            <img src="/images/ex2.jpg" alt="">
-                            <img src="/images/baby_pic.jpg" alt="">
-                            <h2>&gt;</h2>
-                        </div>
-                        <p>10.04.2023</p>
-                        <p>first word</p>
-                    </div>
-                </div>
-
-            </div>
-            <div class="account-overview GALLERY">
-                <div class="section">
-                    <div class="log-sleep">
-                        <h2>Gallery</h2>
-                        <div class="bookmarks">
-                            <button onclick="showAddOption()">Add Media File</button>
-                        </div>
-                        <form class="form-add-image" onsubmit="return false"><br>
-                            <label for="date-pic">Pick a date:</label><br><br>
-                            <input type="date" id="date-pic" name="date"><br><br>
-                            <label for="add-pic">Add the image/video:</label><br><br>
-                            <input type="file" id="add-pic" name="add-photo"
-                                accept="image/jpg, image/jpeg, image/png, video/mp4, .mp3,audio/*"><br><br>
-                            <input onclick="removeAddOption()" type="submit" class="submit" value="Done">
-                        </form>
-                    </div>
-                    <div class="calendar-pic">
-                        <div class="wrapper">
-                            <header>
-                                <p class="current-date"></p>
-                                <div class="icons">
-                                    <span class="material-symbols-rounded prev">chevron_left</span>
-                                    <span class="material-symbols-rounded next">chevron_right</span>
-                                </div>
-                            </header>
-                            <div class="calendar">
-                                <ul class="weeks">
-                                    <li>Sun</li>
-                                    <li>Mon</li>
-                                    <li>Tue</li>
-                                    <li>Wed</li>
-                                    <li>Thu</li>
-                                    <li>Fri</li>
-                                    <li>Sat</li>
-                                </ul>
-                                <ul class="days"></ul>
-                            </div>
-                        </div>
-                        <div>
-                            <img src="/images/ex2.jpg" alt="">
-                            <p>journal</p>
-                            <div class="buttons">
-                                <span class="material-symbols-rounded">bookmark</span>
-                                <span class="material-symbols-rounded">share<a href=""></a></span>
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                <div class="med">
                     <br>
-                </div>
-
-            </div>
-            <div class="account-overview EDIT-CHILD">
-                <div class="section">
-                    <h2>Edit Child Profile</h2>
-                    <div class="update">
-                        <form class="form-child"><br>
-                            <input type="radio" id="gender-female" name="gender-type">
-                            <label id="female" for="gender-female">female</label><br><br>
-                            <input type="radio" id="gender-male" name="gender-type">
-                            <label for="gender-male">male</label><br><br>
-                            <label for="bday">Change date of birth:</label><br>
-                            <input type="date" id="bday" name="date"><br><br>
-                            <input type="submit" class="submit" value="Submit">
-                        </form>
-                        <form class="form-child"><br>
-                            <label for="name">Change name :</label><br>
-                            <input type="text" id="name" name="name" placeholder="Change baby name"><br><br>
-                            <input type="submit" class="submit" value="Submit">
-                        </form>
-                        <form class="form-child"><br>
-                            <label for="height">Change height:</label><br>
-                            <input type="number" id="height" name="name" min="0"><br><br>
-                            <input type="submit" class="submit" value="Submit">
-                        </form>
-                        <form class="form-child"><br>
-                            <label for="weight">Change weight:</label><br>
-                            <input type="number" id="weight" name="name" min="0"><br><br>
-                            <input type="submit" class="submit" value="Submit">
-                        </form>
-                        <button>update profile pic</button>
+                    <h2>Medical History</h2>
+                    <form onsubmit="return false">
+                        <input type="file" name="add-photo" accept=".application/pdf"><br><br>
+                        <input type="submit" class="submit" value="Upload file">
+                    </form>
+                    <br>
+                    <form onsubmit="return false">
+                        <label for="data">Date:</label><br>
+                        <input type="date" id="data" name="date"><br><br>
+                        <input onclick="showFiles()" type="submit" class="submit" value="Submit">
+                    </form>
+                    <div class="show-files">
+                        <button>file1<span class="material-symbols-rounded">download</span></button>
+                        <button>file2<span class="material-symbols-rounded">download</span></button>
                     </div>
                 </div>
-
             </div>
-        </div>
 
+        </div>
     </div>
-    <script src="../scripts/calendar.js"></script>
-    <script src="../scripts/mainFunctions.js"></script>
-    <script src="../scripts/dateFilter.js"></script>
+
+</div>
+<script src="../scripts/calendar.js"></script>
+<script src="../scripts/mainFunctions.js"></script>
+<script src="../scripts/dateFilter.js"></script>
 </body>
 
 </html>
