@@ -10,7 +10,7 @@ export function retrieveChildData(req, res) {
         const obj = JSON.parse(body);
         const { user_id, child_name} = obj;
         const childQuery = {
-            text: "SELECT * FROM child_accounts c JOIN users_child_accounts u ON u.user_id = $1 WHERE c.name = $2",
+            text: "SELECT c.* FROM child_accounts c JOIN users_child_accounts u ON u.user_id = $1 WHERE c.name = $2",
             values: [user_id, child_name],
         };
 
@@ -24,7 +24,7 @@ export function retrieveChildData(req, res) {
                 }
                 const child = childResult.rows[0];
                 const childData = {
-                    id: child.id,
+                    account_id: child.account_id,
                     name: child.name,
                     birthday: child.birthday,
                     weight: child.weight,

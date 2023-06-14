@@ -346,7 +346,10 @@ function logout() {
 function populateUserData() {
     if(selected_child != null){
         console.log(selected_child.name);
+        console.log("hehehe fuck: " + selected_child.account_id);
+
     }
+
     fetch('/retrieveUserData')
         .then(response => response.json())
         .then(data => {
@@ -377,31 +380,6 @@ function populateUserData() {
         });
 }
 
-// function populateChildData(child_name) {
-//     fetch("http://localhost:3000/retrieveChildData", {
-//         method: "POST",
-//         body: JSON.stringify({
-//             "user_id": user_id,
-//             "child_name": child_name
-//         }),
-//         headers: {
-//             'Accept': 'application/json',
-//             'Content-Type': 'application/json'
-//         }
-//     })
-//         .then((response) => response.json())
-//         .then((json) => {
-//             selected_child = json;
-//             child_name_text = document.querySelector("#child-name");
-//             child_age_text = document.querySelector("#child-age");
-//             child_stats_text = document.querySelector("#child-stats");
-//             if(child_name_text != null && child_age_text != null && child_stats_text != null){
-//                 child_name_text.textContent = json.name;
-//                 child_age_text.textContent = json.birthday;
-//                 child_stats_text.textContent = "H:" + json.height + " W:" + json.weight;
-//             }
-//         });
-// }
 function populateChildData(child_name) {
     fetch("http://localhost:3000/retrieveChildData", {
         method: "POST",
@@ -417,6 +395,7 @@ function populateChildData(child_name) {
         .then((response) => response.json())
         .then((json) => {
             selected_child = json;
+            console.log(json)
             child_name_text = document.querySelector("#child-name");
             child_age_text = document.querySelector("#child-age");
             child_stats_text = document.querySelector("#child-stats");
@@ -456,7 +435,6 @@ window.addEventListener('load', () => {
     populateUserData();
 
     const pollingInterval = 5000;
-
     setInterval(populateUserData, pollingInterval);
 });
 
