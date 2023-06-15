@@ -33,17 +33,17 @@ function openPopup() {
 
 async function checkChild() {
   var form = document.getElementById("pfp-child");
+  console.log(form.elements[3].value);
   var gendertype = document.querySelector('input[name="gender-type"]:checked');
   if (gendertype == null) {
     console.log("select gender");
     return;
   }
-
   if (
-      form.elements[3].value === "" ||
-      form.elements[4].value === "" ||
-      form.elements[5].value === "" ||
-      form.elements[6].value === ""
+      form.elements[3].value === "" || //nume
+      form.elements[4].value === "" ||  //an
+      form.elements[5].value === "" ||  //w
+      form.elements[6].value === ""     //h
   ) {
     console.log("nu-i bun");
     return;
@@ -93,7 +93,7 @@ function addChildList() {
 }
 
 async function deleteChild(child_id) {
-  fetch("http://localhost:3000/deletechild", {
+  fetch("/deletechild", {
     method: "DELETE",
     body: JSON.stringify({ child_id: child_id }),
     headers: {
@@ -107,20 +107,27 @@ async function deleteChild(child_id) {
 }
 
 async function insertChild(name, birthday, width, weight, gender) {
-  console.log("apel functie");
-  fetch("http://localhost:3000/addchild", {
+
+  const fileInput = document.getElementById("profile-pic-baby");
+  const uploadedImage = fileInput.files[0];
+  console.log("pozica: " + fileInput.files[0]);
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("birthday", birthday);
+  formData.append("width", width);
+  formData.append("weight", weight);
+  formData.append("gender", gender);
+  formData.append("photo", uploadedImage);
+
+  fetch("/addchild", {
     method: "POST",
-    body: JSON.stringify({
-      name: name,
-      birthday: birthday,
-      width: width,
-      weight: weight,
-      gender: gender,
-    }),
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    body: formData
+    // }),
+    // headers: {
+    //   Accept: "application/json",
+    //   "Content-Type": "application/json",
+    // },
   })
       .then((response) => response.json())
       .then((json) => {
@@ -129,7 +136,7 @@ async function insertChild(name, birthday, width, weight, gender) {
         last_child_id = id;
         child_ids.push(id);
         console.log("id-ul este " + id);
-        fetch("http://localhost:3000/addchildtoparent", {
+        fetch("/addchildtoparent", {
           method: "POST",
           body: JSON.stringify({
             child_id: id,
@@ -504,7 +511,7 @@ function populateUserData() {
         user_id = data.id;
 
         const childList = document.getElementById("child-list");
-        childList.innerHTML = ""; // Clear existing content
+        childList.innerHTML = "";
         data.children.forEach((child) => {
           const childDiv = document.createElement("div");
           childDiv.className = "child sidebutton text";
@@ -531,7 +538,7 @@ function populateUserData() {
 }
 
 function populateChildData(child_name) {
-  fetch("http://localhost:3000/retrieveChildData", {
+  fetch("/retrieveChildData", {
     method: "POST",
     body: JSON.stringify({
       user_id: user_id,
@@ -571,6 +578,8 @@ function populateChildData(child_name) {
           child_stats_text.textContent =
               "W:" + json.height + "kg" + " H:" + json.weight + "cm";
         }
+
+        document.getElementById("kid-pic").src = json.image;
       });
 }
 

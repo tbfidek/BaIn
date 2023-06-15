@@ -975,3 +975,7 @@ input[name="gender-type"]{
     background: #9c9992;
     cursor: pointer;
 }
+
+#kid-pic{
+    margin-right:0.5rem;
+}

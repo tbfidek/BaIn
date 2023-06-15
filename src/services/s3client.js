@@ -21,7 +21,7 @@ let s3 = new S3Client({
 });
 
 export async function uploadFile(file) {
-    console.log(process.env.AWS_BUCKET_NAME);
+    // console.log(process.env.AWS_BUCKET_NAME);
     const buffer = await sharp(file.buffer)
         .resize({ height: 600, width: 600, fit: 'cover' })
         .toBuffer();
