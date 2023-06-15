@@ -2,15 +2,15 @@ let user_info = null;
 const image_input = document.querySelector("#profile-pic");
 var uploaded_image = "";
 
-image_input.addEventListener("change", function(){
-    const reader = new FileReader();
-    reader.readAsDataURL(this.files[0]);
-    reader.addEventListener("load", () => {
-        uploaded_image = reader.result;
-        document.querySelector("#pfp").src = `${uploaded_image}`;
-        updatePicture(uploaded_image);
-    });
-})
+// image_input.addEventListener("change", function(){
+//     const reader = new FileReader();
+//     reader.readAsDataURL(this.files[0]);
+//     reader.addEventListener("load", () => {
+//         uploaded_image = reader.result;
+//         document.querySelector("#pfp").src = `${uploaded_image}`;
+//         updatePicture(uploaded_image);
+//     });
+// })
 function removeChildElement(event) {
     event.preventDefault();
     const parentDiv = event.target.closest('div');
@@ -138,16 +138,18 @@ function updatePassword() {
         });
 }
 
-function updatePicture(image) {
+function updateProfilePicture() {
 
-    const data = { image_data: image };
-
+    const formData = new FormData();
+    const photo = document.querySelector('#profile-pic');
+    formData.append('photo', photo.files[0]);
+    console.log(photo.files[0]);
     fetch('/updatePicture', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        // headers: {
+        //     'Content-Type': 'application/json',
+        // },
+        body: formData
     })
         .then((response) => {
             if (response.ok) {

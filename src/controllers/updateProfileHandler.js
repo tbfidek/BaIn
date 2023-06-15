@@ -1,6 +1,10 @@
 import {decryptId} from "./cookieDecrypt.js";
 import pool from "../database.js";
 import crypto from "crypto";
+import {uploadFile} from "../services/s3client.js";
+import multer from "multer";
+const storage = multer.memoryStorage();
+const upload = multer({storage});
 
 export function updateUserName(req, res) {
     let userId = decryptId(req,res);
@@ -125,30 +129,48 @@ export function updateUserPassword(req, res) {
     });
 }
 export function updatePicture(req, res) {
-    let userId = decryptId(req,res);
-    let body = '';
-    req.on('data', (chunk) => {
-        body += chunk.toString();
-    });
-    req.on('end', () => {
-        const { image_data } = JSON.parse(body);
+    console.log("am intrat");
+    upload.single('photo')(req, res, async err => {
+        if (err instanceof multer.MulterError) {
+            // A Multer error occurred during the upload
+            res.writeHead(400, {'Content-Type': 'application/json'});
+            res.end(JSON.stringify({message: err.message}));
+        } else if (err) {
+            // An unknown error occurred during the upload
+            res.writeHead(500, {'Content-Type': 'application/json'});
+            res.end(
+                JSON.stringify({message: 'Error uploading file.'})
+            );
+        }
+        else{
+            let userId = decryptId(req,res);
+            // let body = '';
+            // // req.on('data', (chunk) => {
+            // //     body += chunk.toString();
+            // // });
+            // req.on('end', async () => {
+                // const { image_data } = JSON.parse(body);
+                let image = await uploadFile(req.file);
+                const query = {
+                    text: 'UPDATE users SET profile_image = $1 WHERE user_id = $2',
+                    values: [image, userId],
+                };
+                pool.query(query)
+                    .then(() => {
+                        console.log("MERGE UPDATE UUUUUUUUL DE POZAAA");
+                        res.statusCode = 201;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.end(JSON.stringify({message: "Picture updated successfully"}));
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        res.statusCode = 500;
+                        res.setHeader('Content-Type', 'application/json');
+                        res.end(JSON.stringify({message: 'Server error'}));
+                    });
 
-        const query = {
-            text: 'UPDATE users SET profile_image = $1 WHERE user_id = $2',
-            values: [image_data, userId],
-        };
-        pool.query(query)
-            .then(() => {
-                res.statusCode = 201;
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({ message: "Picture updated successfully"}));
-            })
-            .catch((err) => {
-                console.error(err);
-                res.statusCode = 500;
-                res.setHeader('Content-Type', 'application/json');
-                res.end(JSON.stringify({ message: 'Server error' }));
-            });
-
+            // });
+        }
     });
+
 }
