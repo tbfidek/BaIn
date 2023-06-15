@@ -35,12 +35,9 @@ function populateInfo() {
                 <h2>${userData.name}</h2>
                 <h3>${userData.email}</h3>
             `;
-            const json = JSON.parse(JSON.stringify(user_info.profile_image));
-            if(json != null){
-                const asciiArray = json.data;
-                const string = String.fromCharCode(...asciiArray);
-                document.querySelector("#pfp").src = `${string}`;
-            }
+
+            document.querySelector("#pfp").src = userData.profile_image;
+
             const childListDiv = document.querySelector('.child-list');
             childListDiv.innerHTML = '';
 

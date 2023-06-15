@@ -515,13 +515,10 @@ function populateUserData() {
         childList.appendChild(childDiv);
       });
 
-      const json = JSON.parse(JSON.stringify(data.profile_image));
-      if(json != null) {
-        const asciiArray = json.data;
-        const string = String.fromCharCode(...asciiArray);
-        document.getElementById("main-profile-pic").src = `${string}`;
-        document.getElementById("mobile-main-profile-pic").src = `${string}`;
-      }
+        document.getElementById("main-profile-pic").src = data.profile_image;
+        document.getElementById("mobile-main-profile-pic").src = data.profile_image;
+
+
       const paragraph = document.createElement("p");
       paragraph.textContent = `Hello, ${data.name}! How is your baby today?`;
 

@@ -11,7 +11,7 @@ CREATE TABLE users (
                        email VARCHAR(255) NOT NULL,
                        password VARCHAR(255) NOT NULL,
                        salt TEXT NOT NULL,
-                       profile_image BYTEA
+                       profile_image VARCHAR(255)
 );
 
 CREATE TABLE child_accounts (
@@ -21,7 +21,7 @@ CREATE TABLE child_accounts (
                                 weight FLOAT NOT NULL,
                                 height FLOAT NOT NULL,
                                 gender VARCHAR(32) NOT NULL,
-                                profile_image BYTEA
+                                profile_image VARCHAR(255)
 );
 
 CREATE TABLE child_media (

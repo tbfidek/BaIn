@@ -1,5 +1,6 @@
 import pool from "../database.js";
 import { decryptId } from "./cookieDecrypt.js";
+import {getFile} from "../services/s3client.js";
 
 export function retrieveUserData(req, res) {
     const userId = decryptId(req, res);
@@ -21,7 +22,7 @@ export function retrieveUserData(req, res) {
     };
 
     Promise.all([pool.query(userQuery), pool.query(childrenQuery)])
-        .then(([userResult, childrenResult]) => {
+        .then(async ([userResult, childrenResult]) => {
             if (userResult.rows.length === 0) {
                 res.statusCode = 404;
                 res.setHeader("Content-Type", "application/json");
@@ -30,6 +31,7 @@ export function retrieveUserData(req, res) {
             }
 
             const user = userResult.rows[0];
+            const url = await getFile(user.profile_image);
             const children = childrenResult.rows;
             console.log(children);
             const userData = {
@@ -37,7 +39,7 @@ export function retrieveUserData(req, res) {
                 name: user.name,
                 email: user.email,
                 children: children,
-                profile_image: user.profile_image
+                profile_image: url
             };
 
             res.statusCode = 200;

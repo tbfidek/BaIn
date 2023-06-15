@@ -21,24 +21,25 @@
 </header>
 <div class="signup">
     <div class="signup-box">
-        <!--        <div class="left-parent-info">-->
-        <!--            <div class="pfp-parent">-->
-        <!--                <div class="profile-picture">-->
-        <!--                    <button><span class="material-symbols-rounded">add_a_photo</span></button>-->
-        <!--                </div>-->
-        <!--            </div>-->
-        <!--        </div>-->
+<!--                <div class="left-parent-info">-->
+<!--                    <div class="pfp-parent">-->
+<!--                        <div class="profile-picture">-->
+<!--                            <input type="file"><span class="material-symbols-rounded">add_a_photo</span></input>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
         <div class="right-parent-info">
             <form class="signup-form" id="signupform">
                 <div class="form">
-                    <input placeholder="parent1 name" type="text" name="username">
-                    <input type="email" placeholder="example@gmail.com">
-                    <input type="password" placeholder="********" name="pw">
+                    <input type="file" id="profile-pic" name="photo"><span class="material-symbols-rounded">add_a_photo</span></input>
+                    <input placeholder="parent name" type="text" name="username">
+                    <input type="email" placeholder="example@gmail.com" name="email">
+                    <input type="password" placeholder="********" name="password">
                 </div>
-                <div class="form family-options">
-                    <input placeholder="parent2 name" type="text">
-                    <input type="email" placeholder="example@gmail.com">
-                </div>
+<!--                <div class="form family-options">-->
+<!--                    <input placeholder="parent2 name" type="text">-->
+<!--                    <input type="email" placeholder="example@gmail.com" name="email">-->
+<!--                </div>-->
                 <div class="modify-profile">
                     <button type="button" id="done" onclick="registerAccount()">finish profile</button>
                 </div>

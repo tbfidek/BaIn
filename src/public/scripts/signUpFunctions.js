@@ -1,41 +1,38 @@
-async function postAccount(username, email, password){
-    fetch("http://localhost:3000/signup", {
-        method: "POST",
-        body: JSON.stringify({
-            "username": username,
-            "email": email,
-            "password": password
-        }),
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+async function registerAccount() {
+    const formData = new FormData();
+
+    const inputs = document.querySelectorAll("input");
+    console.log(inputs);
+    for(const input of inputs){
+        if(!input.value){
+            alert("Please fill in all fields.");
+            return;
         }
+        if (input.name !== 'photo') {
+            formData.append(input.name, input.value);
+        }
+    }
+
+    const photo = document.querySelector('#profile-pic');
+    formData.append('photo', photo.files[0]);
+
+    for(const form of formData.values()){
+        console.log(form);
+    }
+    fetch("/signup", {
+        method: "POST",
+        body: formData
     })
         .then((response) => response.json())
         .then((json) => {
             var obj = JSON.parse(JSON.stringify(json));
             let {message} = obj;
             if(message === "User created successfully"){
-                window.location.href = "http://localhost:3000/views/main.html";
+                window.location.href = "/views/main.html";
+                // return parent_id;
             }
             else{
                 alert(message);
             }
-        });
-    await new Promise(r => setTimeout(r, 500));
-}
-
-async function registerAccount() {
-    var form = document.getElementById("signupform");
-    if (form.elements[0].value === "" || form.elements[1].value === "" || form.elements[2].value === "") {
-        alert("Please fill in all fields.");
-        return;
-    }
-    postAccount(form.elements[0].value, form.elements[1].value, form.elements[2].value)
-        .then((parent_id) => {
-            return parent_id;
-        })
-        .catch((error) => {
-            console.error(error);
         });
 }
