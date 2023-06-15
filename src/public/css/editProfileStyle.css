@@ -266,13 +266,13 @@ button:hover{
     cursor: pointer;
 }
 
- .verify{
+.verify{
     display: flex;
     align-items: center;
-    margin-bottom: 1rem; 
- }
+    margin-bottom: 1rem;
+}
 
- .check-btn{
+.check-btn{
     margin-left: 10px;
     max-height: 43px;
     margin-top: 7px;
@@ -280,15 +280,15 @@ button:hover{
     box-shadow: var(--box-shadow);
     border:none;
     border-radius: 2px;
- }
- .check-btn:hover{
+}
+.check-btn:hover{
     background: #9c9992;
     cursor: pointer;
 }
 .remove-child .material-symbols-rounded {
-    font-size: 18px; 
-  }
-  
+    font-size: 18px;
+}
+
 
 /*responsive*/
 
@@ -380,8 +380,8 @@ button:hover{
     }
 
     .remove-child{
-         padding: 0.5rem; 
-       
+        padding: 0.5rem;
+
     }
 
     #fam {
@@ -389,6 +389,5 @@ button:hover{
         align-items: center;
     }
 }
-
 
 

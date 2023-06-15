@@ -19,7 +19,7 @@ import {
   updateUserEmail,
   updateUserName,
   updateUserPassword,
-    updatePicture
+  updatePicture
 } from "./controllers/updateProfileHandler.js";
 
 import req_url from "url";

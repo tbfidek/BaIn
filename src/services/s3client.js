@@ -55,16 +55,3 @@ export async function getFile(imageName) {
         throw new Error(err);
     }
 }
-
-export async function deleteFile(imageName) {
-    const input = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: imageName,
-    };
-    const command = new DeleteObjectCommand(input);
-    try {
-        await s3.send(command);
-    } catch (err) {
-        throw new Error(err);
-    }
-}
