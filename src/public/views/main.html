@@ -15,14 +15,7 @@
           rel="stylesheet">
     <link rel="stylesheet" href="../css/mainStyle.css">
     <link rel="stylesheet" href="../css/calendar.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-    <style>
-        .ui-datepicker-calendar {
-            display: none;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -191,19 +184,42 @@
                 <button onclick="showAddSleep()">Log Sleep</button>
             </div>
             <form id="napFormDate">
-                <label for="datepicker-nap">Select date:</label>
-                <input type="text" id="datepicker-nap" readonly>
-                <button type="submit">Submit</button>
+                <label for="nap-month">Select Month:</label>
+                <select id="nap-month">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+
+                <label for="nap-year">Select Year:</label>
+                <select id="nap-year">
+                    <script>
+                        for (let year = 2023; year >= 2002; year--) {
+                            document.write(`<option value="${year}">${year}</option>`);
+                        }
+                    </script>
+                </select>
+
+                <button type="submit" id="nap-search">Search</button>
             </form>
             <div class="calendar-sleep">
                 <table>
                     <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Start time</th>
-                        <th>End Time</th>
-                        <th>Quality</th>
-                    </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Start time</th>
+                            <th>End Time</th>
+                            <th>Quality</th>
+                        </tr>
                     </thead>
                     <tbody>
                     </tbody>
@@ -228,6 +244,7 @@
             </div>
 
 
+
         </div>
         <div class="account-overview FEEDING-TIME">
             <div class="feed">
@@ -235,19 +252,42 @@
                 <button onclick="showAddMeal()">Add Meal</button>
             </div>
             <form id="mealFormDate">
-                <label for="datepicker-meal">Select date:</label>
-                <input type="text" id="datepicker-meal" readonly>
-                <button type="submit">Search</button>
+                <label for="meal-month">Select Month:</label>
+                <select id="meal-month">
+                    <option value="01">January</option>
+                    <option value="02">February</option>
+                    <option value="03">March</option>
+                    <option value="04">April</option>
+                    <option value="05">May</option>
+                    <option value="06">June</option>
+                    <option value="07">July</option>
+                    <option value="08">August</option>
+                    <option value="09">September</option>
+                    <option value="10">October</option>
+                    <option value="11">November</option>
+                    <option value="12">December</option>
+                </select>
+
+                <label for="meal-year">Select Year:</label>
+                <select id="meal-year">
+                    <script>
+                        for (let year = 2023; year >= 2002; year--) {
+                            document.write(`<option value="${year}">${year}</option>`);
+                        }
+                    </script>
+                </select>
+
+                <button type="submit" id="meal-search">Search</button>
             </form>
             <div class="calendar-meal">
                 <table>
                     <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Food</th>
-                        <th>Type</th>
-                        <th>Quality</th>
-                    </tr>
+                        <tr>
+                            <th>Date</th>
+                            <th>Food</th>
+                            <th>Type</th>
+                            <th>Quality</th>
+                        </tr>
                     </thead>
                     <tbody>
                     </tbody>
@@ -394,7 +434,6 @@
 </div>
 <script src="../scripts/calendar.js"></script>
 <script src="../scripts/mainFunctions.js"></script>
-<script src="../scripts/dateFilter.js"></script>
 </body>
 
 </html>

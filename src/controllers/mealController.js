@@ -7,6 +7,7 @@ import {
   insertMeal,
   getAllMealsMonth,
   getAllMealsByChild,
+  deleteMealByChild,
 } from "../model/mealModel.js";
 import AppError from "./appError.js";
 import errorController from "./errorController.js";
@@ -43,7 +44,6 @@ const getAll = catchAsync(async (req, res) => {
   res.end(JSON.stringify(response));
 });
 const getAllByChild = catchAsync(async (req, res, childId) => {
-  console.log("childId:", childId);
   let userId = await decryptId(req, res);
   if (userId == null) {
     console.error("Invalid or missing token");
@@ -53,6 +53,24 @@ const getAllByChild = catchAsync(async (req, res, childId) => {
   res.statusCode = 200;
   res.end(JSON.stringify(response));
 });
+
+const deleteByChild = catchAsync(async (req, res, mealId) => {
+  let userId = await decryptId(req, res);
+  if (userId == null) {
+    console.error("Invalid or missing token");
+    throw new Error("Invalid or missing token");
+  }
+  let deleteCount = await deleteMealByChild(userId, mealId);
+  if (deleteCount === 0) {
+    res.statusCode = 404;
+    res.end(JSON.stringify({ error: "Meal not found" }));
+    return;
+  }
+
+  res.statusCode = 200;
+  res.end(JSON.stringify({ message: "Meal deleted successfully" }));
+});
+
 const insertMeals = catchAsync(async (req, res) => {
   let userId = await decryptId(req, res);
   if (userId == null) {
@@ -121,6 +139,9 @@ const mealTimeController = catchAsync(async (req, res) => {
     getAllByChild(req, res, childId);
   } else if (url === "/meal" && method === "GET") {
     getAll(req, res);
+  } else if (url.match(/\/meal\/(\d+)/) && method === "DELETE") {
+    let mealId = url.split("/")[2];
+    deleteByChild(req, res, mealId);
   } else if (url === "/meal" && method === "POST") {
     insertMeals(req, res);
   }

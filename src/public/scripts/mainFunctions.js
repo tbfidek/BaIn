@@ -19,6 +19,8 @@ window.onload = function () {
   button_add_child_profile.addEventListener("click", openPopup);
   button_finish_child_profile.addEventListener("click", checkChild);
   populateMealTable();
+  populateNapTable();
+
 };
 
 function openPopup() {
@@ -183,6 +185,7 @@ function showSleepingSchedule() {
   others.style.display = "none";
   others = document.querySelector(".EDIT-CHILD");
   others.style.display = "none";
+  populateNapTable();
 }
 
 function showFeedingTime() {
@@ -278,7 +281,7 @@ function showAddSleep() {
   datepicker.style.display = "none";
 }
 
-function removeAddSleep() {
+async function removeAddSleep() {
   let sleep = document.querySelector(".sleep-form");
   sleep.style.display = "none";
   sleep = document.querySelector(".calendar-sleep");
@@ -287,13 +290,11 @@ function removeAddSleep() {
   datepicker.style.display = "block";
   var formData = {};
 
-  // Obtin datele din formular si le adaug in obiect
   formData.nap_date = document.getElementById("nap_date").value;
   formData.start_time = document.getElementById("start_time").value;
   formData.end_time = document.getElementById("end_time").value;
   formData.sleep_quality = document.getElementById("sleep_quality").value;
 
-  // Verific daca toate campurile au fost completate
   if (
     !formData.nap_date ||
     !formData.start_time ||
@@ -304,8 +305,22 @@ function removeAddSleep() {
     return;
   }
 
-  // Afisez obiectul in consola 
-  console.log(formData);
+  if (selected_child != null) {
+    formData.child_account_id = selected_child.id;
+  } else {
+    alert("Please select a child first.");
+    return;
+  }
+
+  let response = await fetch("/nap", {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
+  populateNapTable();
 }
 
 async function removeAddMeal() {
@@ -318,7 +333,6 @@ async function removeAddMeal() {
 
   var formData = {};
 
- 
   formData.meal_date = document.getElementById("meal_date").value;
   formData.meal_description = document.getElementById("meal_description").value;
 
@@ -334,7 +348,6 @@ async function removeAddMeal() {
 
   formData.meal_option = document.getElementById("meal_option").value;
 
-  
   if (
     !formData.meal_date ||
     !formData.meal_description ||
@@ -352,50 +365,51 @@ async function removeAddMeal() {
   }
   let response = await fetch("/meal", {
     method: "POST",
-    credentials: "include", // include pentru a trimite cookie-uri
+    credentials: "include",
     headers: {
       "Content-Type": "application/json",
-     
     },
     body: JSON.stringify(formData),
   });
-  console.log(formData);
+  populateMealTable();
 }
 
-$(document).ready(function () {
-  $("#datepicker-meal").datepicker({
-    changeMonth: true,
-    changeYear: true,
-    showButtonPanel: true,
-    dateFormat: "yy-mm",
-    onClose: function (dateText, inst) {
-      var month = $("#ui-datepicker-div .ui-datepicker-month :selected").val();
-      var year = $("#ui-datepicker-div .ui-datepicker-year :selected").val();
-      $(this).datepicker("setDate", new Date(year, month, 1));
-    },
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  const form = document.getElementById("mealFormDate");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const month = document.getElementById("meal-month").value;
+    const year = document.getElementById("meal-year").value;
+
+    if (month && year) {
+      const selectedDate = `${year}-${month.padStart(2, "0")}`;
+      if (selected_child == null) {
+        alert("Please select a child first.");
+        return;
+      }
+      populateMealTable(selectedDate);
+    } else {
+      alert("Please select a month and a year.");
+    }
   });
 
-  $("#mealFormDate").on("submit", function (e) {
+  const searchButton = document.getElementById("meal-search");
+  searchButton.addEventListener("click", function (e) {
     e.preventDefault();
-    var selectedDate = $("#datepicker-meal").val();
-    if (selected_child == null) {
-      alert("Please select a child first.");
-      return;
-    }
-    populateMealTable(selectedDate);
+    form.dispatchEvent(new Event("submit"));
   });
 });
 
 async function populateMealTable(selectedDate) {
   let meals;
-  let value;
   if (selected_child != null) {
-    let url = "/meal"; // URL-ul de baza
-
-    url += `/${selected_child.id}`; // adaug id-ul copilului la URL daca este selectat
+    let url = "/meal"; // URL-ul de bază
+    url += `/${selected_child.id}`;
 
     if (selectedDate != null) {
-      url += `/month/${selectedDate}`; // adaug luna la URL daca este selectata
+      url += `/month/${selectedDate}`;
     }
 
     let response = await fetch(url, {
@@ -407,20 +421,18 @@ async function populateMealTable(selectedDate) {
     });
 
     if (!response.ok) {
-      alert("HTTP error", response.message);
+      alert("Error: There are no entries for this month or year.");
       return;
     }
 
     meals = await response.json();
 
-    //  adaug fiecare inregistrare de masa la tabel
     let tableBody = document.querySelector(".calendar-meal tbody");
-    tableBody.innerHTML = ""; // curat tabelul existent
+    tableBody.innerHTML = "";
     for (let meal of meals) {
-      // creez un nou rand de tabel
       let row = document.createElement("tr");
 
-      // creez si adaug celule pentru fiecare camp
+      row.dataset.mealId = meal.id;
       let dateCell = document.createElement("td");
       dateCell.textContent = meal.meal_date;
       row.appendChild(dateCell);
@@ -436,6 +448,137 @@ async function populateMealTable(selectedDate) {
       let optionCell = document.createElement("td");
       optionCell.textContent = meal.meal_option;
       row.appendChild(optionCell);
+
+      let deleteCell = document.createElement("td");
+      let deleteButton = document.createElement("button");
+      deleteButton.className = "delete-button";
+      deleteButton.innerHTML = '<i class="material-icons">close</i>';
+
+      deleteButton.addEventListener("click", async function () {
+        let response = await fetch(`/meal/${row.dataset.mealId}`, {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          alert("Error: Could not delete entry.");
+        } else {
+          row.parentNode.removeChild(row);
+        }
+      });
+      deleteCell.appendChild(deleteButton);
+      row.appendChild(deleteCell);
+
+      tableBody.appendChild(row);
+    }
+  }
+}
+
+function convertTo12Hour(time) {
+  let [hour, minute] = time.split(":");
+  hour = Number(hour);
+  let period = hour >= 12 ? "PM" : "AM";
+  if (hour > 12) hour -= 12;
+  if (hour === 0) hour = 12;
+  return `${hour}:${minute} ${period}`;
+}
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  const form = document.getElementById("napFormDate");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    const month = document.getElementById("nap-month").value;
+    const year = document.getElementById("nap-year").value;
+
+    if (month && year) {
+      const selectedDate = `${year}-${month.padStart(2, "0")}`;
+      if (selected_child == null) {
+        alert("Please select a child first.");
+        return;
+      }
+      populateNapTable(selectedDate);
+    }
+  });
+
+  const searchButton = document.getElementById("nap-search");
+  searchButton.addEventListener("click", function (e) {
+    e.preventDefault();
+    form.dispatchEvent(new Event("submit"));
+  });
+});
+async function populateNapTable(selectedDate) {
+  let naps;
+  if (selected_child != null) {
+    let url = "/nap";
+    url += `/${selected_child.id}`;
+
+    if (selectedDate != null) {
+      url += `/month/${selectedDate}`;
+    }
+
+    let response = await fetch(url, {
+      method: "GET",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    if (!response.ok) {
+      alert("Error: There are no entries for this month or year.");
+      return;
+    }
+
+    naps = await response.json();
+
+    let tableBody = document.querySelector(".calendar-sleep tbody");
+    tableBody.innerHTML = "";
+    for (let nap of naps) {
+      let row = document.createElement("tr");
+
+      row.dataset.napId = nap.id;
+      let dateCell = document.createElement("td");
+      dateCell.textContent = nap.nap_date;
+      row.appendChild(dateCell);
+
+      let descriptionCell = document.createElement("td");
+      descriptionCell.textContent = convertTo12Hour(nap.start_time);
+      row.appendChild(descriptionCell);
+
+      let typeCell = document.createElement("td");
+      typeCell.textContent = convertTo12Hour(nap.end_time);
+      row.appendChild(typeCell);
+
+      let optionCell = document.createElement("td");
+      optionCell.textContent = nap.sleep_quality;
+      row.appendChild(optionCell);
+
+      let deleteCell = document.createElement("td");
+      let deleteButton = document.createElement("button");
+      deleteButton.className = "delete-button";
+      deleteButton.innerHTML = '<i class="material-icons">close</i>';
+
+      deleteButton.addEventListener("click", async function () {
+        let response = await fetch(`/nap/${row.dataset.napId}`, {
+          method: "DELETE",
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          alert("Error: Could not delete entry.");
+        } else {
+          row.parentNode.removeChild(row);
+        }
+      });
+      deleteCell.appendChild(deleteButton);
+      row.appendChild(deleteCell);
 
       tableBody.appendChild(row);
     }

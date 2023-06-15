@@ -14,6 +14,7 @@ import { retrieveUserData } from "./controllers/editProfileDataRetriever.js";
 import { decryptLogin } from "./controllers/cookieDecrypt.js";
 
 import mealTimeController from "./controllers/mealController.js";
+import napTimeController from "./controllers/napControler.js";
 import {
   updateUserEmail,
   updateUserName,
@@ -107,6 +108,9 @@ const server = http.createServer((req, res) => {
   }
   if (pathname.startsWith("/meal")) {
     mealTimeController(req, res);
+  }
+  if (pathname.startsWith("/nap")) {
+    napTimeController(req, res);
   }
 });
 

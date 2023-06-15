@@ -235,6 +235,15 @@ textarea {
     border: none;
 }
 
+.delete-button {
+    color: black;
+    height: 1.5rem;
+    width: 1.5rem;
+    font-size: 0.2em;
+    border: none;
+    background: none;
+  }
+
 .SLEEPING-SCHEDULE,.FEEDING-TIME,.LIKES, .GALLERY, .EDIT-CHILD{
     display:none;
 }
@@ -599,6 +608,21 @@ a, a:visited{
 }
 
 @media (max-width:550px) {
+    .feed {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      #napFormDate label,
+      #napFormDate select,
+      #mealFormDate label,
+      #mealFormDate select {
+        display: block;
+        width: 40%;
+        margin-top: 5px;
+      }
+      .calendar-meal {
+        font-size: 0.6rem;
+      }
     header{
         height:4rem;
     }
