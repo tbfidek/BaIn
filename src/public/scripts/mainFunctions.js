@@ -716,6 +716,8 @@ function populateChildData(child_name) {
         child_age_text.textContent = calculateAge(json.birthday);
         child_stats_text.textContent =
             "W:" + json.height + "kg" + " H:" + json.weight + "cm";
+            populateMealTable();
+            populateNapTable();
       }
     });
 }

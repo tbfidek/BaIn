@@ -288,6 +288,13 @@ form label{
     margin-bottom:1rem;
 }
 
+.calendar-meal,
+.calendar-sleep {
+  overflow-x: hidden;
+  overflow-y: auto;
+  max-height: 500px;
+}
+
 form input[type=date], form input[type=submit], form select{
     color: var(--font-color);
     padding:0.5rem;
@@ -350,21 +357,13 @@ h2{
     text-align: center;
 }
 
-.calendar-meal img{
-    max-width:30%;
-}
+
 
 /*.calendar-meal p{*/
 /*    margin: 5rem;*/
 /*}*/
 
-.calendar-meal{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap:2rem;
-}
+
 input:hover {
 
 }
@@ -620,6 +619,7 @@ a, a:visited{
         width: 40%;
         margin-top: 5px;
       }
+      .calendar-nap,
       .calendar-meal {
         font-size: 0.6rem;
       }
