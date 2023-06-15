@@ -68,12 +68,12 @@ header {
     border-radius: 50%;
     max-width:35%;
     cursor: pointer;
-    margin-right: 1rem;
+    /*margin-right: 1rem;*/
     transition: all 2s ease;
 
 }
 .child-pfp:hover{
-    max-width:37%;
+    /*max-width:37%;*/
     box-shadow: var(--box-shadow);
 
 }
