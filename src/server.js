@@ -1,3 +1,4 @@
+import "dotenv/config" ;
 import * as http from "http";
 import path, { dirname } from "path";
 import serveStatic from "serve-static";
@@ -19,7 +20,7 @@ import {
   updateUserEmail,
   updateUserName,
   updateUserPassword,
-    updatePicture
+  updatePicture
 } from "./controllers/updateProfileHandler.js";
 
 import req_url from "url";

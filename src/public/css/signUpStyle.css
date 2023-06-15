@@ -60,7 +60,7 @@ body {
     margin-top: 2rem;
 
 }
- .right-parent-info {
+.right-parent-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -455,4 +455,21 @@ body {
     .signup{
         margin-top:0;
     }
+}
+
+.file-label {
+    display: inline-block;
+    padding: 10px;
+    background: var(--card-color);
+    box-shadow: var(--box-shadow);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.file-label:hover {
+    background-color: #e0e0e0;
+}
+
+.file-label input[type="file"] {
+    display: none;
 }

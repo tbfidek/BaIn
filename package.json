@@ -15,11 +15,16 @@
     "nodemon": "^2.0.22"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.352.0",
+    "@aws-sdk/s3-request-presigner": "^3.352.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cookie": "^0.5.0",
+    "dotenv": "^16.1.4",
     "jsonwebtoken": "^9.0.0",
+    "multer": "^1.4.5-lts.1",
     "pg": "^8.10.0",
-    "serve-static": "^1.15.0"
+    "serve-static": "^1.15.0",
+    "sharp": "^0.32.1"
   }
 }

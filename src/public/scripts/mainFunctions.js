@@ -35,6 +35,7 @@ function openPopup() {
 
 async function checkChild() {
   var form = document.getElementById("pfp-child");
+  console.log(form.elements[3].value);
   var gendertype = document.querySelector('input[name="gender-type"]:checked');
   if (gendertype == null) {
     console.log("select gender");
@@ -42,21 +43,21 @@ async function checkChild() {
   }
 
   if (
-    form.elements[3].value === "" ||
-    form.elements[4].value === "" ||
-    form.elements[5].value === "" ||
-    form.elements[6].value === ""
+      form.elements[3].value === "" || //nume
+      form.elements[4].value === "" ||  //an
+      form.elements[5].value === "" ||  //w
+      form.elements[6].value === ""     //h
   ) {
     console.log("nu-i bun");
     return;
   }
   console.log("inainte de insert");
   insertChild(
-    form.elements[3].value,
-    form.elements[4].value,
-    form.elements[5].value,
-    form.elements[6].value,
-    gendertype.value === "1" ? "female" : "male"
+      form.elements[3].value,
+      form.elements[4].value,
+      form.elements[5].value,
+      form.elements[6].value,
+      gendertype.value === "1" ? "female" : "male"
   );
   await new Promise((r) => setTimeout(r, 1000));
   addChildList();
@@ -95,7 +96,7 @@ function addChildList() {
 }
 
 async function deleteChild(child_id) {
-  fetch("http://localhost:3000/deletechild", {
+  fetch("/deletechild", {
     method: "DELETE",
     body: JSON.stringify({ child_id: child_id }),
     headers: {
@@ -103,48 +104,55 @@ async function deleteChild(child_id) {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => response.json())
-    .then((json) => console.log(json));
+      .then((response) => response.json())
+      .then((json) => console.log(json));
   await new Promise((r) => setTimeout(r, 500));
 }
 
 async function insertChild(name, birthday, width, weight, gender) {
-  console.log("apel functie");
-  fetch("http://localhost:3000/addchild", {
+
+  const fileInput = document.getElementById("profile-pic-baby");
+  const uploadedImage = fileInput.files[0];
+  console.log("pozica: " + fileInput.files[0]);
+
+  const formData = new FormData();
+  formData.append("name", name);
+  formData.append("birthday", birthday);
+  formData.append("width", width);
+  formData.append("weight", weight);
+  formData.append("gender", gender);
+  formData.append("photo", uploadedImage);
+
+  fetch("/addchild", {
     method: "POST",
-    body: JSON.stringify({
-      name: name,
-      birthday: birthday,
-      width: width,
-      weight: weight,
-      gender: gender,
-    }),
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
+    body: formData
+    // }),
+    // headers: {
+    //   Accept: "application/json",
+    //   "Content-Type": "application/json",
+    // },
   })
-    .then((response) => response.json())
-    .then((json) => {
-      var obj = JSON.parse(JSON.stringify(json));
-      let { id, message } = obj;
-      last_child_id = id;
-      child_ids.push(id);
-      console.log("id-ul este " + id);
-      fetch("http://localhost:3000/addchildtoparent", {
-        method: "POST",
-        body: JSON.stringify({
-          child_id: id,
-          parent_id: user_id,
-        }),
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-      })
-        .then((response) => response.json())
-        .then((json) => console.log(json));
-    });
+      .then((response) => response.json())
+      .then((json) => {
+        var obj = JSON.parse(JSON.stringify(json));
+        let { id, message } = obj;
+        last_child_id = id;
+        child_ids.push(id);
+        console.log("id-ul este " + id);
+        fetch("/addchildtoparent", {
+          method: "POST",
+          body: JSON.stringify({
+            child_id: id,
+            parent_id: user_id,
+          }),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        })
+            .then((response) => response.json())
+            .then((json) => console.log(json));
+      });
   //await new Promise(r => setTimeout(r, 500));
 }
 
@@ -296,10 +304,10 @@ async function removeAddSleep() {
   formData.sleep_quality = document.getElementById("sleep_quality").value;
 
   if (
-    !formData.nap_date ||
-    !formData.start_time ||
-    !formData.end_time ||
-    !formData.sleep_quality
+      !formData.nap_date ||
+      !formData.start_time ||
+      !formData.end_time ||
+      !formData.sleep_quality
   ) {
     alert("Please complete all fields before submitting.");
     return;
@@ -333,6 +341,7 @@ async function removeAddMeal() {
 
   var formData = {};
 
+
   formData.meal_date = document.getElementById("meal_date").value;
   formData.meal_description = document.getElementById("meal_description").value;
 
@@ -348,11 +357,12 @@ async function removeAddMeal() {
 
   formData.meal_option = document.getElementById("meal_option").value;
 
+
   if (
-    !formData.meal_date ||
-    !formData.meal_description ||
-    !typeSelected ||
-    !formData.meal_option
+      !formData.meal_date ||
+      !formData.meal_description ||
+      !typeSelected ||
+      !formData.meal_option
   ) {
     alert("Please complete all fields before submitting.");
     return;
@@ -368,6 +378,7 @@ async function removeAddMeal() {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
+
     },
     body: JSON.stringify(formData),
   });
@@ -623,17 +634,17 @@ function logout() {
       "Content-Type": "application/json",
     },
   })
-    .then((response) => {
-      if (response.ok) {
-        window.location.href = "http://localhost:3000/views/login.html";
-      } else {
+      .then((response) => {
+        if (response.ok) {
+          window.location.href = "http://localhost:3000/views/login.html";
+        } else {
+          alert("An error occurred while logging out.");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
         alert("An error occurred while logging out.");
-      }
-    })
-    .catch((error) => {
-      console.error(error);
-      alert("An error occurred while logging out.");
-    });
+      });
 }
 
 function populateUserData() {
@@ -641,43 +652,40 @@ function populateUserData() {
     console.log(selected_child.name);
   }
   fetch("/retrieveUserData")
-    .then((response) => response.json())
-    .then((data) => {
-      const mainTitle = document.querySelector(".main-title");
-      user_id = data.id;
+      .then((response) => response.json())
+      .then((data) => {
+        const mainTitle = document.querySelector(".main-title");
+        user_id = data.id;
 
-      const childList = document.getElementById("child-list");
-      childList.innerHTML = ""; // Clear existing content
-      data.children.forEach((child) => {
-        const childDiv = document.createElement("div");
-        childDiv.className = "child sidebutton text";
-        childDiv.textContent = child.child_name;
-        childDiv.addEventListener("click", function () {
-          populateChildData(child.child_name);
+        const childList = document.getElementById("child-list");
+        childList.innerHTML = "";
+        data.children.forEach((child) => {
+          const childDiv = document.createElement("div");
+          childDiv.className = "child sidebutton text";
+          childDiv.textContent = child.child_name;
+          childDiv.addEventListener("click", function () {
+            populateChildData(child.child_name);
+          });
+          childList.appendChild(childDiv);
         });
-        childList.appendChild(childDiv);
+
+        document.getElementById("main-profile-pic").src = data.profile_image;
+        document.getElementById("mobile-main-profile-pic").src = data.profile_image;
+
+
+        const paragraph = document.createElement("p");
+        paragraph.textContent = `Hello, ${data.name}! How is your baby today?`;
+
+        mainTitle.innerHTML = "";
+        mainTitle.appendChild(paragraph);
+      })
+      .catch((error) => {
+        console.error(error);
       });
-
-      const json = JSON.parse(JSON.stringify(data.profile_image));
-      if(json != null) {
-        const asciiArray = json.data;
-        const string = String.fromCharCode(...asciiArray);
-        document.getElementById("main-profile-pic").src = `${string}`;
-        document.getElementById("mobile-main-profile-pic").src = `${string}`;
-      }
-      const paragraph = document.createElement("p");
-      paragraph.textContent = `Hello, ${data.name}! How is your baby today?`;
-
-      mainTitle.innerHTML = "";
-      mainTitle.appendChild(paragraph);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
 }
 
 function populateChildData(child_name) {
-  fetch("http://localhost:3000/retrieveChildData", {
+  fetch("/retrieveChildData", {
     method: "POST",
     body: JSON.stringify({
       user_id: user_id,
@@ -688,6 +696,38 @@ function populateChildData(child_name) {
       "Content-Type": "application/json",
     },
   })
+      .then((response) => response.json())
+      .then((json) => {
+        selected_child = json;
+        child_name_text = document.querySelector("#child-name");
+        child_age_text = document.querySelector("#child-age");
+        child_stats_text = document.querySelector("#child-stats");
+        if (
+            child_name_text != null &&
+            child_age_text != null &&
+            child_stats_text != null
+        ) {
+          child_name_text.textContent = json.name;
+          child_age_text.textContent = calculateAge(json.birthday);
+          child_stats_text.textContent =
+              "W:" + json.height + "kg" + " H:" + json.weight + "cm";
+        }
+        child_name_text = document.querySelector("#child-name-mobile");
+        child_age_text = document.querySelector("#child-age-mobile");
+        child_stats_text = document.querySelector("#child-stats-mobile");
+        if (
+            child_name_text != null &&
+            child_age_text != null &&
+            child_stats_text != null
+        ) {
+          child_name_text.textContent = json.name;
+          child_age_text.textContent = calculateAge(json.birthday);
+          child_stats_text.textContent =
+              "W:" + json.height + "kg" + " H:" + json.weight + "cm";
+        }
+
+        document.getElementById("kid-pic").src = json.image;
+      });
     .then((response) => response.json())
     .then((json) => {
       selected_child = json;
@@ -732,7 +772,7 @@ function calculateAge(birthday) {
 
   if (monthsDiff < 1) {
     var daysDiff = Math.floor(
-      (currentDate - birthDate) / (1000 * 60 * 60 * 24)
+        (currentDate - birthDate) / (1000 * 60 * 60 * 24)
     );
     return daysDiff + " days";
   } else if (monthsDiff >= 36) {
