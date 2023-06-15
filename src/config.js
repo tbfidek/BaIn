@@ -3,7 +3,7 @@ const database = {
   user: "postgres",
   host: "localhost",
   database: "TW",
-  password: "1234",
+  password: "daria",
   port: 5432,
 };
 

@@ -727,7 +727,7 @@ function populateChildData(child_name) {
         }
 
         document.getElementById("kid-pic").src = json.image;
-      });
+      })
     .then((response) => response.json())
     .then((json) => {
       selected_child = json;
