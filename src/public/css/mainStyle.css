@@ -503,6 +503,13 @@ a, a:visited{
         align-items: center;
         margin-right:1rem;
     }
+    .child-profile{
+        display: flex;
+        padding-left: 0;
+        justify-content: center;
+        align-items: center;
+        width:18rem;
+    }
     header span{
         padding:0.3rem;
         margin-right:1rem;

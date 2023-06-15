@@ -561,6 +561,19 @@ function populateChildData(child_name) {
         child_stats_text.textContent =
           "W:" + json.height + "kg" + " H:" + json.weight + "cm";
       }
+      child_name_text = document.querySelector("#child-name-mobile");
+      child_age_text = document.querySelector("#child-age-mobile");
+      child_stats_text = document.querySelector("#child-stats-mobile");
+      if (
+          child_name_text != null &&
+          child_age_text != null &&
+          child_stats_text != null
+      ) {
+        child_name_text.textContent = json.name;
+        child_age_text.textContent = calculateAge(json.birthday);
+        child_stats_text.textContent =
+            "W:" + json.height + "kg" + " H:" + json.weight + "cm";
+      }
     });
 }
 

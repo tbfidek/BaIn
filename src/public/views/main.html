@@ -31,7 +31,7 @@
         <span onclick="dropdown()" class="material-symbols-rounded">menu</span>
     </div>
     <div class="mobile-pic">
-        <a href="/views/editProfile.html"><img id="mobile-main-profile-pic" src="/images/profile_pic.jpg" alt=""></a>
+        <a href="/views/editProfile.html"><img id="mobile-main-profile-pic" src="/images/user_img.png" alt=""></a>
         <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
         <span class="material-symbols-rounded logoutButton" onclick="logout()">logout</span>
     </div>
@@ -104,16 +104,21 @@
     </div>
     <div class="main">
         <div class="parent">
+<!--            MOBILE            -->
             <div class="mobile-on">
-                <img src="/images/baby_pic.jpg" alt="profileImage" class="child-pfp"
+                <img src="/images/user_img.png" alt="profileImage" class="child-pfp"
                      onclick="showEditChildProfile()">
-                <p>Brontozaur</p>
-                <p>3MONTHS</p>
-                <p>H:55 W:55</p>
+                <div>
+                    <p class="text maintext" id="child-name-mobile">Pick a baby</p>
+                    <p class="text maintext" id="child-age-mobile"></p>
+                    <p class="text maintext" id="child-stats-mobile"></p>
+                </div>
+
+
             </div>
             <div class="main-title" id="main-title"></div>
             <div class="mobile-off">
-                <a href="editProfile.html"><img id="main-profile-pic" src="/images/profile_pic.jpg" alt=""></a>
+                <a href="editProfile.html"><img id="main-profile-pic" src="/images/user_img.png" alt=""></a>
                 <span onclick="themeToggle()" class="material-symbols-rounded">nights_stay</span>
                 <span class="material-symbols-rounded logoutButton" onclick="logout()">logout</span>
             </div>
