@@ -12,6 +12,13 @@ let button_add_child_profile = null;
 let last_child_id = 1;
 let child_ids = [];
 
+function resetForm() {
+  let form_child = document.querySelector(".form-child");
+  form_child.reset();
+  document.getElementById("gender-female").checked = false;
+  document.getElementById("gender-male").checked = false;
+}
+
 window.onload = function () {
   button_finish_child_profile = document.querySelector("#gata");
   button_add_child_profile = document.querySelector("#continue");
@@ -20,12 +27,12 @@ window.onload = function () {
   let new_date = document.querySelector("#hbd");
   let new_height = document.querySelector("#changedHeight");
   let new_weight = document.querySelector("#changedWeight");
-  document.querySelector("#name_btn").addEventListener("click", function(){ updateChild(new_name.value, new Date(selected_child.birthday), selected_child.weight, selected_child.height, selected_child.gender, selected_child.image_code); });
-  document.querySelector("#date_btn").addEventListener("click", function(){ updateChild(selected_child.name, new_date.value, selected_child.weight, selected_child.height, selected_child.gender, selected_child.image_code); });
-  document.querySelector("#height_btn").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, new_height.value, selected_child.gender, selected_child.image_code); });
-  document.querySelector("#weight_btn").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, new_weight.value, selected_child.height, selected_child.gender, selected_child.image_code); });
-  document.querySelector("#gender-male").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, selected_child.height, "male", selected_child.image_code); });
-  document.querySelector("#gender-female").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, selected_child.height, "female", selected_child.image_code); });
+  document.querySelector("#name_btn").addEventListener("click", function(){ updateChild(new_name.value, new Date(selected_child.birthday), selected_child.weight, selected_child.height, selected_child.gender, selected_child.image_code); resetForm();});
+  document.querySelector("#date_btn").addEventListener("click", function(){ updateChild(selected_child.name, new_date.value, selected_child.weight, selected_child.height, selected_child.gender, selected_child.image_code);resetForm(); });
+  document.querySelector("#height_btn").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, new_height.value, selected_child.gender, selected_child.image_code);resetForm(); });
+  document.querySelector("#weight_btn").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, new_weight.value, selected_child.height, selected_child.gender, selected_child.image_code);resetForm(); });
+  document.querySelector("#gender-male").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, selected_child.height, "male", selected_child.image_code); resetForm();});
+  document.querySelector("#gender-female").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, selected_child.height, "female", selected_child.image_code); resetForm();});
   button_add_child_profile.addEventListener("click", openPopup);
   button_finish_child_profile.addEventListener("click", checkChild);
 };
@@ -66,6 +73,7 @@ async function checkChild() {
   await new Promise((r) => setTimeout(r, 1000));
   addChildList();
   closePopup();
+  form.reset();
 }
 function hidePopupOnEscapeKey(event) {
   if (event.key === "Escape") {
