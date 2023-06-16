@@ -1,6 +1,6 @@
 import pool from "../database.js";
 import multer from "multer";
-import {uploadFile} from "../services/s3client.js";
+import {uploadImage} from "../services/s3client.js";
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 export function handleAddChild(req,res){
@@ -33,7 +33,7 @@ export function handleAddChild(req,res){
                 });
 
                 console.log("alo" + image);
-                let img = await uploadFile(image);
+                let img = await uploadImage(image);
 
                 const query = {
                     text: 'INSERT INTO child_accounts (name, birthday, weight, height, gender,profile_image) VALUES ($1, $2, $3, $4, $5,$6)',

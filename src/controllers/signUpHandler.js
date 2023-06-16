@@ -1,7 +1,7 @@
 import pool from "../database.js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
-import {uploadFile} from "../services/s3client.js";
+import {uploadImage} from "../services/s3client.js";
 import multer from "multer";
 const storage = multer.memoryStorage();
 const upload = multer({storage});
@@ -56,7 +56,7 @@ export function handleSignUp(req, res) {
                             text: 'SELECT MAX(user_id) from users',
                         };
 
-                        let image = await uploadFile(req.file);
+                        let image = await uploadImage(req.file);
                         pool.query(query2)
                             .then((ans) => {
                                 id_p = ans.rows[0].max;

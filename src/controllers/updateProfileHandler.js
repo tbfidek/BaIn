@@ -1,7 +1,7 @@
 import {decryptId} from "./cookieDecrypt.js";
 import pool from "../database.js";
 import crypto from "crypto";
-import {uploadFile} from "../services/s3client.js";
+import {uploadImage} from "../services/s3client.js";
 import multer from "multer";
 const storage = multer.memoryStorage();
 const upload = multer({storage});
@@ -144,7 +144,7 @@ export function updatePicture(req, res) {
         }
         else{
             let userId = decryptId(req,res);
-                let image = await uploadFile(req.file);
+                let image = await uploadImage(req.file);
                 const query = {
                     text: 'UPDATE users SET profile_image = $1 WHERE user_id = $2',
                     values: [image, userId],

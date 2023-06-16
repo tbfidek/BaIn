@@ -5,47 +5,67 @@ import {
     DeleteObjectCommand,
 } from '@aws-sdk/client-s3';
 import { getSignedUrl } from '@aws-sdk/s3-request-presigner';
+import fs from 'fs';
 import crypto from 'crypto';
 import sharp from 'sharp';
 
 const randomImageName = (bytes = 32) =>
     crypto.randomBytes(bytes).toString('hex');
-console.log(process.env.AWS_BUCKET_REGION)
+
+const randomVideoName = (bytes = 32) =>
+    crypto.randomBytes(bytes).toString('hex');
+
 // Create an Amazon S3 service client object.
 let s3 = new S3Client({
-    region:process.env.AWS_BUCKET_REGION,
-    credentials:{
-        accessKeyId:process.env.AWS_ACCESS_KEY,
-        secretAccessKey:process.env.AWS_SECRET_KEY
+    region: process.env.AWS_BUCKET_REGION,
+    credentials: {
+        accessKeyId: process.env.AWS_ACCESS_KEY,
+        secretAccessKey: process.env.AWS_SECRET_KEY
     }
 });
 
-export async function uploadFile(file) {
-    // console.log(process.env.AWS_BUCKET_NAME);
-    const buffer = await sharp(file.buffer)
+export async function uploadImage(file, isVideo = false) {
+    const buffer = isVideo ? file.buffer : await sharp(file.buffer)
         .resize({ height: 600, width: 600, fit: 'cover' })
         .toBuffer();
 
-    const imageName = randomImageName();
+    const fileName = randomImageName();
 
     const input = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: imageName,
+        Key: fileName,
         Body: buffer,
         ContentType: file.mimetype,
     };
     try {
         await s3.send(new PutObjectCommand(input));
-        return imageName;
+        return fileName;
     } catch (err) {
         throw new Error(err);
     }
 }
 
-export async function getFile(imageName) {
+export async function uploadVideo(file) {
+    const fileName = randomVideoName();
     const input = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: imageName,
+        Key: fileName,
+        Body: file.buffer,
+        ContentType: file.mimetype,
+    };
+
+    try {
+        await s3.send(new PutObjectCommand(input));
+        return fileName;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function getFile(fileName) {
+    const input = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: fileName,
     };
     const command = new GetObjectCommand(input);
     try {

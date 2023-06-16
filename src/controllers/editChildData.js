@@ -1,7 +1,7 @@
 import pool from "../database.js";
 import multer from "multer";
 import {decryptId} from "./cookieDecrypt.js";
-import {uploadFile} from "../services/s3client.js";
+import {uploadImage} from "../services/s3client.js";
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 
@@ -55,7 +55,7 @@ export function updateBabyPicture(req, res) {
         else{
             let { id } = req.body;
             // console.log("req body" + id);
-            let image = await uploadFile(req.file);
+            let image = await uploadImage(req.file);
             const query = {
                 text: 'UPDATE child_accounts SET profile_image = $1 WHERE account_id = $2',
                 values: [image, id],

@@ -1,6 +1,6 @@
 import multer from "multer";
 import pool from "../database.js";
-import {uploadFile} from "../services/s3client.js";
+import {uploadImage, uploadVideo} from "../services/s3client.js";
 const storage = multer.memoryStorage();
 const upload = multer({storage});
 
@@ -17,8 +17,14 @@ export function addMedia(req, res) {
         }
         else{
             let { date,type,desc, id } = req.body;
-            console.log("req body" + date + id);
-            let image = await uploadFile(req.file);
+            let image;
+            if(type === "video"){
+                image = await uploadVideo(req.file);
+            }
+            else{
+                image = await uploadImage(req.file);
+            }
+
             const query = {
                 text: 'INSERT INTO child_media(child_account_id,type,media,date,description) VALUES ($1,$2,$3,$4,$5)',
                 values: [id,type,image,date,desc],
