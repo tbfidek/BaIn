@@ -357,7 +357,10 @@
                             <input placeholder="change weight (kg)" id="changedWeight">
                             <button class="check-btn" id="weight_btn" type="button"><span class="material-symbols-rounded">data_check</span></button>
                         </div>
-                        <button>update profile pic</button>
+                        <div class="verify">
+                            <input id="profile-pic" type = "file" name="add-pfp" accept="image/jpg, image/jpeg, image/png">
+                            <button class="check-btn" onclick="updateProfilePicture()"><span class="material-symbols-rounded">data_check</span></button>
+                        </div>
                     </form>
                 </div>
                 <div class="med">

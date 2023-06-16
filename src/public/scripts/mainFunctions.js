@@ -772,6 +772,34 @@ function updateChild(name, birthday, weight, height, gender, profile_image){
       });
 }
 
+function updateProfilePicture() {
+
+  const formData = new FormData();
+  const photo = document.querySelector('#profile-pic');
+  formData.append('photo', photo.files[0]);
+  formData.append('id',selected_child.id);
+  console.log(photo.files[0]);
+  fetch('/updateBabyPicture', {
+    method: 'POST',
+    body: formData
+  })
+      .then((response) => response.json())
+      .then((json) => {
+        alert(json.message);
+        populateChildData(selected_child.id);
+      });
+      // .then((response) => {
+      //   if (response.ok) {
+      //     location.reload();
+      //   } else {
+      //     alert('Failed to update picture. Please try again.');
+      //   }
+      // })
+      // .catch((error) => {
+      //   console.error(error);
+      //   alert('An error occurred');
+      // });
+}
 
 
 

@@ -144,12 +144,6 @@ export function updatePicture(req, res) {
         }
         else{
             let userId = decryptId(req,res);
-            // let body = '';
-            // // req.on('data', (chunk) => {
-            // //     body += chunk.toString();
-            // // });
-            // req.on('end', async () => {
-                // const { image_data } = JSON.parse(body);
                 let image = await uploadFile(req.file);
                 const query = {
                     text: 'UPDATE users SET profile_image = $1 WHERE user_id = $2',
@@ -169,7 +163,6 @@ export function updatePicture(req, res) {
                         res.end(JSON.stringify({message: 'Server error'}));
                     });
 
-            // });
         }
     });
 
