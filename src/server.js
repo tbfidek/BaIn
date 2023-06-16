@@ -92,6 +92,9 @@ const server = http.createServer((req, res) => {
   if (req.method === "POST" && pathname === "/populateGallery") {
     retrieveChildGallery(req, res);
   }
+  if (req.method === "POST" && pathname === "/populateTimeline") {
+    retrieveChildGallery(req, res);
+  }
   if (req.method === "POST" && pathname === "/retrieveChildData") {
     retrieveChildData(req, res);
   }

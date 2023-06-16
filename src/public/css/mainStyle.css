@@ -1068,8 +1068,30 @@ input[name="gender-type"]{
 video {
     width: 100%;
     height: 50%;
+
 }
 .gallery-description {
     text-align: center;
     margin-top: 10px;
+}
+
+.timeline-row {
+    text-align: center;
+}
+
+.timeline-media-container {
+    display: inline-block;
+    width: 30%;
+    text-align: center;
+    margin: 10px;
+}
+
+.timeline-media {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.timeline-media-container p {
+    margin-top: 5px;
 }

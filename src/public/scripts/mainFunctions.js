@@ -162,6 +162,7 @@ function themeToggle() {
 }
 
 function showOverview() {
+  populateTimeline();
   const journal = document.querySelector(".OVERVIEW");
   journal.style.display = "flex";
   let others = document.querySelector(".SLEEPING-SCHEDULE");
@@ -948,3 +949,79 @@ function sendMedicalFile() {
         alert('An error occurred');
       });
 }
+
+function populateTimeline() {
+  const formData = new FormData();
+  formData.append('id', selected_child.id);
+
+  fetch('/populateTimeline', {
+    method: 'POST',
+    body: JSON.stringify({
+      child_id: selected_child.id
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const timelineContainer = document.getElementById("timeline");
+        timelineContainer.innerHTML = "";
+
+        if (data.images && data.images.length > 0 && data.date && data.date.length > 0) {
+          data.images.forEach((mediaUrl, index) => {
+            const imageDate = new Date(data.date[index]);
+            const currentDate = new Date();
+            console.log(imageDate);
+            console.log(currentDate);
+
+            if (
+                imageDate.getMonth() === currentDate.getMonth() &&
+                imageDate.getDate() === currentDate.getDate()
+            ) {
+              console.log(data.type[index]);
+
+              const mediaContainer = document.createElement('div');
+              mediaContainer.classList.add('timeline-media-container');
+
+              if (data.type && data.type[index] === "video") {
+                const videoElement = document.createElement('video');
+                videoElement.src = mediaUrl;
+                videoElement.controls = true;
+                videoElement.classList.add('timeline-media');
+                mediaContainer.appendChild(videoElement);
+              } else {
+                const imageElement = document.createElement('img');
+                imageElement.src = mediaUrl;
+                imageElement.classList.add('timeline-media');
+                mediaContainer.appendChild(imageElement);
+              }
+
+              const descriptionElement = document.createElement('p');
+              descriptionElement.textContent = data.desc[index];
+              mediaContainer.appendChild(descriptionElement);
+
+              const dateElement = document.createElement('p');
+              dateElement.textContent = formatDate(imageDate);
+              mediaContainer.appendChild(dateElement);
+
+              timelineContainer.appendChild(mediaContainer);
+            }
+          });
+
+          timelineContainer.classList.add('timeline-row');
+        } else {
+          console.log("No images found.");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+}
+
+function formatDate(date) {
+  const options = { year: 'numeric', month: 'long', day: 'numeric' };
+  return date.toLocaleDateString(undefined, options);
+}
+
