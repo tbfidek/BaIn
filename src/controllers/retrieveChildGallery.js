@@ -11,7 +11,7 @@ export function retrieveChildGallery(req, res) {
         const { child_id } = obj;
 
         const childQuery = {
-            text: "SELECT media FROM child_media WHERE child_account_id = $1",
+            text: "SELECT * FROM child_media WHERE child_account_id = $1",
             values: [child_id],
         };
 
@@ -24,13 +24,20 @@ export function retrieveChildGallery(req, res) {
                     return;
                 }
 
+                const child = childResult.rows[0];
                 const childData = {
-                    images: []
+                    type: [],
+                    images: [],
+                    date: [],
+                    desc: []
                 };
 
                 for (const child of childResult.rows) {
                     const url = await getFile(child.media);
                     childData.images.push(url);
+                    childData.type.push(child.type);
+                    childData.date.push(child.date);
+                    childData.desc.push(child.description);
                 }
 
                 console.log(childData);

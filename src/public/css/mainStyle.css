@@ -1038,20 +1038,38 @@ input[name="gender-type"]{
     cursor: pointer;
 }
 
+/*GALERIE*/
 #gallery {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
 }
 
-#gallery img {
-    width: calc(33.33% - 20px);
-    margin: 10px;
+.gallery-item {
+    width: 32%;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.gallery-image {
+    width: 100%;
+    height: auto;
+}
+
+.gallery-video {
     object-fit: cover;
 }
 
-@media screen and (max-width: 768px) {
-    #gallery img {
-        width: calc(50% - 20px);
-    }
+.gallery-item video,
+.gallery-item img {
+    display: block;
+}
+
+video {
+    width: 100%;
+    height: 50%;
+}
+.gallery-description {
+    text-align: center;
+    margin-top: 10px;
 }
