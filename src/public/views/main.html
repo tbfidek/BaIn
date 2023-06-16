@@ -34,12 +34,13 @@
     <div class="pop-up" id="pop">
         <div class="pop-up-profile">
             <form class="pfp-child" id="pfp-child">
+                <h3>Add your child's profile!</h3>
+                <h5>press escape to exit</h5>
                 <div class="profile-picture-child">
                     <input type="file" id="profile-pic-baby" name="photo" accept="image/*">
-<!--                    <button type="button"><span class="material-symbols-rounded">add_a_photo</span></button>-->
                 </div>
                 <div class="child-information">
-                    <div class="choose-gender">
+                    <div class="choose-gender g1">
                         <input type="radio" id="gender-female-pop" value="1" name="gender-type">
                         <label id="female-pop" for="gender-female">female</label><br>
                         <input type="radio" id="gender-male-pop" value="0" name="gender-type">
@@ -54,9 +55,6 @@
                             <input placeholder="weight (kg)" type="text" id="weight-pop" name="details"
                                    pattern="[0-9]{10}" required>
                         </div>
-<!--                        <button type="button" class="medical">medical files-->
-<!--                            <span class="material-symbols-rounded upload">upload</span>-->
-<!--                        </button>-->
                         <button type="button" class="finish" id="gata" onclick="">finish profile</button>
                     </div>
                 </div>
@@ -87,10 +85,8 @@
             <div onclick="showOverview()" class="likes sidebutton text">Timeline</div>
             <div onclick="showFeedingTime()" class="feeding sidebutton text">Meal Time</div>
             <div onclick="showSleepingSchedule()" class="sleeping sidebutton text">Nap Time</div>
-<!--            <div onclick="showTimeline()" class="likes sidebutton text">Timeline</div>-->
             <div onclick="showGallery()" class="gallery sidebutton text">Gallery</div>
             <div class="child-list" id="child-list">
-                <!-- <div class="child sidebutton text">child#</div> -->
             </div>
             <span onclick="closeDropdown()" class="material-symbols-rounded mobile-on">expand_less</span>
 
@@ -107,8 +103,6 @@
                     <p class="text maintext" id="child-age-mobile"></p>
                     <p class="text maintext" id="child-stats-mobile"></p>
                 </div>
-
-
             </div>
             <div class="main-title" id="main-title"></div>
             <div class="mobile-off">
@@ -283,13 +277,20 @@
                     <div class="bookmarks">
                         <button onclick="showAddOption()">Add Media File</button>
                     </div>
-                    <form class="form-add-image" onsubmit="return false"><br>
-                        <label for="date-pic">Pick a date:</label><br><br>
-                        <input type="date" id="date-pic" name="date"><br><br>
-                        <label for="add-pic">Add the image/video:</label><br><br>
+                    <form id="add-media" class="form-add-image" onsubmit="return false">
+                        <label for="date-pic">Date:</label>
+                        <input type="date" id="date-pic" name="date">
+
+                        <label for="add-pic">Upload:</label><br>
                         <input type="file" id="add-pic" name="add-photo"
-                               accept="image/jpg, image/jpeg, image/png, video/mp4, .mp3,audio/*"><br><br>
-                        <input onclick="removeAddOption()" type="submit" class="submit" value="Done">
+                               accept="image/jpg, image/jpeg, image/png, video/mp4, .mp3,audio/*"><br>
+
+                        <label for="type-pic">Type:</label>
+                        <input type="text" id="type-pic" name="date"><br>
+
+                        <label for="desc-pic">Description:</label>
+                        <input type="text" id="desc-pic" name="date"><br>
+                        <input onclick="sendData()" type="submit" class="submit" value="Done">
                     </form>
                 </div>
                 <div class="calendar-pic">
@@ -318,7 +319,6 @@
                         <img src="/images/ex2.jpg" alt="">
                         <p>journal</p>
                         <div class="buttons">
-<!--                            <span class="material-symbols-rounded">bookmark</span>-->
                             <span class="material-symbols-rounded">share<a href=""></a></span>
                         </div>
 
@@ -332,7 +332,7 @@
         </div>
         <div class="account-overview EDIT-CHILD">
             <h2>edit your child's profile</h2>
-            <div class="section">
+            <div class="section-edit">
                 <div class="update">
                     <div class="choose-gender">
                         <input type="radio" id="gender-female" value="1" name="gender-type">
