@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="../css/mainStyle.css">
     <link rel="stylesheet" href="../css/calendar.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="../scripts/mainFunctions.js"></script>
 </head>
 
 <body>
@@ -198,7 +199,7 @@
         </div>
         <div class="account-overview FEEDING-TIME">
             <div class="feed">
-                <h2>Feeding Time</h2>
+                <h2>Meal Time</h2>
                 <button onclick="showAddMeal()">Add Meal</button>
             </div>
             <form id="mealFormDate">
@@ -289,7 +290,7 @@
                         <input type="text" id="type-pic" name="date"><br>
 
                         <label for="desc-pic">Description:</label>
-                        <input type="text" id="desc-pic" name="date"><br>
+                        <input type="text" id="desc-pic" name="date" maxlength="50"><br>
                         <button type="button" id="done" onclick="sendData()">add</button>
                     </div>
 

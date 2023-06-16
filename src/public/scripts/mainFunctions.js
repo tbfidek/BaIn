@@ -921,5 +921,3 @@ function populateGallery() {
       });
 }
 
-
-

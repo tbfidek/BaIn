@@ -24,22 +24,23 @@ let s3 = new S3Client({
     }
 });
 
-export async function uploadImage(file, isVideo = false) {
-    const buffer = isVideo ? file.buffer : await sharp(file.buffer)
+export async function uploadImage(file) {
+    // console.log(process.env.AWS_BUCKET_NAME);
+    const buffer = await sharp(file.buffer)
         .resize({ height: 600, width: 600, fit: 'cover' })
         .toBuffer();
 
-    const fileName = randomImageName();
+    const imageName = randomImageName();
 
     const input = {
         Bucket: process.env.AWS_BUCKET_NAME,
-        Key: fileName,
+        Key: imageName,
         Body: buffer,
         ContentType: file.mimetype,
     };
     try {
         await s3.send(new PutObjectCommand(input));
-        return fileName;
+        return imageName;
     } catch (err) {
         throw new Error(err);
     }
