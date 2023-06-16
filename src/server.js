@@ -13,7 +13,7 @@ import { handleDeleteChild } from "./controllers/deleteChildHandler.js";
 import { handleLogout } from "./controllers/logoutHandler.js";
 import { retrieveUserData } from "./controllers/editProfileDataRetriever.js";
 import { decryptLogin } from "./controllers/cookieDecrypt.js";
-
+import { updateChild} from "./controllers/editChildData.js";
 import mealTimeController from "./controllers/mealController.js";
 import napTimeController from "./controllers/napControler.js";
 import {
@@ -107,12 +107,16 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && pathname === '/updatePicture') {
     updatePicture(req, res);
   }
+  if (req.method === 'POST' && pathname === '/editChildData') {
+    updateChild(req, res);
+  }
   if (pathname.startsWith("/meal")) {
     mealTimeController(req, res);
   }
   if (pathname.startsWith("/nap")) {
     napTimeController(req, res);
   }
+
 });
 
 server.listen(port, () => {

@@ -4,7 +4,7 @@ let blurr = null;
 let child_counter = 0;
 let user_id = null;
 
-//aici se tine informatiile despre copilul selectat (id, nume, gender, weight etc)
+//aici se tin informatiile despre copilul selectat (id, nume, gender, weight etc)
 let selected_child = null;
 
 let button_finish_child_profile = null;
@@ -16,11 +16,18 @@ window.onload = function () {
   button_finish_child_profile = document.querySelector("#gata");
   button_add_child_profile = document.querySelector("#continue");
 
+  let new_name = document.querySelector("#changedName");
+  let new_date = document.querySelector("#hbd");
+  let new_height = document.querySelector("#changedHeight");
+  let new_weight = document.querySelector("#changedWeight");
+  document.querySelector("#name_btn").addEventListener("click", function(){ updateChild(new_name.value, new Date(selected_child.birthday), selected_child.weight, selected_child.height, selected_child.gender, selected_child.image_code); });
+  document.querySelector("#date_btn").addEventListener("click", function(){ updateChild(selected_child.name, new_date.value, selected_child.weight, selected_child.height, selected_child.gender, selected_child.image_code); });
+  document.querySelector("#height_btn").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, new_height.value, selected_child.gender, selected_child.image_code); });
+  document.querySelector("#weight_btn").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, new_weight.value, selected_child.height, selected_child.gender, selected_child.image_code); });
+  document.querySelector("#gender-male").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, selected_child.height, "male", selected_child.image_code); });
+  document.querySelector("#gender-female").addEventListener("click", function(){ updateChild(selected_child.name, selected_child.birthday, selected_child.weight, selected_child.height, "female", selected_child.image_code); });
   button_add_child_profile.addEventListener("click", openPopup);
   button_finish_child_profile.addEventListener("click", checkChild);
-  populateMealTable();
-  populateNapTable();
-
 };
 
 function openPopup() {
@@ -35,7 +42,6 @@ function openPopup() {
 
 async function checkChild() {
   var form = document.getElementById("pfp-child");
-  console.log(form.elements[3].value);
   var gendertype = document.querySelector('input[name="gender-type"]:checked');
   if (gendertype == null) {
     console.log("select gender");
@@ -44,14 +50,12 @@ async function checkChild() {
 
   if (
       form.elements[3].value === "" || //nume
-      form.elements[4].value === "" ||  //an
-      form.elements[5].value === "" ||  //w
-      form.elements[6].value === ""     //h
+      form.elements[4].value === "" || //an
+      form.elements[5].value === "" || //w
+      form.elements[6].value === ""    //h
   ) {
-    console.log("nu-i bun");
     return;
   }
-  console.log("inainte de insert");
   insertChild(
       form.elements[3].value,
       form.elements[4].value,
@@ -62,8 +66,6 @@ async function checkChild() {
   await new Promise((r) => setTimeout(r, 1000));
   addChildList();
   closePopup();
-  console.log("chestieeeeeeeeeeee " + form.elements[3].value);
-  populateChildData(form.elements[3].value);
 }
 function hidePopupOnEscapeKey(event) {
   if (event.key === "Escape") {
@@ -77,26 +79,17 @@ function closePopup() {
 }
 
 function addChildList() {
-  const name = document.getElementById("name-pop");
-  // const dob = document.getElementById("data").value;
-  // const height = document.getElementById("height");
-  // const weight = document.getElementById("weight");
 
-  //const child = document.createElement('div');
-  //child.className = `child${last_child_id}`;
-  //child.innerHTML = `<div class="pfp"></div>
-  //                <button class="registered-child">${name.value}</button>
-  //                <button class="remove-child" onclick="removeChildList(${last_child_id})"><span class="material-symbols-rounded">person_remove</span></button>`;
   child_counter++;
   //document.getElementById("baby-id").appendChild(child);
-  document.getElementById("name").value = "";
-  document.getElementById("height").value = "";
-  document.getElementById("weight").value = "";
+  //document.getElementById("name").value = "";
+  //document.getElementById("height").value = "";
+  //document.getElementById("weight").value = "";
   //console.log(child_counter);
 }
 
 async function deleteChild(child_id) {
-  fetch("/deletechild", {
+  fetch("http://localhost:3000/deletechild", {
     method: "DELETE",
     body: JSON.stringify({ child_id: child_id }),
     headers: {
@@ -109,8 +102,7 @@ async function deleteChild(child_id) {
   await new Promise((r) => setTimeout(r, 500));
 }
 
-async function insertChild(name, birthday, width, weight, gender) {
-
+async function insertChild(name, birthday, height, weight, gender) {
   const fileInput = document.getElementById("profile-pic-baby");
   const uploadedImage = fileInput.files[0];
   console.log("pozica: " + fileInput.files[0]);
@@ -118,7 +110,7 @@ async function insertChild(name, birthday, width, weight, gender) {
   const formData = new FormData();
   formData.append("name", name);
   formData.append("birthday", birthday);
-  formData.append("width", width);
+  formData.append("height", height);
   formData.append("weight", weight);
   formData.append("gender", gender);
   formData.append("photo", uploadedImage);
@@ -341,7 +333,6 @@ async function removeAddMeal() {
 
   var formData = {};
 
-
   formData.meal_date = document.getElementById("meal_date").value;
   formData.meal_description = document.getElementById("meal_description").value;
 
@@ -356,7 +347,6 @@ async function removeAddMeal() {
   }
 
   formData.meal_option = document.getElementById("meal_option").value;
-
 
   if (
       !formData.meal_date ||
@@ -378,7 +368,6 @@ async function removeAddMeal() {
     credentials: "include",
     headers: {
       "Content-Type": "application/json",
-
     },
     body: JSON.stringify(formData),
   });
@@ -648,9 +637,6 @@ function logout() {
 }
 
 function populateUserData() {
-  if (selected_child != null) {
-    console.log(selected_child.name);
-  }
   fetch("/retrieveUserData")
       .then((response) => response.json())
       .then((data) => {
@@ -663,15 +649,15 @@ function populateUserData() {
           const childDiv = document.createElement("div");
           childDiv.className = "child sidebutton text";
           childDiv.textContent = child.child_name;
+          childDiv.id = child.child_id;
           childDiv.addEventListener("click", function () {
-            populateChildData(child.child_name);
+            populateChildData(child.child_id);
           });
           childList.appendChild(childDiv);
         });
 
         document.getElementById("main-profile-pic").src = data.profile_image;
         document.getElementById("mobile-main-profile-pic").src = data.profile_image;
-
 
         const paragraph = document.createElement("p");
         paragraph.textContent = `Hello, ${data.name}! How is your baby today?`;
@@ -684,12 +670,13 @@ function populateUserData() {
       });
 }
 
-function populateChildData(child_name) {
+function populateChildData(child_id) {
+  console.log(child_id + " blbablalba")
   fetch("/retrieveChildData", {
     method: "POST",
     body: JSON.stringify({
       user_id: user_id,
-      child_name: child_name,
+      child_id: child_id,
     }),
     headers: {
       Accept: "application/json",
@@ -710,7 +697,7 @@ function populateChildData(child_name) {
           child_name_text.textContent = json.name;
           child_age_text.textContent = calculateAge(json.birthday);
           child_stats_text.textContent =
-              "W:" + json.height + "kg" + " H:" + json.weight + "cm";
+              "W:" + json.weight + "kg" + " H:" + json.height + "cm";
         }
         child_name_text = document.querySelector("#child-name-mobile");
         child_age_text = document.querySelector("#child-age-mobile");
@@ -723,44 +710,15 @@ function populateChildData(child_name) {
           child_name_text.textContent = json.name;
           child_age_text.textContent = calculateAge(json.birthday);
           child_stats_text.textContent =
-              "W:" + json.height + "kg" + " H:" + json.weight + "cm";
+              "W:" + json.weight + "kg" + " H:" + json.height + "cm";
         }
 
         document.getElementById("kid-pic").src = json.image;
-      })
-    .then((response) => response.json())
-    .then((json) => {
-      selected_child = json;
-      child_name_text = document.querySelector("#child-name");
-      child_age_text = document.querySelector("#child-age");
-      child_stats_text = document.querySelector("#child-stats");
-      if (
-        child_name_text != null &&
-        child_age_text != null &&
-        child_stats_text != null
-      ) {
-        child_name_text.textContent = json.name;
-        child_age_text.textContent = calculateAge(json.birthday);
-        child_stats_text.textContent =
-          "W:" + json.height + "kg" + " H:" + json.weight + "cm";
-      }
-      child_name_text = document.querySelector("#child-name-mobile");
-      child_age_text = document.querySelector("#child-age-mobile");
-      child_stats_text = document.querySelector("#child-stats-mobile");
-      if (
-          child_name_text != null &&
-          child_age_text != null &&
-          child_stats_text != null
-      ) {
-        child_name_text.textContent = json.name;
-        child_age_text.textContent = calculateAge(json.birthday);
-        child_stats_text.textContent =
-            "W:" + json.height + "kg" + " H:" + json.weight + "cm";
-            populateMealTable();
-            populateNapTable();
-      }
-    });
+        populateMealTable();
+        populateNapTable();
+      });
 }
+
 
 function calculateAge(birthday) {
   var birthDate = new Date(birthday);
@@ -787,6 +745,36 @@ function calculateAge(birthday) {
     return monthsDiff + " months";
   }
 }
+
+function updateChild(name, birthday, weight, height, gender, profile_image){
+  //info necesare -> child id si toate atributele (name, birthday, weight, etc)
+  console.log(birthday);
+  fetch("http://localhost:3000/editChildData", {
+    method: "POST",
+    body: JSON.stringify({
+      child_id: selected_child.id,
+      new_name: name,
+      new_birthday: birthday,
+      new_weight: weight,
+      new_height: height,
+      new_gender: gender,
+      new_profile_image: profile_image
+    }),
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+      .then((response) => response.json())
+      .then((json) => {
+        alert(json.message);
+        populateChildData(selected_child.id);
+      });
+}
+
+
+
+
 window.addEventListener("load", () => {
   document.addEventListener("keydown", hidePopupOnEscapeKey);
   populateUserData();

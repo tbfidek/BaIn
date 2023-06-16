@@ -240,11 +240,24 @@ button:hover{
     border: none;
 }
 
+.form input[type=file]::file-selector-button {
+    background-color: var(--card-color);
+    padding:0.6rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Righteous', cursive, sans-serif;
+    font-size: 1rem;
+    transition: background .2s ease-in-out;
+    box-shadow: 1px 5px 5px #3c3744;
+
+}
+
 .modify-profile {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    /*margin-bottom: 1rem;*/
 }
 
 .modify-profile button, input {
@@ -264,6 +277,12 @@ button:hover{
 .modify-profile button:hover{
     background: #9c9992;
     cursor: pointer;
+}
+.form input[type=file]{
+    background: none;
+    box-shadow: none;
+    margin: 0rem;
+    padding: 0.5rem 0.2rem;
 }
 
 .verify{
@@ -389,7 +408,6 @@ button:hover{
         align-items: center;
     }
 }
-
 
 #profile-pic{
     font-size: 0.5rem;

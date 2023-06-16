@@ -17,7 +17,7 @@ export function handleAddChild(req,res){
             );
         }
         else{
-                const { name, birthday, width, weight, gender } = req.body;
+                const { name, birthday, height, weight, gender } = req.body;
                 const image = req.file;
 
                 let id_c = -1;
@@ -37,7 +37,7 @@ export function handleAddChild(req,res){
 
                 const query = {
                     text: 'INSERT INTO child_accounts (name, birthday, weight, height, gender,profile_image) VALUES ($1, $2, $3, $4, $5,$6)',
-                    values: [name, birthday, width, weight, gender, img],
+                    values: [name, birthday, weight, height, gender, img],
                 };
                 pool.query(query)
                     .then(() => {
