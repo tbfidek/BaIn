@@ -808,6 +808,38 @@ function updateProfilePicture() {
       //   alert('An error occurred');
       // });
 }
+function sendData() {
+
+  const formData = new FormData();
+
+  const date = document.getElementById("date-pic");
+  const img = document.getElementById("add-pic");
+  const type = document.getElementById("type-pic");
+  const desc = document.getElementById("desc-pic");
+
+  formData.append('date',date.value);
+  formData.append('photo', img.files[0]);
+  formData.append('type', type.value);
+  formData.append('desc', desc.value);
+  formData.append('id',selected_child.id);
+
+  fetch('/addMedia', {
+    method: 'POST',
+    body: formData,
+  })
+  .then((response) => {
+    if (response.ok) {
+      removeAddOption();
+      alert('Media added to the gallery');
+    } else {
+      alert('Failed to update picture. Please try again.');
+    }
+  })
+  .catch((error) => {
+    console.error(error);
+    alert('An error occurred');
+  });
+}
 
 
 

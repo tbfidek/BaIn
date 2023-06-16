@@ -277,7 +277,7 @@
                     <div class="bookmarks">
                         <button onclick="showAddOption()">Add Media File</button>
                     </div>
-                    <form id="add-media" class="form-add-image" onsubmit="return false">
+                    <div id="add-media" class="form-add-image">
                         <label for="date-pic">Date:</label>
                         <input type="date" id="date-pic" name="date">
 
@@ -290,8 +290,9 @@
 
                         <label for="desc-pic">Description:</label>
                         <input type="text" id="desc-pic" name="date"><br>
-                        <input onclick="sendData()" type="submit" class="submit" value="Done">
-                    </form>
+                        <button type="button" id="done" onclick="sendData()">add</button>
+                    </div>
+
                 </div>
                 <div class="calendar-pic">
                     <div class="wrapper">

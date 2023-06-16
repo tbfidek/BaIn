@@ -27,9 +27,9 @@ CREATE TABLE child_accounts (
 CREATE TABLE child_media (
                              media_id SERIAL PRIMARY KEY,
                              child_account_id INTEGER REFERENCES child_accounts(account_id),
-                             media_type VARCHAR(32) NOT NULL,
-                             media_data BYTEA,
-                             media_date DATE NOT NULL,
+                             type VARCHAR(32) NOT NULL,
+                             media VARCHAR(255),
+                             date DATE NOT NULL,
                              description VARCHAR(255)
 );
 

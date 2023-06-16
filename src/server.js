@@ -24,6 +24,7 @@ import {
 } from "./controllers/updateProfileHandler.js";
 
 import req_url from "url";
+import {addMedia} from "./controllers/galleryHandler.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
@@ -112,6 +113,9 @@ const server = http.createServer((req, res) => {
   }
   if (req.method === 'POST' && pathname === '/editChildData') {
     updateChild(req, res);
+  }
+  if (req.method === 'POST' && pathname === '/addMedia') {
+    addMedia(req, res);
   }
   if (pathname.startsWith("/meal")) {
     mealTimeController(req, res);
