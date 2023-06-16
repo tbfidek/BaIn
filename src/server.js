@@ -26,6 +26,7 @@ import {
 import req_url from "url";
 import {addMedia} from "./controllers/galleryHandler.js";
 import {retrieveChildGallery} from "./controllers/retrieveChildGallery.js";
+import {addMedicalFile} from "./controllers/addMedicalFile.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
@@ -120,6 +121,9 @@ const server = http.createServer((req, res) => {
   }
   if (req.method === 'POST' && pathname === '/addMedia') {
     addMedia(req, res);
+  }
+  if (req.method === 'POST' && pathname === '/addMedicalFile') {
+    addMedicalFile(req, res);
   }
   if (pathname.startsWith("/meal")) {
     mealTimeController(req, res);

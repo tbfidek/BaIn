@@ -365,8 +365,8 @@
                     <br>
                     <h2>Medical History</h2>
                     <form onsubmit="return false">
-                        <input type="file" name="add-photo" accept=".application/pdf"><br><br>
-                        <input type="submit" class="submit" value="Upload file">
+                        <input id ="pdf" type="file" name="add-photo" accept="pdf"><br><br>
+                        <input type="submit" class="submit" value="Upload file" onclick="sendMedicalFile()">
                     </form>
                     <br>
                     <form onsubmit="return false">

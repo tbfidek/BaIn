@@ -15,6 +15,9 @@ const randomImageName = (bytes = 32) =>
 const randomVideoName = (bytes = 32) =>
     crypto.randomBytes(bytes).toString('hex');
 
+const randomPDFName = (bytes = 32) =>
+    crypto.randomBytes(bytes).toString('hex');
+
 // Create an Amazon S3 service client object.
 let s3 = new S3Client({
     region: process.env.AWS_BUCKET_REGION,
@@ -58,6 +61,22 @@ export async function uploadVideo(file) {
     try {
         await s3.send(new PutObjectCommand(input));
         return fileName;
+    } catch (err) {
+        throw new Error(err);
+    }
+}
+
+export async function uploadPDF(file) {
+    const input = {
+        Bucket: process.env.AWS_BUCKET_NAME,
+        Key: randomPDFName(),
+        Body: file.buffer,
+        ContentType: file.mimetype,
+    };
+
+    try {
+        await s3.send(new PutObjectCommand(input));
+        return input.Key;
     } catch (err) {
         throw new Error(err);
     }

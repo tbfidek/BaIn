@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS users_child_accounts;
 DROP TABLE IF EXISTS child_media;
 DROP TABLE IF EXISTS meal_records;
 DROP TABLE IF EXISTS nap_records;
+DROP TABLE IF EXISTS child_medical;
 DROP TABLE IF EXISTS child_accounts;
 DROP TABLE IF EXISTS users;
 
@@ -31,6 +32,13 @@ CREATE TABLE child_media (
                              media VARCHAR(255),
                              date DATE NOT NULL,
                              description VARCHAR(255)
+);
+
+CREATE TABLE child_medical (
+                               medical_id SERIAL PRIMARY KEY,
+                               child_account_id INTEGER REFERENCES child_accounts(account_id),
+                               date DATE,
+                               file VARCHAR(255)
 );
 
 CREATE TABLE users_child_accounts (

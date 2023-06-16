@@ -882,7 +882,7 @@ function populateGallery() {
             const galleryItem = document.createElement("div");
             galleryItem.classList.add("gallery-item");
             //??????????
-            if (data.type[index] !== 'video') {
+            if (data.type[index] === 'video') {
               const videoElement = document.createElement("video");
               videoElement.src = mediaUrl;
               videoElement.controls = true;
@@ -921,3 +921,30 @@ function populateGallery() {
       });
 }
 
+function sendMedicalFile() {
+
+  const formData = new FormData();
+
+  const pdf = document.getElementById("pdf");
+  console.log(pdf.files[0]);
+
+  formData.append('pdf',pdf.files[0]);
+  formData.append('id',selected_child.id);
+
+  fetch('/addMedicalFile', {
+    method: 'POST',
+    body: formData,
+  })
+      .then((response) => {
+        if (response.ok) {
+          alert('Medical file added');
+        } else {
+          alert('Failed to update picture. Please try again.');
+        }
+      })
+      .catch((error) => {
+        removeAddOption();
+        console.error(error);
+        alert('An error occurred');
+      });
+}
