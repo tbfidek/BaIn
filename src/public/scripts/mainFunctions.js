@@ -228,7 +228,7 @@ function showFeedingTime() {
 // }
 
 function showGallery() {
-  renderCalendar();
+  // renderCalendar();
   const gallery = document.querySelector(".GALLERY");
   gallery.style.display = "block";
   let others = document.querySelector(".OVERVIEW");
@@ -241,6 +241,7 @@ function showGallery() {
   // others.style.display = "none";
   others = document.querySelector(".EDIT-CHILD");
   others.style.display = "none";
+  populateGallery();
 }
 
 function showEditChildProfile() {
@@ -261,14 +262,14 @@ function showEditChildProfile() {
 function showAddOption() {
   let gallery = document.querySelector(".form-add-image");
   gallery.style.display = "block";
-  gallery = document.querySelector(".calendar-pic");
-  gallery.style.display = "none";
+  // gallery = document.querySelector(".calendar-pic");
+  // gallery.style.display = "none";
 }
 function removeAddOption() {
   let gallery = document.querySelector(".form-add-image");
   gallery.style.display = "none";
-  gallery = document.querySelector(".calendar-pic");
-  gallery.style.display = "flex";
+  // gallery = document.querySelector(".calendar-pic");
+  // gallery.style.display = "flex";
 }
 function showAddMeal() {
   let food = document.querySelector(".form-table");
@@ -757,7 +758,7 @@ function calculateAge(birthday) {
 function updateChild(name, birthday, weight, height, gender, profile_image){
   //info necesare -> child id si toate atributele (name, birthday, weight, etc)
   console.log(birthday);
-  fetch("http://localhost:3000/editChildData", {
+  fetch("/editChildData", {
     method: "POST",
     body: JSON.stringify({
       child_id: selected_child.id,
@@ -828,14 +829,18 @@ function sendData() {
     body: formData,
   })
   .then((response) => {
+    removeAddOption();
     if (response.ok) {
+      // location.reload();
       removeAddOption();
       alert('Media added to the gallery');
+      populateGallery();
     } else {
       alert('Failed to update picture. Please try again.');
     }
   })
   .catch((error) => {
+    removeAddOption();
     console.error(error);
     alert('An error occurred');
   });
@@ -849,5 +854,43 @@ window.addEventListener("load", () => {
 
   const pollingInterval = 5000;
 
+  // setInterval(populateGallery, pollingInterval);
   setInterval(populateUserData, pollingInterval);
 });
+
+function populateGallery() {
+  const formData = new FormData();
+  formData.append('id', selected_child.id);
+
+  fetch('/populateGallery', {
+    method: 'POST',
+    body: JSON.stringify({
+      child_id: selected_child.id
+    }),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        const galleryContainer = document.getElementById("gallery");
+        galleryContainer.innerHTML = "";
+
+        if (data.images && data.images.length > 0) {
+          data.images.forEach((imageUrl) => {
+            const imageElement = document.createElement("img");
+            imageElement.src = imageUrl;
+            galleryContainer.appendChild(imageElement);
+          });
+        } else {
+          console.log("No images found.");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+}
+
+
+

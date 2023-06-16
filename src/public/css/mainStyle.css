@@ -1037,3 +1037,21 @@ input[name="gender-type"]{
     background: #9c9992;
     cursor: pointer;
 }
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#gallery img {
+    width: calc(33.33% - 20px);
+    margin: 10px;
+    object-fit: cover;
+}
+
+@media screen and (max-width: 768px) {
+    #gallery img {
+        width: calc(50% - 20px);
+    }
+}

@@ -24,7 +24,7 @@ export function retrieveChildData(req, res) {
                     return;
                 }
                 const child = childResult.rows[0];
-                console.log("childDataRetriever: " + child.birthday)
+                // console.log("childDataRetriever: " + child.birthday)
                 const url = await getFile(child.profile_image);
 
                 const childData = {
