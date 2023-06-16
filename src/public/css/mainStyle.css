@@ -219,6 +219,10 @@ textarea {
     resize:none;
 }
 
+.child-list {
+    max-height: 370px;
+    overflow-y: auto;
+  }
 
 
 .account-overview button {
@@ -623,6 +627,11 @@ a, a:visited{
       .calendar-meal {
         font-size: 0.6rem;
       }
+
+      .child-list {
+        max-height: 200px;
+      }
+      
     header{
         height:4rem;
     }
