@@ -1,6 +1,7 @@
 import pool from "../database.js";
 import { decryptId } from "./cookieDecrypt.js";
 
+
 export function retrieveExportData(req, res) {
     const userId = decryptId(req, res);{
         const childQuery = {
@@ -18,7 +19,9 @@ export function retrieveExportData(req, res) {
                 }
                 const child = childResult.rows;
                 const data = [];
+                let csvContent = 'Child_Name,Birthday,Weight,Height,Gender,Profile_Image\n';
                 for(let i = 0; i < child.length; ++i){
+                    csvContent += `${child[i].name},${child[i].birthday},${child[i].weight},${child[i].height},${child[i].gender},${child[i].profile_image}\n`;
                     const napQuery = `
                     SELECT nap_date, start_time, end_time, sleep_quality
                     FROM nap_records
@@ -32,10 +35,10 @@ export function retrieveExportData(req, res) {
                     `;
                     const mealResult = await pool.query(mealQuery, [child[i].account_id]);
                     const mediaQuery = `
-                  SELECT type, media, date, description
-                  FROM child_media
-                  WHERE child_account_id = $1
-                  `;
+                    SELECT type, media, date, description
+                    FROM child_media
+                    WHERE child_account_id = $1
+                    `;
                     const mediaResult = await pool.query(mediaQuery, [child[i].account_id]);
                     const childData = {
                         name: child[i].name,
@@ -52,9 +55,10 @@ export function retrieveExportData(req, res) {
                     data.push(childData);
                 }
 
+
                 res.statusCode = 200;
                 res.setHeader("Content-Type", "application/json");
-                res.end(JSON.stringify(data));
+                res.end(JSON.stringify({data, csvContent}));
             })
             .catch((err) => {
                 console.error(err);
@@ -64,5 +68,4 @@ export function retrieveExportData(req, res) {
                 return;
             });
     }
-
 }

@@ -24,7 +24,7 @@ window.onload = function () {
   button_add_child_profile = document.querySelector("#continue");
   button_export = document.querySelector("#export_btn");
   button_export.addEventListener("click", function() {
-    download('data.json');
+    download('data');
   });
 
   let new_name = document.querySelector("#changedName");
@@ -872,48 +872,115 @@ window.addEventListener("load", () => {
   setInterval(populateUserData, pollingInterval);
   document.getElementById('import_btn').onclick = async () => {
     const jsonFiles = await getJsonUpload()
-    const object = JSON.parse(jsonFiles[0]);
-    for(let i = 0; i < object.length; ++i){
-      //console.log(object[i]);
+    if(jsonFiles[0].fileType === "json"){
+      const object = JSON.parse(jsonFiles[0].content);
+      for(let i = 0; i < object.length; ++i){
 
-      fetch("/importChildData", {
-        method: "POST",
-        body: JSON.stringify({
-          name: object[i].name,
-          birthday: object[i].birthday,
-          height: object[i].height,
-          weight: object[i].weight,
-          gender: object[i].gender,
-          photo: object[i].image_code,
-          media: object[i].media,
-          nap_records: object[i].nap_records,
-          meal_records: object[i].meal_records,
-          parent_id: user_id
+        fetch("/importChildData", {
+          method: "POST",
+          body: JSON.stringify({
+            name: object[i].name,
+            birthday: object[i].birthday,
+            height: object[i].height,
+            weight: object[i].weight,
+            gender: object[i].gender,
+            photo: object[i].image_code,
+            media: object[i].media,
+            nap_records: object[i].nap_records,
+            meal_records: object[i].meal_records,
+            parent_id: user_id
+          })
         })
-      })
-          .then((response) => response.json())
-          .then((json) => {
-            var obj = JSON.parse(JSON.stringify(json));
-            let { id, message } = obj;
-            last_child_id = id;
-            console.log("id-ul este " + id);
-            fetch("/addchildtoparent", {
-              method: "POST",
-              body: JSON.stringify({
-                child_id: id,
-                parent_id: user_id,
-              }),
-              headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-              },
-            })
-                .then((response) => response.json())
-                .then((json) => console.log(json));
+            .then((response) => response.json())
+            .then((json) => {
+              var obj = JSON.parse(JSON.stringify(json));
+              let { id, message } = obj;
+              last_child_id = id;
+              console.log("id-ul este " + id);
+              fetch("/addchildtoparent", {
+                method: "POST",
+                body: JSON.stringify({
+                  child_id: id,
+                  parent_id: user_id,
+                }),
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+              })
+                  .then((response) => response.json())
+                  .then((json) => console.log(json));
+            });
+        await new Promise((r) => setTimeout(r, 500));
+      }
+    } else if(jsonFiles[0].fileType === "csv"){
+      const rows = jsonFiles[0].content.split('\n');
 
+      if (rows.length > 0 && rows[0].trim() === 'Child_Name,Birthday,Weight,Height,Gender,Profile_Image') {
+        rows.shift();
+      }
 
-          });
-      await new Promise((r) => setTimeout(r, 500));
+      const childAccounts = rows.map((row) => {
+        const columns = row.split(',');
+        const [
+          name,
+          birthday,
+          weight,
+          height,
+          gender,
+          profile_image,
+        ] = columns.map((column) => column.trim());
+
+        return {
+          name,
+          birthday,
+          weight,
+          height,
+          gender,
+          profile_image,
+        };
+      });
+      for(let i = 0; i < (childAccounts.length - 1); ++i){
+        fetch("/importChildData", {
+          method: "POST",
+          body: JSON.stringify({
+            name: childAccounts[i].name,
+            birthday: childAccounts[i].birthday,
+            height: childAccounts[i].height,
+            weight: childAccounts[i].weight,
+            gender: childAccounts[i].gender,
+            photo: childAccounts[i].profile_image,
+            media: null,
+            nap_records: null,
+            meal_records: null,
+            parent_id: user_id
+          })
+        })
+            .then((response) => response.json())
+            .then((json) => {
+              var obj = JSON.parse(JSON.stringify(json));
+              let { id, message } = obj;
+              last_child_id = id;
+              console.log("id-ul este " + id);
+              fetch("/addchildtoparent", {
+                method: "POST",
+                body: JSON.stringify({
+                  child_id: id,
+                  parent_id: user_id,
+                }),
+                headers: {
+                  Accept: "application/json",
+                  "Content-Type": "application/json",
+                },
+              })
+                  .then((response) => response.json())
+                  .then((json) => console.log(json));
+            });
+        await new Promise((r) => setTimeout(r, 500));
+      }
+    } else {
+      alert("Invalid file type!");
+      return;
     }
   }
 });
@@ -1089,28 +1156,39 @@ function download(filename) {
   fetch("/retrieveExportData")
       .then((response) => response.json())
       .then((data) => {
-        var element = document.createElement('a');
-        element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data)));
-        element.setAttribute('download', filename);
+        var elementJ = document.createElement('a');
+        elementJ.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data.data)));
+        elementJ.setAttribute('download', filename + '.json');
 
-        element.style.display = 'none';
-        document.body.appendChild(element);
+        elementJ.style.display = 'none';
 
-        element.click();
+        var elementC = document.createElement('a');
+        elementC.setAttribute('href', 'data:text/csv;charset=utf-8,' + encodeURI(data.csvContent));
+        elementC.setAttribute('download', filename + '.csv');
 
-        document.body.removeChild(element);
+        elementC.style.display = 'none';
+        document.body.appendChild(elementJ);
+        document.body.appendChild(elementC);
+
+        elementJ.click();
+        elementC.click();
+
+        document.body.removeChild(elementJ);
+        document.body.removeChild(elementC);
+
       })
       .catch((error) => {
         console.error(error);
       });
 
 }
+
 const getJsonUpload = () =>
     new Promise(resolve => {
       const inputFileElement = document.createElement('input')
       inputFileElement.setAttribute('type', 'file')
       inputFileElement.setAttribute('multiple', 'false')
-      inputFileElement.setAttribute('accept', '.json')
+      inputFileElement.setAttribute('accept', '.json, .csv')
 
       inputFileElement.addEventListener(
           'change',
@@ -1120,9 +1198,15 @@ const getJsonUpload = () =>
               return
             }
 
-            const filePromises = [...files].map(file => file.text())
+            const filePromises = [...files].map(async file => {
+              const fileType = file.type.split('/')[1]
+              const content = await file.text()
 
-            resolve(await Promise.all(filePromises))
+              return { fileType, content }
+            })
+
+            const results = await Promise.all(filePromises)
+            resolve(results)
           },
           false,
       )
