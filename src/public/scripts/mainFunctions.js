@@ -75,9 +75,9 @@ async function checkChild() {
       gendertype.value === "1" ? "female" : "male"
   );
   await new Promise((r) => setTimeout(r, 1000));
-  addChildList();
   closePopup();
   form.reset();
+  populateUserData();
 }
 function hidePopupOnEscapeKey(event) {
   if (event.key === "Escape") {
@@ -90,15 +90,6 @@ function closePopup() {
   popUp.classList.remove("active");
 }
 
-function addChildList() {
-
-  child_counter++;
-  //document.getElementById("baby-id").appendChild(child);
-  //document.getElementById("name").value = "";
-  //document.getElementById("height").value = "";
-  //document.getElementById("weight").value = "";
-  //console.log(child_counter);
-}
 
 async function deleteChild(child_id) {
   fetch("http://localhost:3000/deletechild", {
@@ -130,11 +121,6 @@ async function insertChild(name, birthday, height, weight, gender) {
   fetch("/addchild", {
     method: "POST",
     body: formData
-    // }),
-    // headers: {
-    //   Accept: "application/json",
-    //   "Content-Type": "application/json",
-    // },
   })
       .then((response) => response.json())
       .then((json) => {
@@ -869,7 +855,7 @@ window.addEventListener("load", () => {
   const pollingInterval = 5000;
 
   // setInterval(populateGallery, pollingInterval);
-  setInterval(populateUserData, pollingInterval);
+  // setInterval(populateUserData, pollingInterval);
   document.getElementById('import_btn').onclick = async () => {
     const jsonFiles = await getJsonUpload()
     if(jsonFiles[0].fileType === "json"){
