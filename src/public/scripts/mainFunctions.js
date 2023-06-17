@@ -670,8 +670,11 @@ function populateUserData() {
           childList.appendChild(childDiv);
         });
 
-        document.getElementById("main-profile-pic").src = data.profile_image;
-        document.getElementById("mobile-main-profile-pic").src = data.profile_image;
+        if(data.profile_image){
+          document.getElementById("main-profile-pic").src = data.profile_image;
+          document.getElementById("mobile-main-profile-pic").src = data.profile_image;
+        }
+
 
         const paragraph = document.createElement("p");
         paragraph.textContent = `Hello, ${data.name}! How is your baby today?`;
@@ -727,7 +730,13 @@ function populateChildData(child_id) {
               "W:" + json.weight + "kg" + " H:" + json.height + "cm";
         }
 
-        document.getElementById("kid-pic").src = json.image;
+        if(json.image){
+          document.getElementById("kid-pic").src = json.image;
+        }
+        else{
+          document.getElementById("kid-pic").src = "/images/user_img.png";
+        }
+
         populateMealTable();
         populateNapTable();
       });
