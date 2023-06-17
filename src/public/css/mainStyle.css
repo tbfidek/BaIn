@@ -855,9 +855,10 @@ input[name="gender-type"]{
 .profile-picture-child input[type=file]{
     background: none;
     box-shadow: none;
-    margin: 0rem;
-    padding: 0.5rem 0.2rem;
+    margin: 0rem 0rem 0rem 3rem;
+    padding: 0.5rem 0.2rem 0.5rem 0rem;
 }
+
 .pop-up.active {
     visibility: visible;
 }
