@@ -39,27 +39,15 @@ let serve = serveStatic(path.join(__dirname, "public"), {
 });
 
 const server = http.createServer((req, res) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
   const parsedUrl = req_url.parse(req.url, true);
   const url = req.url;
   const { pathname } = parsedUrl;
-  // 404 nu merge
-  // if (url.match(/\/css\/.*/) || url.match(/\/scripts\/.*/)
-  //     ||  url.match(/\/views\/.*/)
-  // ||  url.match(/\/views\/editProfile.html/)
-  // ||  url.match(/\/views\/login.html/)
-  // ||  url.match(/\/views\/main.html/)
-  // ||  url.match(/\/views\/signUp.html/)
-  // || url.match(/\/images\/.*/)
-  // ||  url.match(/\/documentation\/.*/)
-  // ||  url === '/'){
+
   serve(req, res, () => {});
-  // }
-  // else{
-  //     res.statusCode = 404;
-  //     res.setHeader('Content-Type', 'text/html');
-  //     res.end(fs.readFileSync(path.join(__dirname, 'public/views', 'errorPage.html'), 'utf8'));
-  //     return;
-  // }
+
   if (url.match(/main/) || url.match(/editProfile/)) {
     decryptLogin(req, res);
   }
@@ -71,10 +59,6 @@ const server = http.createServer((req, res) => {
   if (req.method === "POST" && pathname === "/addchild") {
     handleAddChild(req, res);
   }
-
-  // if (req.method === 'DELETE' && pathname === '/deletechild') {
-  //handleDeleteChild(req, res);
-  //}
 
   if (req.method === "POST" && pathname === "/addchildtoparent") {
     handleAddChildToParent(req, res);

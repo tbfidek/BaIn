@@ -209,11 +209,10 @@
         The purpose of the application is to offer users help in terms of managing the resources needed to care
         for their children. Users are able to register details in regard to their child's sleeping schedule,
         meals, the medical history, the relationship with other children.
-        Based on the user's preferences, a chronological view (timeline) of their most important moments
-        (represented through text or different multimedia resources - photographs, recordings etc.) related to
-        each individual child is available for them, as well as the option to share any of these moments on a
-        social media platform.
-        The application allows for multiple users to be linked to one account, as to allow for families to have
+        Based on the current day, a chronological view (timeline) of their most important moments
+        (represented through different multimedia resources - photographs, recordings etc.) related to
+        each individual child is available for them, as well as the option to see them via an RSS news feed.
+        The application allows for multiple users to have access to the profile of the same children, via a shared id, as to allow for families to have
         access to the profiles of their children.
         kiddoCare is an educational project developed by students for Web Technologies.
       </p>
@@ -233,25 +232,24 @@
     <section id="product-perspective">
       <h4>2.1 Product Perspective</h4>
       <p>kiddoCare (BaIn - Baby Info Manager) is an application meant to preserve children's data and memories,
-        developed by three students for the Web Techologies course.
+        developed by three students for the Web Technologies course.
     </section>
     <section id="product-functions">
       <h4>2.2 Product Functions</h4>
       Each user will have access to the following features:
       <ul>
         <li>create an account</li>
-        <li>allows for multiple persons to be associated to one account</li>
+        <li>allows for different accounts to have access to a child's profile</li>
         <li>login</li>
         <li>create child profile</li>
         <li>manage child profile (information regarding sleep, meals, medical history)</li>
-        <li>manage (view, publish, delete) personal multimedia resources</li>
+        <li>manage (view, publish) personal multimedia resources</li>
         <li>edit parent profile (name, password, profile picture, emails)</li>
         <li>edit child profile (name, details)</li>
         <li>upload multimedia resources from local storage</li>
-        <li>share resources to social media platform (Twitter)</li>
+        <li>share resources via an RSS news stream</li>
         <li>import/export data in CSV/JSON format</li>
-        <li>allows for tagging accounts in pictures</li>
-        <li>allows for bookmarking multimedia resources in gallery (bookmarked resources form the timeline)</li>
+<!--        <li>allows for tagging accounts in pictures</li>-->
         <li>dark mode</li>
         <li style="list-style: none" class="pictures"><img src="img/kiddoCare.png" alt="flow diagram" width=650 height="650">
         </li>
@@ -265,10 +263,8 @@
         <li>authenticated users that can be:</li>
         <li style="list-style: none">
           <ul>
-            <li>single parents with children</li>
-            <li>families or couples with children</li>
-            <li>caretakers such as nannies, legal guardians, other family members(ex: grandparents) that can be
-              added later
+            <li>parents</li>
+            <li>caretakers such as nannies, legal guardians, other family members(ex: grandparents) that can have access to a child's profile
             </li>
           </ul></li>
         <li>unauthenticated users</li>
@@ -299,7 +295,7 @@
     <section id="dependencies">
       <h4>2.6 Assumptions and Dependencies</h4>
       <p>
-        The feature of sharing photos etc. on Twitter is dependent on their third party apps API. Changes in the
+        The feature of sharing photos etc. is dependent on uploading the resources via AWS-SDK (open source). Changes in the
         API may result in malfunctions.
         Using a browser that does not support HTML5 or disabling JavaScript can result in users failing to use
         the web app.
@@ -326,14 +322,10 @@
 
         <li id="signup-page"><b>signup page</b></li>
         <li style="list-style: none"><ul>
-          <li>choose family/single parent</li>
+          <li>choose profile picture</li>
           <li>username</li>
           <li>email</li>
           <li>password</li>
-          <li>add a picture</li>
-          <li>information about child (name, date of birth, height, weight, picture, medical files) (can be
-            added for multiple children)
-          </li>
           <li>finish profile</li>
           <li>login (for already signed up)</li>
           <li style="list-style: none" class="pictures"><img src="img/signup.png" alt="signup" width=600 height="350">
@@ -343,27 +335,23 @@
 
         <li id="main-page"><b>main page</b></li>
         <li style="list-style: none"><ul>
-          <li>information about the child</li>
+          <li>edit child profile</li>
+          <li>timeline</li>
           <li>sleep schedule</li>
           <li>feeding time</li>
           <li>medical history</li>
           <li>gallery</li>
-          <li>likes</li>
-          <li>edit child profile</li>
-          <li>write in the daily journal</li>
           <li>add photos</li>
           <li>submit</li>
           <li>logout</li>
-
+          <li>edit child profile</li>
         </ul></li>
-
         <li id="side-panel"><b>side panel</b></li>
         <li style="list-style: none"><ul>
           <li>overview of all added children</li>
           <li>add child</li>
           <li>import data</li>
           <li>export data</li>
-          <li>dark mode</li>
           <li style="list-style: none" class="pictures"><img src="img/overview.png" alt="overview" width=600 height="350">
             <img src="img/mealtime.png" alt="mealtime" width=600 height="350">
           </li>
@@ -381,13 +369,12 @@
           <li>change email</li>
           <li>add email</li>
           <li>change password</li>
-          <li>add/remove child</li>
+          <li>remove child</li>
           <li>new profile picture</li>
           <li style="list-style: none" class="pictures"><img src="img/editprofile.png" alt="editprofile" width=600 height="350">
           </li>
         </ul></li>
       </ul>
-
 
       <section id="hardware-interface">
         <h4>3.2 Hardware Interfaces</h4>
@@ -405,6 +392,9 @@
         <h5>Postgres Database</h5>
         The database will be used to hold the account owner's information (username, email, password), as well as
         the children's and an id for association with multimedia resources.
+        <h5>AWS-SDK </h5>
+        To ensure the high quality and fast processing of our user's media data, we use the AWS cloud storage service,
+        which is open source and allows us to upload the files there and get the id (an encoded URL) to store in the database.
 
       </section>
 
@@ -422,11 +412,10 @@
 
           <h5 id="management-1">4.1.1 Description and Priority</h5>
           A child care taker can register for an account through an email, password and username.
-          Through the 'Edit profile pages', the account owners can change the details, including adding
-          more emails, as to more relatives/ caregivers to have access to the child profile as well.
-          For login, only email and password are required. The children's profiles are added here (name,
-          height, weight, date of birth etc.), with the possibility of being edited later. They can also
-          delete their account. This is a medium-priority feature of the app.
+          Through the 'Edit profile' pages, the account owner can change the details of their profile,
+          and delete their children's profiles or add a child through an id, if wanted.
+          For login, only email and password are required.
+          This is a medium-priority feature of the app.
           <h5 id="management-2">4.1.2 Stimulus/Response</h5>
           <ul>
             <li>
