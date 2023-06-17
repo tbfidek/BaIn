@@ -64,7 +64,7 @@
     </div>
     <div class="sidebar">
         <div class="child-profile">
-            <img src="/images/user_img.png"   id="kid-pic" class="child-pfp" onclick="showEditChildProfile()">
+            <img src="/images/user_img.png" id="kid-pic" class="child-pfp" onclick="showEditChildProfile()">
             <div class="child-name">
                 <p class="text maintext" id="child-name">Pick a baby</p>
                 <div class="info-child">
@@ -79,23 +79,22 @@
                 <button type="button" id="continue" onclick="openPopup()"
                         class="material-symbols-rounded">person_add
                 </button>
-                <button type="button" id="import_btn" class="material-symbols-rounded">cloud_upload<a href=""></a></button>
-                <button type="button" id="export_btn" class="material-symbols-rounded">cloud_download<a href=""></a></button>
+                <button type="button" id="import_btn" class="material-symbols-rounded">cloud_upload<a href=""></a>
+                </button>
+                <button type="button" id="export_btn" class="material-symbols-rounded">cloud_download<a href=""></a>
+                </button>
             </div>
-
             <div onclick="showOverview()" class="likes sidebutton text">Timeline</div>
             <div onclick="showFeedingTime()" class="feeding sidebutton text">Meal Time</div>
             <div onclick="showSleepingSchedule()" class="sleeping sidebutton text">Nap Time</div>
             <div onclick="showGallery()" class="gallery sidebutton text">Gallery</div>
-            <div class="child-list" id="child-list">
-            </div>
+            <div class="child-list" id="child-list"></div>
             <span onclick="closeDropdown()" class="material-symbols-rounded mobile-on">expand_less</span>
-
         </div>
     </div>
     <div class="main">
         <div class="parent">
-<!--            MOBILE            -->
+            <!--            MOBILE            -->
             <div class="mobile-on">
                 <img src="/images/user_img.png" alt="profileImage" class="child-pfp"
                      onclick="showEditChildProfile()">
@@ -119,7 +118,6 @@
                     <h3>Choose a baby account to see the timeline</h3>
                 </div>
             </div>
-
         </div>
         <div class="account-overview SLEEPING-SCHEDULE">
             <div class="log-sleep">
@@ -157,12 +155,12 @@
             <div class="calendar-sleep">
                 <table>
                     <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Start time</th>
-                            <th>End Time</th>
-                            <th>Quality</th>
-                        </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th>Start time</th>
+                        <th>End Time</th>
+                        <th>Quality</th>
+                    </tr>
                     </thead>
                     <tbody>
                     </tbody>
@@ -185,9 +183,6 @@
                     <input onclick="removeAddSleep()" type="submit" class="submitNap" value="Submit">
                 </form>
             </div>
-
-
-
         </div>
         <div class="account-overview FEEDING-TIME">
             <div class="feed">
@@ -225,18 +220,17 @@
             <div class="calendar-meal">
                 <table>
                     <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Food</th>
-                            <th>Type</th>
-                            <th>Quality</th>
-                        </tr>
+                    <tr>
+                        <th>Date</th>
+                        <th>Food</th>
+                        <th>Type</th>
+                        <th>Quality</th>
+                    </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
             </div>
-
             <div class="form-table">
                 <form onsubmit="return false">
                     <label for="meal_date">Date:</label><br>
@@ -260,8 +254,6 @@
                     <input onclick="removeAddMeal()" type="submit" class="submitMeal" value="Submit">
                 </form>
             </div>
-
-
         </div>
         <div class="account-overview GALLERY">
             <div class="section">
@@ -287,38 +279,35 @@
                     </div>
 
                 </div>
-<!--                <div class="calendar-pic">-->
-<!--                    <div class="wrapper">-->
-<!--                        <header>-->
-<!--                            <p class="current-date"></p>-->
-<!--                            <div class="icons">-->
-<!--                                <span class="material-symbols-rounded prev">chevron_left</span>-->
-<!--                                <span class="material-symbols-rounded next">chevron_right</span>-->
-<!--                            </div>-->
-<!--                        </header>-->
-<!--                        <div class="calendar">-->
-<!--                            <ul class="weeks">-->
-<!--                                <li>Sun</li>-->
-<!--                                <li>Mon</li>-->
-<!--                                <li>Tue</li>-->
-<!--                                <li>Wed</li>-->
-<!--                                <li>Thu</li>-->
-<!--                                <li>Fri</li>-->
-<!--                                <li>Sat</li>-->
-<!--                            </ul>-->
-<!--                            <ul class="days"></ul>-->
-<!--                        </div>-->
-<!--                    </div>-->
-                    <div id ="gallery">
-                        <h3>Choose a baby account to see the gallery and add media</h3>
-
-                    </div>
+                <!--                <div class="calendar-pic">-->
+                <!--                    <div class="wrapper">-->
+                <!--                        <header>-->
+                <!--                            <p class="current-date"></p>-->
+                <!--                            <div class="icons">-->
+                <!--                                <span class="material-symbols-rounded prev">chevron_left</span>-->
+                <!--                                <span class="material-symbols-rounded next">chevron_right</span>-->
+                <!--                            </div>-->
+                <!--                        </header>-->
+                <!--                        <div class="calendar">-->
+                <!--                            <ul class="weeks">-->
+                <!--                                <li>Sun</li>-->
+                <!--                                <li>Mon</li>-->
+                <!--                                <li>Tue</li>-->
+                <!--                                <li>Wed</li>-->
+                <!--                                <li>Thu</li>-->
+                <!--                                <li>Fri</li>-->
+                <!--                                <li>Sat</li>-->
+                <!--                            </ul>-->
+                <!--                            <ul class="days"></ul>-->
+                <!--                        </div>-->
+                <!--                    </div>-->
+                <div id="gallery">
+                    <h3>Choose a baby account to see the gallery and add media</h3>
 
                 </div>
 
-                <br>
             </div>
-
+            <br>
         </div>
         <div class="account-overview EDIT-CHILD">
             <h2>edit your child's profile</h2>
@@ -333,23 +322,29 @@
                     <form class="form-child"><br>
                         <div class="verify">
                             <input type="date" id="hbd" name="date"><br><br>
-                            <button class="check-btn" id="date_btn" type="button"><span class="material-symbols-rounded">data_check</span></button>
+                            <button class="check-btn" id="date_btn" type="button"><span
+                                    class="material-symbols-rounded">data_check</span></button>
                         </div>
                         <div class="verify">
                             <input placeholder="change name" id="changedName">
-                            <button class="check-btn" id="name_btn" type="button"><span class="material-symbols-rounded">data_check</span></button>
+                            <button class="check-btn" id="name_btn" type="button"><span
+                                    class="material-symbols-rounded">data_check</span></button>
                         </div>
                         <div class="verify">
                             <input placeholder="change height (cm)" id="changedHeight">
-                            <button class="check-btn" id="height_btn" type="button"><span class="material-symbols-rounded">data_check</span></button>
+                            <button class="check-btn" id="height_btn" type="button"><span
+                                    class="material-symbols-rounded">data_check</span></button>
                         </div>
                         <div class="verify"><br>
                             <input placeholder="change weight (kg)" id="changedWeight">
-                            <button class="check-btn" id="weight_btn" type="button"><span class="material-symbols-rounded">data_check</span></button>
+                            <button class="check-btn" id="weight_btn" type="button"><span
+                                    class="material-symbols-rounded">data_check</span></button>
                         </div>
                         <div class="verify">
-                            <input id="profile-pic" type = "file" name="add-pfp" accept="image/jpg, image/jpeg, image/png">
-                            <button class="check-btn" onclick="updateProfilePicture()"><span class="material-symbols-rounded">data_check</span></button>
+                            <input id="profile-pic" type="file" name="add-pfp"
+                                   accept="image/jpg, image/jpeg, image/png">
+                            <button class="check-btn" onclick="updateProfilePicture()"><span
+                                    class="material-symbols-rounded">data_check</span></button>
                         </div>
                     </form>
                 </div>
@@ -357,7 +352,7 @@
                     <br>
                     <h2>Medical History</h2>
                     <form onsubmit="return false">
-                        <input id ="pdf" type="file" name="add-photo" accept="pdf"><br><br>
+                        <input id="pdf" type="file" name="add-photo" accept="pdf"><br><br>
                         <input type="submit" class="submit" value="Upload file" onclick="sendMedicalFile()">
                     </form>
                     <br>
@@ -373,6 +368,8 @@
             </div>
         </div>
     </div>
+
+</div>
 
 </div>
 <script src="../scripts/calendar.js"></script>

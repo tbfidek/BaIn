@@ -321,7 +321,6 @@ form input[type=date], form input[type=submit], form select{
 
 }
 .update button{
-    margin-top:2rem;
     padding:0.5rem;
 }
 h2{
@@ -977,13 +976,14 @@ input[name="gender-type"]{
     margin-right:0.5rem;
 }
 
-/*----------------------------------------------edit-child-profile----------------------------------------------*/
+/*---------------------------------------------- edit-child-profile ----------------------------------------------*/
 
 .section-edit{
     display: flex;
     flex-direction: row;
     justify-content: normal;
     align-items: center;
+
 }
 
 .update {
@@ -1021,6 +1021,30 @@ input[name="gender-type"]{
     border: none;
 }
 
+
+.form-child input[type=file]::file-selector-button {
+    background-color: var(--card-color);
+    padding:0.6rem;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Righteous', cursive, sans-serif;
+    font-size: 1rem;
+    transition: background .2s ease-in-out;
+    box-shadow: 1px 5px 5px #3c3744;
+
+}
+.form-child input[type=file]{
+    background: none;
+    box-shadow: none;
+    font-size: 0rem;
+    margin: 0rem 5.1rem 0rem 0rem;
+    padding: 0.5rem 0.5rem 0.5rem 0rem;
+
+}
+
+
 #hbd {
     padding: 0.5rem 1.3rem;
 }
@@ -1038,7 +1062,7 @@ input[name="gender-type"]{
     cursor: pointer;
 }
 
-/*GALERIE*/
+/*---------------------------------------------- gallery + timeline ----------------------------------------------*/
 #gallery {
     display: flex;
     flex-wrap: wrap;
