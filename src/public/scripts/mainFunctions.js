@@ -253,8 +253,8 @@ function showEditChildProfile() {
 function showAddOption() {
   let gallery = document.querySelector(".form-add-image");
   gallery.style.display = "block";
-  // gallery = document.querySelector(".calendar-pic");
-  // gallery.style.display = "none";
+  sal = document.querySelector("#gallery");
+  sal.style.display = "none";
 }
 function removeAddOption() {
   let gallery = document.querySelector(".form-add-image");

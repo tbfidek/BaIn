@@ -1196,19 +1196,6 @@ a, a:visited{
     position: relative;
 }
 
-/*.shadow {*/
-/*    position: absolute;*/
-/*    top: 0;*/
-/*    left: 0;*/
-/*    max-width: 900px;*/
-/*    width: 100%;*/
-/*    height: 250px;*/
-/*    background-color: transparent;*/
-/*    box-shadow: inset 30px 0 30px -7px black, inset -30px 0 30px -7px black;*/
-/*    z-index: 10;*/
-/*    pointer-events: none;*/
-/*}*/
-
 :root {
     --no-of-slides: 4;
     --slides-in-view: calc((min(900px, 100vw) / 130));
