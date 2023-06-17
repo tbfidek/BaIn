@@ -22,6 +22,10 @@ function resetForm() {
 window.onload = function () {
   button_finish_child_profile = document.querySelector("#gata");
   button_add_child_profile = document.querySelector("#continue");
+  button_export = document.querySelector("#export_btn");
+  button_export.addEventListener("click", function() {
+    download('data.json');
+  });
 
   let new_name = document.querySelector("#changedName");
   let new_date = document.querySelector("#hbd");
@@ -857,6 +861,52 @@ window.addEventListener("load", () => {
 
   // setInterval(populateGallery, pollingInterval);
   setInterval(populateUserData, pollingInterval);
+  document.getElementById('import_btn').onclick = async () => {
+    const jsonFiles = await getJsonUpload()
+    const object = JSON.parse(jsonFiles[0]);
+    for(let i = 0; i < object.length; ++i){
+      //console.log(object[i]);
+
+      fetch("/importChildData", {
+        method: "POST",
+        body: JSON.stringify({
+          name: object[i].name,
+          birthday: object[i].birthday,
+          height: object[i].height,
+          weight: object[i].weight,
+          gender: object[i].gender,
+          photo: object[i].image_code,
+          media: object[i].media,
+          nap_records: object[i].nap_records,
+          meal_records: object[i].meal_records,
+          parent_id: user_id
+        })
+      })
+          .then((response) => response.json())
+          .then((json) => {
+            var obj = JSON.parse(JSON.stringify(json));
+            let { id, message } = obj;
+            last_child_id = id;
+            console.log("id-ul este " + id);
+            fetch("/addchildtoparent", {
+              method: "POST",
+              body: JSON.stringify({
+                child_id: id,
+                parent_id: user_id,
+              }),
+              headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json",
+              },
+            })
+                .then((response) => response.json())
+                .then((json) => console.log(json));
+
+
+          });
+      await new Promise((r) => setTimeout(r, 500));
+    }
+  }
 });
 
 function populateGallery() {
@@ -1025,3 +1075,47 @@ function formatDate(date) {
   return date.toLocaleDateString(undefined, options);
 }
 
+function download(filename) {
+
+  fetch("/retrieveExportData")
+      .then((response) => response.json())
+      .then((data) => {
+        var element = document.createElement('a');
+        element.setAttribute('href', 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(data)));
+        element.setAttribute('download', filename);
+
+        element.style.display = 'none';
+        document.body.appendChild(element);
+
+        element.click();
+
+        document.body.removeChild(element);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+}
+const getJsonUpload = () =>
+    new Promise(resolve => {
+      const inputFileElement = document.createElement('input')
+      inputFileElement.setAttribute('type', 'file')
+      inputFileElement.setAttribute('multiple', 'false')
+      inputFileElement.setAttribute('accept', '.json')
+
+      inputFileElement.addEventListener(
+          'change',
+          async (event) => {
+            const { files } = event.target
+            if (!files) {
+              return
+            }
+
+            const filePromises = [...files].map(file => file.text())
+
+            resolve(await Promise.all(filePromises))
+          },
+          false,
+      )
+      inputFileElement.click()
+    })
