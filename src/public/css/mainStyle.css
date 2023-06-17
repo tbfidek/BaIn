@@ -504,7 +504,10 @@ video {
     height: 50%;
 
 }
-.gallery-description {
+.gallery-description,.gallery-date {
+    background-color: var(--card-color);
+    padding:0.5rem;
+    border-radius: var(--border-radius-card);
     text-align: center;
     margin-top: 10px;
 }

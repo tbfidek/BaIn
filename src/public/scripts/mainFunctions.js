@@ -722,7 +722,7 @@ function populateChildData(child_id) {
         else{
           document.getElementById("kid-pic").src = "/images/user_img.png";
         }
-
+        showOverview();
         populateMealTable();
         populateNapTable();
       });
@@ -1014,6 +1014,11 @@ function populateGallery() {
             descriptionElement.classList.add("gallery-description");
             descriptionElement.innerText = data.desc[index];
             galleryItem.appendChild(descriptionElement);
+
+            const dateElement = document.createElement("div");
+            dateElement.classList.add("gallery-date");
+            dateElement.innerText = data.date[index];
+            galleryItem.appendChild(dateElement);
 
             const buttonsContainer = document.createElement("div");
             buttonsContainer.classList.add("share");
