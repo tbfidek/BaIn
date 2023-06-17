@@ -320,6 +320,7 @@ async function removeAddSleep() {
     },
     body: JSON.stringify(formData),
   });
+  document.querySelector(".sleep-form form").reset();
   populateNapTable();
 }
 
@@ -371,6 +372,7 @@ async function removeAddMeal() {
     },
     body: JSON.stringify(formData),
   });
+  document.querySelector(".form-table form").reset();
   populateMealTable();
 }
 
@@ -835,6 +837,10 @@ function sendData() {
       removeAddOption();
       alert('Media added to the gallery');
       populateGallery();
+      date.value = "";
+        img.value = "";
+        type.value = "";
+        desc.value = "";
     } else {
       alert('Failed to update picture. Please try again.');
     }

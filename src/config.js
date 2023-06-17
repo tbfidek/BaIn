@@ -2,8 +2,8 @@
 const database = {
   user: "postgres",
   host: "localhost",
-  database: "general",
-  password: "sql",
+  database: "TW",
+  password: "1234",
   port: 5432,
 };
 
