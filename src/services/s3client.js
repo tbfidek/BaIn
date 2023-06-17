@@ -9,16 +9,10 @@ import fs from 'fs';
 import crypto from 'crypto';
 import sharp from 'sharp';
 
-const randomImageName = (bytes = 32) =>
+const randomName = (bytes = 32) =>
     crypto.randomBytes(bytes).toString('hex');
 
-const randomVideoName = (bytes = 32) =>
-    crypto.randomBytes(bytes).toString('hex');
 
-const randomPDFName = (bytes = 32) =>
-    crypto.randomBytes(bytes).toString('hex');
-
-// Create an Amazon S3 service client object.
 let s3 = new S3Client({
     region: process.env.AWS_BUCKET_REGION,
     credentials: {
@@ -34,7 +28,7 @@ export async function uploadImage(file) {
             .resize({ height: 600, width: 600, fit: 'cover' })
             .toBuffer();
 
-        const imageName = randomImageName();
+        const imageName = randomName();
 
         const input = {
             Bucket: process.env.AWS_BUCKET_NAME,
@@ -55,7 +49,7 @@ export async function uploadImage(file) {
 
 export async function uploadVideo(file) {
     if(file != null) {
-        const fileName = randomVideoName();
+        const fileName = randomName();
         const input = {
             Bucket: process.env.AWS_BUCKET_NAME,
             Key: fileName,

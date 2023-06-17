@@ -320,6 +320,7 @@ async function removeAddSleep() {
     },
     body: JSON.stringify(formData),
   });
+  document.querySelector(".sleep-form form").reset();
   populateNapTable();
 }
 
@@ -371,6 +372,7 @@ async function removeAddMeal() {
     },
     body: JSON.stringify(formData),
   });
+  document.querySelector(".form-table form").reset();
   populateMealTable();
 }
 
@@ -722,7 +724,7 @@ function populateChildData(child_id) {
         else{
           document.getElementById("kid-pic").src = "/images/user_img.png";
         }
-
+        showOverview();
         populateMealTable();
         populateNapTable();
       });
@@ -835,6 +837,10 @@ function sendData() {
       removeAddOption();
       alert('Media added to the gallery');
       populateGallery();
+      date.value = "";
+        img.value = "";
+        type.value = "";
+        desc.value = "";
     } else {
       alert('Failed to update picture. Please try again.');
     }
@@ -1014,6 +1020,11 @@ function populateGallery() {
             descriptionElement.classList.add("gallery-description");
             descriptionElement.innerText = data.desc[index];
             galleryItem.appendChild(descriptionElement);
+
+            const dateElement = document.createElement("div");
+            dateElement.classList.add("gallery-date");
+            dateElement.innerText = data.date[index];
+            galleryItem.appendChild(dateElement);
 
             const buttonsContainer = document.createElement("div");
             buttonsContainer.classList.add("share");
