@@ -1032,11 +1032,6 @@ function populateGallery() {
             const buttonsContainer = document.createElement("div");
             buttonsContainer.classList.add("share");
 
-            const shareButton = document.createElement("span");
-            shareButton.classList.add("material-symbols-rounded");
-            shareButton.innerText = "share";
-            galleryItem.appendChild(shareButton);
-
             galleryContainer.appendChild(galleryItem);
           });
         } else {
