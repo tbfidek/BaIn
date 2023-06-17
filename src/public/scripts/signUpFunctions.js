@@ -4,11 +4,11 @@ async function registerAccount() {
     const inputs = document.querySelectorAll("input");
     console.log(inputs);
     for(const input of inputs){
-        if(!input.value){
-            alert("Please fill in all fields.");
-            return;
-        }
-        if (input.name !== 'photo') {
+        if(input.name !== 'photo'){
+            if(!input.value){
+                alert("Please fill in all fields.");
+                return;
+            }
             formData.append(input.name, input.value);
         }
     }

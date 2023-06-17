@@ -29,69 +29,87 @@ let s3 = new S3Client({
 
 export async function uploadImage(file) {
     // console.log(process.env.AWS_BUCKET_NAME);
-    const buffer = await sharp(file.buffer)
-        .resize({ height: 600, width: 600, fit: 'cover' })
-        .toBuffer();
+    if(file != null){
+        const buffer = await sharp(file.buffer)
+            .resize({ height: 600, width: 600, fit: 'cover' })
+            .toBuffer();
 
-    const imageName = randomImageName();
+        const imageName = randomImageName();
 
-    const input = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: imageName,
-        Body: buffer,
-        ContentType: file.mimetype,
-    };
-    try {
-        await s3.send(new PutObjectCommand(input));
-        return imageName;
-    } catch (err) {
-        throw new Error(err);
+        const input = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: imageName,
+            Body: buffer,
+            ContentType: file.mimetype,
+        };
+        try {
+            await s3.send(new PutObjectCommand(input));
+            return imageName;
+        } catch (err) {
+            throw new Error(err);
+        }
+    } else {
+        return null;
     }
 }
 
 export async function uploadVideo(file) {
-    const fileName = randomVideoName();
-    const input = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: fileName,
-        Body: file.buffer,
-        ContentType: file.mimetype,
-    };
+    if(file != null) {
+        const fileName = randomVideoName();
+        const input = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: fileName,
+            Body: file.buffer,
+            ContentType: file.mimetype,
+        };
 
-    try {
-        await s3.send(new PutObjectCommand(input));
-        return fileName;
-    } catch (err) {
-        throw new Error(err);
+        try {
+            await s3.send(new PutObjectCommand(input));
+            return fileName;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+    else {
+        return null;
     }
 }
 
 export async function uploadPDF(file) {
-    const input = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: randomPDFName(),
-        Body: file.buffer,
-        ContentType: file.mimetype,
-    };
+    if(file != null) {
+        const input = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: randomPDFName(),
+            Body: file.buffer,
+            ContentType: file.mimetype,
+        };
 
-    try {
-        await s3.send(new PutObjectCommand(input));
-        return input.Key;
-    } catch (err) {
-        throw new Error(err);
+        try {
+            await s3.send(new PutObjectCommand(input));
+            return input.Key;
+        } catch (err) {
+            throw new Error(err);
+        }
+    }
+    else {
+        return null;
     }
 }
 
 export async function getFile(fileName) {
-    const input = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: fileName,
-    };
-    const command = new GetObjectCommand(input);
-    try {
-        const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
-        return url;
-    } catch (err) {
-        throw new Error(err);
+    if (fileName != null){
+        const input = {
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: fileName,
+        };
+        const command = new GetObjectCommand(input);
+        try {
+            const url = await getSignedUrl(s3, command, { expiresIn: 3600 });
+            return url;
+        } catch (err) {
+            throw new Error(err);
+        }
+    } else {
+        return "";
     }
 }
