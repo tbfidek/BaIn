@@ -1,4 +1,4 @@
-import "dotenv/config" ;
+import "dotenv/config";
 import * as http from "http";
 import path, { dirname } from "path";
 import serveStatic from "serve-static";
@@ -12,7 +12,7 @@ import { handleDeleteChild } from "./controllers/deleteChildHandler.js";
 import { handleLogout } from "./controllers/logoutHandler.js";
 import { retrieveUserData } from "./controllers/editProfileDataRetriever.js";
 import { decryptLogin } from "./controllers/cookieDecrypt.js";
-import {updateBabyPicture, updateChild} from "./controllers/editChildData.js";
+import { updateBabyPicture, updateChild } from "./controllers/editChildData.js";
 import mealTimeController from "./controllers/mealController.js";
 import napTimeController from "./controllers/napControler.js";
 import { getRSS } from "./controllers/rssController.js";
@@ -20,15 +20,14 @@ import {
   updateUserEmail,
   updateUserName,
   updateUserPassword,
-  updatePicture
+  updatePicture,
 } from "./controllers/updateProfileHandler.js";
-
 import req_url from "url";
-import {addMedia} from "./controllers/galleryHandler.js";
-import {retrieveChildGallery} from "./controllers/retrieveChildGallery.js";
-import {addMedicalFile} from "./controllers/addMedicalFile.js";
+import { addMedia } from "./controllers/galleryHandler.js";
+import { retrieveChildGallery } from "./controllers/retrieveChildGallery.js";
+import { addMedicalFile } from "./controllers/addMedicalFile.js";
 import { retrieveExportData } from "./controllers/retrieveExportData.js";
-import {handleImportChild} from "./controllers/importChildData.js";
+import { handleImportChild } from "./controllers/importChildData.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
@@ -37,15 +36,17 @@ let serve = serveStatic(path.join(__dirname, "public"), {
   index: ["/views/login.html"],
 });
 
+
 const server = http.createServer((req, res) => {
-  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Expires', '0');
+  res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
   const parsedUrl = req_url.parse(req.url, true);
   const url = req.url;
   const { pathname } = parsedUrl;
 
   serve(req, res, () => {});
+
 
   if (url.match(/main/) || url.match(/editProfile/)) {
     decryptLogin(req, res);
@@ -64,7 +65,8 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.method === "POST" && pathname === "/login") {
-    handleLogin(req, res);
+      handleLogin(req, res);
+
   }
   if (req.method === "POST" && pathname === "/logout") {
     handleLogout(req, res);
@@ -99,25 +101,25 @@ const server = http.createServer((req, res) => {
   if (req.method === "POST" && pathname === "/removeChild") {
     handleDeleteChild(req, res);
   }
-  if (req.method === 'POST' && pathname === '/updatePicture') {
+  if (req.method === "POST" && pathname === "/updatePicture") {
     updatePicture(req, res);
   }
-  if (req.method === 'POST' && pathname === '/updateBabyPicture') {
+  if (req.method === "POST" && pathname === "/updateBabyPicture") {
     updateBabyPicture(req, res);
   }
-  if (req.method === 'POST' && pathname === '/editChildData') {
+  if (req.method === "POST" && pathname === "/editChildData") {
     updateChild(req, res);
   }
-  if (req.method === 'POST' && pathname === '/addMedia') {
+  if (req.method === "POST" && pathname === "/addMedia") {
     addMedia(req, res);
   }
-  if (req.method === 'POST' && pathname === '/addMedicalFile') {
+  if (req.method === "POST" && pathname === "/addMedicalFile") {
     addMedicalFile(req, res);
   }
-  if (req.method === 'GET' && pathname === '/retrieveExportData') {
+  if (req.method === "GET" && pathname === "/retrieveExportData") {
     retrieveExportData(req, res);
   }
-  if (req.method === 'POST' && pathname === '/importChildData') {
+  if (req.method === "POST" && pathname === "/importChildData") {
     handleImportChild(req, res);
   }
   if (pathname === "/rss" && req.method === "GET") {

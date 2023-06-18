@@ -92,7 +92,7 @@ function closePopup() {
 
 
 async function deleteChild(child_id) {
-  fetch("http://localhost:3000/deletechild", {
+  fetch("/deletechild", {
     method: "DELETE",
     body: JSON.stringify({ child_id: child_id }),
     headers: {
@@ -627,7 +627,7 @@ function logout() {
   })
       .then((response) => {
         if (response.ok) {
-          window.location.href = "http://localhost:3000/views/login.html";
+          window.location.href = "/views/login.html";
         } else {
           alert("An error occurred while logging out.");
         }

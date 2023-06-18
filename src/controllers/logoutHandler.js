@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 export function handleLogout(req, res) {
     res.statusCode = 302;
-    res.setHeader("Location", "http://localhost:3000/views/login.html");
+    res.setHeader("Location", "/views/login.html");
 
     const loggedToken = jwt.sign({ logged: false }, "secretKey", { expiresIn: "30d" });
     const loggedCookie = `loggedToken=${loggedToken}; Path=/; HttpOnly; Secure`;

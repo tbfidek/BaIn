@@ -34,7 +34,7 @@ export function handleLogin(req, res) {
 
                     if (user.password === hashedPassword) {
                         res.statusCode = 302;
-                        res.setHeader("Location", "http://localhost:3000/views/main.html");
+                        res.setHeader("Location", "/views/main.html");
                         const loggedToken = jwt.sign({ logged: true }, "secretKey", { expiresIn: "30d" });
                         const loggedCookie = `loggedToken=${loggedToken}; Path=/; HttpOnly; Secure`;
                         const idToken = jwt.sign({ userId: user.user_id }, "secretKey", { expiresIn: "30d" });
