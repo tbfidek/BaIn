@@ -1,6 +1,5 @@
 import multer from "multer";
 import {addMediaModel, retrieveChildGalleryModel,addMedicalFileModel} from "../model/filesModel.js";
-// import { addMedicalFileModel } from "../model/medicalFileModel.js";
 const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
@@ -48,7 +47,7 @@ export function retrieveChildGallery(req, res) {
             const childData = await retrieveChildGalleryModel(child_id);
 
             if (childData.images.length === 0) {
-                res.statusCode = 404;
+                res.statusCode = 200;
                 res.setHeader("Content-Type", "application/json");
                 res.end(JSON.stringify({ message: "no media" }));
                 return;
