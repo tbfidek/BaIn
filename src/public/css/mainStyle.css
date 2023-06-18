@@ -10,6 +10,7 @@
     --font-color: black;
     --background-img: url("/images/bg.jpg");
     --sidebar-shadow: #3c3744;
+    --shadow-buttons: 1px 5px 5px #3c3744;
 }
 
 .dark-theme{
@@ -17,10 +18,11 @@
     --card-color: #443C68;
     --under-card-color: #15142f;
     --box-shadow: 1px 5px 5px #051014;
-    --box-shadow-under: 0 1rem 3rem #2e2e4f;
+    --box-shadow-under: 0 1rem 3rem #051014;
     --font-color: #C1BDB3;
-    --sidebar-shadow: #2e2e4f;
+    --sidebar-shadow: #051014;
     --background-img: url("/images/darkbg.jpg");
+    --shadow-buttons: 1px 5px 5px #051014;
 }
 
 *{
@@ -29,6 +31,9 @@
     box-sizing: border-box;
     font-family: 'Righteous', cursive, sans-serif;
 
+}
+button{
+    color: var(--font-color);
 }
 body{
     color: var(--font-color);
@@ -173,7 +178,7 @@ header {
     border-radius: var(--border-radius-card);
     padding:0.6rem;
     margin-right: 0.5rem;
-    box-shadow: 1px 5px 5px #3c3744;
+    box-shadow: var(--shadow-buttons);
 }
 
 .parent div{
@@ -189,7 +194,7 @@ header {
     border-radius: 50%;
     margin:1rem;
     float:right;
-    box-shadow: 1px 5px 5px #3c3744;
+    box-shadow: var(--shadow-buttons);
 }
 
 .account-overview{
@@ -964,6 +969,11 @@ a, a:visited{
 
 }
 @media (max-width: 1000px) {
+    .parent div{
+        flex-direction: column;
+        justify-content: center;
+        margin-right:0;
+    }
     header {
         display: flex;
         flex-direction: row;
@@ -1160,9 +1170,9 @@ a, a:visited{
     #vertical,#shopping-list{
         margin: 1rem 0 0;
     }
-    .parent{
-        margin-left:2rem;
-    }
+    /*.parent{*/
+    /*    margin-left:2rem;*/
+    /*}*/
     .calendar-pic img,.calendar-meal img {
         max-width: 70%;
     }
