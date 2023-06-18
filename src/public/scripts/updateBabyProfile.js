@@ -41,7 +41,6 @@ function updateChild(name, birthday, weight, height, gender, profile_image){
 }
 
 function updateProfilePicture() {
-
     const formData = new FormData();
     const photo = document.querySelector('#profile-pic');
     formData.append('photo', photo.files[0]);

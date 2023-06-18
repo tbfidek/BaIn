@@ -1,5 +1,6 @@
 import pool from "../database.js";
-import { getFile } from "../services/s3client.js";
+import {getFile, uploadImage} from "../services/s3client.js";
+import crypto from "crypto";
 
 export async function retrieveUserDataModel(userId) {
     const userQuery = {
