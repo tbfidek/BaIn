@@ -19,9 +19,7 @@ import {
   updatePicture,
 } from "./controllers/updateProfileHandler.js";
 import req_url from "url";
-import { addMedia } from "./controllers/galleryHandler.js";
-import { retrieveChildGallery } from "./controllers/retrieveChildGallery.js";
-import { addMedicalFile } from "./controllers/addMedicalFile.js";
+import {addMedia, addMedicalFile, retrieveChildGallery} from "./controllers/filesController.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
