@@ -1,16 +1,23 @@
+function applyThemeFromLocalStorage() {
+    const element = document.body;
+    const userPreference = localStorage.getItem("theme");
+
+    if (userPreference === "dark") {
+        element.classList.add("dark-theme");
+    } else {
+        element.classList.remove("dark-theme");
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    applyThemeFromLocalStorage();
+});
+
+
 let user_info = null;
 const image_input = document.querySelector("#profile-pic");
 var uploaded_image = "";
 
-// image_input.addEventListener("change", function(){
-//     const reader = new FileReader();
-//     reader.readAsDataURL(this.files[0]);
-//     reader.addEventListener("load", () => {
-//         uploaded_image = reader.result;
-//         document.querySelector("#pfp").src = `${uploaded_image}`;
-//         updatePicture(uploaded_image);
-//     });
-// })
 function removeChildElement(event) {
     event.preventDefault();
     const parentDiv = event.target.closest('div');

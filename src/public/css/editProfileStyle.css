@@ -5,12 +5,25 @@
     --border-radius-card: 5px;
     --border-radius-under-card: 10px;
     --box-shadow: 1px 5px 5px #3c3744;
-    --primary-color: #5F5B6B;
+    --box-shadow-under: 0 1rem 2rem  #22162b ;
+    --font-color: black;
+    --background-img: url("/images/bg.jpg");
 }
+.dark-theme{
+    --background-color: #424242;
+    --card-color: #443C68;
+    --under-card-color: #15142f;
+    --box-shadow: 1px 5px 5px #051014;
+    --box-shadow-under: 0 1rem 3rem #2e2e4f;
+    --font-color: #C1BDB3;
+    --sidebar-shadow: #2e2e4f;
+    --background-img: url("/images/darkbg.jpg");
+}
+
 a{
     text-decoration: none;
     outline: none;
-    color:black;
+    color:var(--font-color);
 }
 a:visited{
     text-decoration: none;
@@ -20,6 +33,7 @@ a:visited{
     padding: 0;
     box-sizing: border-box;
     font-family: 'Righteous', cursive, sans-serif;
+    color:var(--font-color);
 }
 
 header {
@@ -29,10 +43,11 @@ header {
 }
 
 body {
-    background-image: url("/images/bg.jpg");
+    background-image: var(--background-img);
 }
 
 .banner {
+    color:var(--font-color);
     width:50rem;
     display: flex;
     align-items: center;
@@ -74,7 +89,6 @@ body {
 }
 body {
     background-color: var(--background-color);
-    /*overflow: hidden;*/
 }
 
 .signup {
@@ -96,6 +110,7 @@ body {
 }
 
 .left-parent-info {
+    color:var(--font-color);
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

@@ -146,10 +146,28 @@ async function insertChild(name, birthday, height, weight, gender) {
   //await new Promise(r => setTimeout(r, 500));
 }
 
+//dark-theme
 function themeToggle() {
   const element = document.body;
   element.classList.toggle("dark-theme");
+
+  // Store the user's preference in local storage
+  if (element.classList.contains("dark-theme")) {
+    localStorage.setItem("theme", "dark");
+  } else {
+    localStorage.setItem("theme", "light");
+  }
 }
+
+// Check for user's preference on page load
+document.addEventListener("DOMContentLoaded", function() {
+  const userPreference = localStorage.getItem("theme");
+
+  if (userPreference === "dark") {
+    document.body.classList.add("dark-theme");
+  }
+});
+
 
 function showOverview() {
   populateTimeline();
@@ -720,9 +738,11 @@ function populateChildData(child_id) {
 
         if(json.image){
           document.getElementById("kid-pic").src = json.image;
+          document.getElementById("kid-pic-mobile").src = json.image;
         }
         else{
           document.getElementById("kid-pic").src = "/images/user_img.png";
+          document.getElementById("kid-pic-mobile").src = "/images/user_img.png";
         }
         const pdfInput = document.getElementById("pdf");
         const dateInput = document.getElementById("data");
