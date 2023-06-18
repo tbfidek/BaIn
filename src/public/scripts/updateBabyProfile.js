@@ -1,5 +1,21 @@
 function updateChild(name, birthday, weight, height, gender, profile_image){
     //info necesare -> child id si toate atributele (name, birthday, weight, etc)
+    var selectedDate = new Date(birthday);
+    var currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
+    selectedDate.setHours(0, 0, 0, 0);
+
+    if (selectedDate > currentDate) {
+        alert("The selected date is in the future!");
+        return;
+    }
+
+    // Verify weight and height
+    if (weight < 0 || height < 0) {
+        alert("Weight and height should be positive values!");
+        return;
+    }
+    console.log("da");
     console.log(birthday);
     fetch("/editChildData", {
         method: "POST",

@@ -37,7 +37,15 @@ h5{
     margin-bottom: 0.5rem;
     margin-top: 1rem;
 }
+.diagrams{
+    display:flex;
+    flex-direction: row;
 
+}
+
+.diagrams img{
+    margin-right: 3rem;
+}
 @media (max-width:1400px){
     body{
         font-size: 1rem;
@@ -46,8 +54,12 @@ h5{
     article{
         padding: 1rem;
     }
-    .pictures {
+    .pictures, .diagrams {
         flex-direction: column;
+
+    }
+    #old{
+        margin-bottom: 2rem;
     }
 
 }

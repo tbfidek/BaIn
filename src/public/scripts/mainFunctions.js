@@ -106,6 +106,15 @@ async function deleteChild(child_id) {
 }
 
 async function insertChild(name, birthday, height, weight, gender) {
+  var selectedDate = new Date(birthday);
+  var currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
+  selectedDate.setHours(0, 0, 0, 0);
+
+  if (selectedDate > currentDate) {
+    alert("The selected date is in the future!");
+    return;
+  }
   const fileInput = document.getElementById("profile-pic-baby");
   const uploadedImage = fileInput.files[0];
   console.log("pozica: " + fileInput.files[0]);
