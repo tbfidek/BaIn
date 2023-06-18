@@ -28,7 +28,7 @@ async function registerAccount() {
             var obj = JSON.parse(JSON.stringify(json));
             let {message} = obj;
             if(message === "User created successfully"){
-                window.location.href = "/views/main.html";
+                window.location.href = "/views/login.html";
                 // return parent_id;
             }
             else{

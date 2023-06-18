@@ -3,7 +3,6 @@ import * as http from "http";
 import path, { dirname } from "path";
 import serveStatic from "serve-static";
 import { fileURLToPath } from "url";
-
 import { handleSignUp } from "./controllers/signUpHandler.js";
 import { retrieveChildData } from "./controllers/childDataRetriever.js";
 import { handleAddChild } from "./controllers/addChildHandler.js";

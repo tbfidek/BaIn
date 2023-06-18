@@ -69,12 +69,12 @@ export function handleSignUp(req, res) {
                                     .then(() => {
                                         res.statusCode = 201;
                                         res.setHeader('Content-Type', 'application/json');
-                                        const loggedToken = jwt.sign({logged: true}, "secretKey", {expiresIn: "30d"});
-                                        const loggedCookie = `loggedToken=${loggedToken}; Path=/; HttpOnly; Secure`;
-                                        const idToken = jwt.sign({userId: id_p + 1}, "secretKey", {expiresIn: "30d"});
-                                        const tokenCookie = `idToken=${idToken}; Path=/; HttpOnly; Secure`;
-
-                                        res.setHeader("Set-Cookie", [loggedCookie, tokenCookie]);
+                                        // const loggedToken = jwt.sign({logged: true}, "secretKey", {expiresIn: "30d"});
+                                        // const loggedCookie = `loggedToken=${loggedToken}; Path=/; HttpOnly; Secure`;
+                                        // const idToken = jwt.sign({userId: id_p + 1}, "secretKey", {expiresIn: "30d"});
+                                        // const tokenCookie = `idToken=${idToken}; Path=/; HttpOnly; Secure`;
+                                        //
+                                        // res.setHeader("Set-Cookie", [loggedCookie, tokenCookie]);
                                         res.end(JSON.stringify({
                                             message: 'User created successfully',
                                             id: id_p + 1
