@@ -151,7 +151,6 @@ function themeToggle() {
   const element = document.body;
   element.classList.toggle("dark-theme");
 
-  // Store the user's preference in local storage
   if (element.classList.contains("dark-theme")) {
     localStorage.setItem("theme", "dark");
   } else {
@@ -159,7 +158,6 @@ function themeToggle() {
   }
 }
 
-// Check for user's preference on page load
 document.addEventListener("DOMContentLoaded", function() {
   const userPreference = localStorage.getItem("theme");
 
@@ -184,10 +182,6 @@ function showOverview() {
   others = document.querySelector(".EDIT-CHILD");
   others.style.display = "none";
 }
-
-// .SLEEPING-SCHEDULE,.FEEDING-TIME,.LIKES, .GALLERY, .EDIT-CHILD{
-//     display:none;
-// }
 
 function showSleepingSchedule() {
   const sleepingSchedule = document.querySelector(".SLEEPING-SCHEDULE");
@@ -221,23 +215,7 @@ function showFeedingTime() {
   populateMealTable();
 }
 
-// function showTimeline() {
-//   const medicalHistory = document.querySelector(".LIKES");
-//   medicalHistory.style.display = "block";
-//   let others = document.querySelector(".OVERVIEW");
-//   others.style.display = "none";
-//   others = document.querySelector(".SLEEPING-SCHEDULE");
-//   others.style.display = "none";
-//   others = document.querySelector(".FEEDING-TIME");
-//   others.style.display = "none";
-//   others = document.querySelector(".GALLERY");
-//   others.style.display = "none";
-//   others = document.querySelector(".EDIT-CHILD");
-//   others.style.display = "none";
-// }
-
 function showGallery() {
-  // renderCalendar();
   const gallery = document.querySelector(".GALLERY");
   gallery.style.display = "block";
   let others = document.querySelector(".OVERVIEW");
@@ -262,8 +240,6 @@ function showEditChildProfile() {
   others.style.display = "none";
   others = document.querySelector(".FEEDING-TIME");
   others.style.display = "none";
-  // others = document.querySelector(".LIKES");
-  // others.style.display = "none";
   others = document.querySelector(".GALLERY");
   others.style.display = "none";
 }
@@ -271,14 +247,12 @@ function showEditChildProfile() {
 function showAddOption() {
   let gallery = document.querySelector(".form-add-image");
   gallery.style.display = "block";
-  sal = document.querySelector("#gallery");
+  let sal = document.querySelector("#gallery");
   sal.style.display = "none";
 }
 function removeAddOption() {
   let gallery = document.querySelector(".form-add-image");
   gallery.style.display = "none";
-  // gallery = document.querySelector(".calendar-pic");
-  // gallery.style.display = "flex";
 }
 function showAddMeal() {
   let food = document.querySelector(".form-table");
@@ -636,26 +610,6 @@ function toggleSidebar() {
 
 window.addEventListener("resize", toggleSidebar);
 
-function logout() {
-  fetch("/logout", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  })
-      .then((response) => {
-        if (response.ok) {
-          window.location.href = "/views/login.html";
-        } else {
-          alert("An error occurred while logging out.");
-        }
-      })
-      .catch((error) => {
-        console.error(error);
-        alert("An error occurred while logging out.");
-      });
-}
-
 function populateUserData() {
   fetch("/retrieveUserData")
       .then((response) => response.json())
@@ -783,102 +737,6 @@ function calculateAge(birthday) {
     return monthsDiff + " months";
   }
 }
-
-function updateChild(name, birthday, weight, height, gender, profile_image){
-  //info necesare -> child id si toate atributele (name, birthday, weight, etc)
-  console.log(birthday);
-  fetch("/editChildData", {
-    method: "POST",
-    body: JSON.stringify({
-      child_id: selected_child.id,
-      new_name: name,
-      new_birthday: birthday,
-      new_weight: weight,
-      new_height: height,
-      new_gender: gender,
-      new_profile_image: profile_image
-    }),
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  })
-      .then((response) => response.json())
-      .then((json) => {
-        alert(json.message);
-        populateChildData(selected_child.id);
-      });
-}
-
-function updateProfilePicture() {
-
-  const formData = new FormData();
-  const photo = document.querySelector('#profile-pic');
-  formData.append('photo', photo.files[0]);
-  formData.append('id',selected_child.id);
-  console.log(photo.files[0]);
-  fetch('/updateBabyPicture', {
-    method: 'POST',
-    body: formData
-  })
-      .then((response) => response.json())
-      .then((json) => {
-        alert(json.message);
-        populateChildData(selected_child.id);
-      });
-      // .then((response) => {
-      //   if (response.ok) {
-      //     location.reload();
-      //   } else {
-      //     alert('Failed to update picture. Please try again.');
-      //   }
-      // })
-      // .catch((error) => {
-      //   console.error(error);
-      //   alert('An error occurred');
-      // });
-}
-function sendData() {
-
-  const formData = new FormData();
-
-  const date = document.getElementById("date-pic");
-  const img = document.getElementById("add-pic");
-  const type = document.getElementById("type-pic");
-  const desc = document.getElementById("desc-pic");
-
-  formData.append('date',date.value);
-  formData.append('photo', img.files[0]);
-  formData.append('type', type.value);
-  formData.append('desc', desc.value);
-  formData.append('id',selected_child.id);
-
-  fetch('/addMedia', {
-    method: 'POST',
-    body: formData,
-  })
-  .then((response) => {
-    removeAddOption();
-    if (response.ok) {
-      // location.reload();
-      removeAddOption();
-      alert('Media added to the gallery');
-      populateGallery();
-      date.value = "";
-        img.value = "";
-        type.value = "";
-        desc.value = "";
-    } else {
-      alert('Failed to update picture. Please try again.');
-    }
-  })
-  .catch((error) => {
-    removeAddOption();
-    console.error(error);
-    alert('An error occurred');
-  });
-}
-
 
 
 window.addEventListener("load", () => {
@@ -1067,40 +925,7 @@ function populateGallery() {
       });
 }
 
-function sendMedicalFile() {
 
-  const formData = new FormData();
-
-  const pdf = document.getElementById("pdf");
-  console.log(pdf.files[0]);
-
-  formData.append('pdf',pdf.files[0]);
-  formData.append('id',selected_child.id);
-
-  fetch('/addMedicalFile', {
-    method: 'POST',
-    body: formData,
-  })
-      .then((response) => {
-        if (response.ok) {
-          alert('Medical file added');
-        } else {
-          alert('Failed to update picture. Please try again.');
-        }
-      })
-      .catch((error) => {
-        removeAddOption();
-        console.error(error);
-        alert('An error occurred');
-      });
-      const pdfInput = document.getElementById("pdf");
-      const dateInput = document.getElementById("data");
-      const fileDiv = document.querySelector(".show-files");
-
-      pdfInput.value = "";
-      dateInput.value = "";
-      fileDiv.innerHTML = "";
-}
 function getFilesByDate() {
   const dateInput = document.getElementById("data");
   const date = dateInput.value;
