@@ -3,6 +3,7 @@ import multer from "multer";
 import {uploadImage} from "../services/s3client.js";
 import {decryptId} from "./cookieDecrypt.js";
 import * as childModel from "../model/childModel.js";
+import {retrieveChildDataModel} from "../model/childModel.js";
 
 const storage = multer.memoryStorage();
 const upload = multer({storage});
@@ -221,4 +222,35 @@ export async function retrieveExportData(req, res) {
         res.setHeader('Content-Type', 'application/json');
         res.end(JSON.stringify({message: data.message}));
     }
+}
+
+export function retrieveChildData(req, res) {
+    let body = "";
+    req.on("data", (chunk) => {
+        body += chunk.toString();
+    });
+    req.on("end", async () => {
+        try {
+            const obj = JSON.parse(body);
+            const { user_id, child_id } = obj;
+
+            const childData = await retrieveChildDataModel(user_id, child_id);
+
+            if (!childData) {
+                res.statusCode = 404;
+                res.setHeader("Content-Type", "application/json");
+                res.end(JSON.stringify({ message: "Child not found" }));
+                return;
+            }
+
+            res.statusCode = 200;
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify(childData));
+        } catch (err) {
+            console.error(err);
+            res.statusCode = 500;
+            res.setHeader("Content-Type", "application/json");
+            res.end(JSON.stringify({ message: "Server error" }));
+        }
+    });
 }

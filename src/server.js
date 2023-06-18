@@ -3,8 +3,13 @@ import * as http from "http";
 import path, { dirname } from "path";
 import serveStatic from "serve-static";
 import { fileURLToPath } from "url";
-import { retrieveChildData } from "./controllers/childDataRetriever.js";
-import { retrieveUserData } from "./controllers/editProfileDataRetriever.js";
+import {
+  retrieveUserData,
+  updatePicture,
+  updateUserEmail,
+  updateUserName,
+  updateUserPassword
+} from "./controllers/userController.js";
 import { decryptLogin, getLoggedStatus } from "./controllers/cookieDecrypt.js";
 import mealTimeController from "./controllers/mealController.js";
 import napTimeController from "./controllers/napControler.js";
@@ -12,14 +17,9 @@ import { getRSS } from "./controllers/rssController.js";
 import { handleGetFilesByDate } from "./model/fileGetter.js";
 import * as childController from "./controllers/childController.js";
 import * as authController from "./controllers/authController.js";
-import {
-  updateUserEmail,
-  updateUserName,
-  updateUserPassword,
-  updatePicture,
-} from "./controllers/updateProfileHandler.js";
 import req_url from "url";
 import {addMedia, addMedicalFile, retrieveChildGallery} from "./controllers/filesController.js";
+import {retrieveChildData} from "./controllers/childController.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;

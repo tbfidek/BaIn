@@ -1,111 +1,104 @@
 import pool from "../database.js";
-import crypto from "crypto";
-import jwt from "jsonwebtoken";
+import { getFile } from "../services/s3client.js";
 
-export async function addUser(user){
-    const result = await pool.query('SELECT * FROM users WHERE email = $1', [user.email])
-        .then(async (result) => {
-            if (result.rows.length > 0) {
-                return { message: "Email already has an account" };
-            } else {
-                const salt = crypto.randomBytes(16).toString('hex');
-                const combinedPassword = user.password + salt;
-                const hashedPassword = crypto
-                    .createHash('sha256')
-                    .update(combinedPassword)
-                    .digest('hex');
-
-                let id_p = -1;
-                const query2 = {
-                    text: 'SELECT MAX(user_id) from users',
-                };
-                const maxResult = await pool.query(query2)
-                    .then(async (ans) => {
-                        id_p = ans.rows[0].max;
-
-                        const query = {
-                            text: 'INSERT INTO users (name, email, password, salt, profile_image) VALUES ($1, $2, $3, $4, $5)',
-                            values: [user.username, user.email, hashedPassword, salt, user.image],
-                        };
-                        const insertResult = await pool.query(query)
-                            .then(() => {
-                                // const loggedToken = jwt.sign({logged: true}, "secretKey", {expiresIn: "30d"});
-                                // const loggedCookie = `loggedToken=${loggedToken}; Path=/; HttpOnly; Secure`;
-                                // const idToken = jwt.sign({userId: id_p + 1}, "secretKey", {expiresIn: "30d"});
-                                // const tokenCookie = `idToken=${idToken}; Path=/; HttpOnly; Secure`;
-                                //
-                                // res.setHeader("Set-Cookie", [loggedCookie, tokenCookie]);
-                                return { message: 'User created successfully', id: id_p + 1 };
-                            })
-                            .catch((err) => {
-                                return {message: 'Server error'};
-                            });
-                        return insertResult;
-                    })
-                    .catch((err) => {
-                        return {message: 'Server error'};
-                    });
-                return maxResult;
-            }
-        })
-        .catch((err) => {
-            return { message: 'Server error' };
-        });
-
-    return result;
-}
-
-export async function checkLogin(userData){
-    const query = {
-        text: "SELECT * FROM users WHERE email = $1",
-        values: [userData.email],
+export async function retrieveUserDataModel(userId) {
+    const userQuery = {
+        text: "SELECT * FROM users WHERE user_id = $1",
+        values: [userId],
     };
-    const result = await pool.query(query)
-        .then((result) => {
-            if (result.rows.length === 0 || result.rows[0] === "") {
-                return { message: "Add your credentials" };
-            } else {
-                const user = result.rows[0];
-                const salt = user.salt;
-                const combinedPassword = userData.pw + salt;
-                const hashedPassword = crypto
-                    .createHash("sha256")
-                    .update(combinedPassword)
-                    .digest("hex");
-                console.log("PAROLAAAAAAAAA BD " + user.password + " PAROLAAA PRIMITA " + hashedPassword);
-                if (user.password === hashedPassword) {
-                    const loggedToken = jwt.sign({ logged: true }, "secretKey", { expiresIn: "30d" });
-                    const loggedCookie = `loggedToken=${loggedToken}; Path=/; HttpOnly; Secure`;
-                    const idToken = jwt.sign({ userId: user.user_id }, "secretKey", { expiresIn: "30d" });
-                    const tokenCookie = `idToken=${idToken}; Path=/; HttpOnly; Secure`;
-                    console.log("token " + idToken);
 
-                    jwt.verify(idToken, "secretKey", (err, decoded) => {
-                        if (err) {
-                            return { message: "Invalid token" };
-                        }
+    const childrenQuery = {
+        text: `
+            SELECT c.account_id AS child_id, c.name AS child_name
+            FROM child_accounts AS c
+            JOIN users_child_accounts AS uca ON c.account_id = uca.account_id
+            WHERE uca.user_id = $1
+        `,
+        values: [userId],
+    };
 
-                        const userId = decoded.userId;
-                        console.log("decoded token: " + userId);
+    try {
+        const [userResult, childrenResult] = await Promise.all([pool.query(userQuery), pool.query(childrenQuery)]);
 
-                    });
-                    return { message: "logged", loggedCookie: loggedCookie, tokenCookie: tokenCookie };
-                } else {
-                    return { message: "Invalid credentials" };
-                }
-            }
-        })
-        .catch((err) => {
-            return { message: "Server error" };
-        });
-    return result;
+        if (userResult.rows.length === 0) {
+            return null;
+        }
+
+        const user = userResult.rows[0];
+        const url = await getFile(user.profile_image);
+        const children = childrenResult.rows;
+
+        const userData = {
+            id: userId,
+            name: user.name,
+            email: user.email,
+            children: children,
+            profile_image: url,
+        };
+
+        return userData;
+    } catch (err) {
+        console.error(err);
+        throw new Error("Database error");
+    }
 }
 
-export function logout() {
+export function updateUserNameModel(userId, name) {
+    const query = {
+        text: "UPDATE users SET name = $1 WHERE user_id = $2",
+        values: [name, userId],
+    };
 
-    const loggedToken = jwt.sign({ logged: false }, "secretKey", { expiresIn: "30d" });
-    const loggedCookie = `loggedToken=${loggedToken}; Path=/; HttpOnly; Secure`;
-    const idToken = jwt.sign({ userId: -1 }, "secretKey", { expiresIn: "30d" });
-    const tokenCookie = `idToken=${idToken}; Path=/; HttpOnly; Secure`;
-    return {loggedCookie, tokenCookie};
+    return pool.query(query);
+}
+
+export function updateUserEmailModel(userId, email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailPattern.test(email)) {
+        return Promise.reject(new Error("Invalid email format"));
+    }
+
+    const checkQuery = {
+        text: "SELECT * FROM users WHERE email = $1",
+        values: [email],
+    };
+
+    return pool.query(checkQuery).then((result) => {
+        if (result.rows.length > 0) {
+            return Promise.reject(new Error("Email already exists"));
+        }
+
+        const updateQuery = {
+            text: "UPDATE users SET email = $1 WHERE user_id = $2",
+            values: [email, userId],
+        };
+
+        return pool.query(updateQuery);
+    });
+}
+
+export function updateUserPasswordModel(userId, password) {
+    const salt = crypto.randomBytes(16).toString("hex");
+    const combinedPassword = password + salt;
+
+    const hashedPassword = crypto.createHash("sha256").update(combinedPassword).digest("hex");
+
+    const query = {
+        text: "UPDATE users SET password = $1, salt = $2 WHERE user_id = $3",
+        values: [hashedPassword, salt, userId],
+    };
+
+    return pool.query(query);
+}
+
+export async function updatePictureModel(userId, file) {
+    const image = await uploadImage(file);
+
+    const query = {
+        text: "UPDATE users SET profile_image = $1 WHERE user_id = $2",
+        values: [image, userId],
+    };
+
+    return pool.query(query);
 }

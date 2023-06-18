@@ -1,4 +1,5 @@
 import pool from "../database.js";
+import {getFile} from "../services/s3client.js";
 
 export async function addChild (child) {
 
@@ -212,4 +213,38 @@ export async function addChildConnection(parent_id, child_id){
             return { message: 'Server error' };
         });
     return result;
+}
+
+export async function retrieveChildDataModel(user_id, child_id) {
+    const childQuery = {
+        text: "SELECT c.* FROM child_accounts c JOIN users_child_accounts u ON u.user_id = $1 WHERE c.account_id = $2",
+        values: [user_id, child_id],
+    };
+
+    try {
+        const [childResult] = await Promise.all([pool.query(childQuery)]);
+
+        if (childResult.rows.length === 0) {
+            return null;
+        }
+
+        const child = childResult.rows[0];
+        const url = await getFile(child.profile_image);
+
+        const childData = {
+            id: child.account_id,
+            name: child.name,
+            birthday: child.birthday,
+            weight: child.weight,
+            height: child.height,
+            gender: child.gender,
+            image: url,
+            image_code: child.profile_image,
+        };
+
+        return childData;
+    } catch (err) {
+        console.error(err);
+        throw new Error("Database error");
+    }
 }
