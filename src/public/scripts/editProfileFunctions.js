@@ -1,5 +1,3 @@
-
-
 let user_info = null;
 const image_input = document.querySelector("#profile-pic");
 var uploaded_image = "";
