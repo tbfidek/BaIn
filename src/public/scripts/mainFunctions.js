@@ -1056,30 +1056,34 @@ function sendMedicalFile() {
 
   formData.append('pdf',pdf.files[0]);
   formData.append('id',selected_child.id);
+  if(pdf.files[0] != null) {
+    fetch('/addMedicalFile', {
+      method: 'POST',
+      body: formData,
+    })
+        .then((response) => {
+          if (response.ok) {
+            alert('Medical file added');
+          } else {
+            alert('Failed to upload file. Please try again.');
+          }
+        })
+        .catch((error) => {
+          removeAddOption();
+          console.error(error);
+          alert('An error occurred');
+        });
+    const pdfInput = document.getElementById("pdf");
+    const dateInput = document.getElementById("data");
+    const fileDiv = document.querySelector(".show-files");
 
-  fetch('/addMedicalFile', {
-    method: 'POST',
-    body: formData,
-  })
-      .then((response) => {
-        if (response.ok) {
-          alert('Medical file added');
-        } else {
-          alert('Failed to update picture. Please try again.');
-        }
-      })
-      .catch((error) => {
-        removeAddOption();
-        console.error(error);
-        alert('An error occurred');
-      });
-      const pdfInput = document.getElementById("pdf");
-      const dateInput = document.getElementById("data");
-      const fileDiv = document.querySelector(".show-files");
-
-      pdfInput.value = "";
-      dateInput.value = "";
-      fileDiv.innerHTML = "";
+    pdfInput.value = "";
+    dateInput.value = "";
+    fileDiv.innerHTML = "";
+  }
+  else {
+    alert("no file selected");
+  }
 }
 function getFilesByDate() {
   const dateInput = document.getElementById("data");
