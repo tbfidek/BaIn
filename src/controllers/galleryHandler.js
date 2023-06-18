@@ -18,8 +18,9 @@ export function addMedia(req, res) {
         else{
             let { date,type,desc, id } = req.body;
             let image;
-            if(type === "video"){
+            if(type === "video" || type=== "audio" ){
                 image = await uploadVideo(req.file);
+                type = "video";
             }
             else{
                 image = await uploadImage(req.file);

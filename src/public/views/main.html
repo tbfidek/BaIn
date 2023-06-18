@@ -17,6 +17,9 @@
     <link rel="stylesheet" href="../css/calendar.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="../scripts/mainFunctions.js"></script>
+    <script src="/scripts/logout.js" defer></script>
+    <script src="/scripts/updateBabyProfile.js" defer></script>
+    <script src="/scripts/sendFiles.js" defer></script>
 </head>
 
 <body>
@@ -268,10 +271,14 @@
 
                         <label for="add-pic">Upload:</label><br>
                         <input type="file" id="add-pic" name="add-photo"
-                               accept="image/jpg, image/jpeg, image/png, video/mp4, .mp3,audio/*"><br>
+                               accept="image/jpg, image/jpeg, image/png, video/mp4, .mp3,audio/*"><br><br>
 
                         <label for="type-pic">Type:</label>
-                        <input type="text" id="type-pic" name="date"><br>
+                        <select id="type-pic" name="date">
+                            <option value="audio">Audio</option>
+                            <option value="video">Video</option>
+                            <option value="image">Image</option>
+                        </select><br><br>
 
                         <label for="desc-pic">Description:</label>
                         <input type="text" id="desc-pic" name="date" maxlength="50"><br>
@@ -279,28 +286,6 @@
                     </div>
 
                 </div>
-                <!--                <div class="calendar-pic">-->
-                <!--                    <div class="wrapper">-->
-                <!--                        <header>-->
-                <!--                            <p class="current-date"></p>-->
-                <!--                            <div class="icons">-->
-                <!--                                <span class="material-symbols-rounded prev">chevron_left</span>-->
-                <!--                                <span class="material-symbols-rounded next">chevron_right</span>-->
-                <!--                            </div>-->
-                <!--                        </header>-->
-                <!--                        <div class="calendar">-->
-                <!--                            <ul class="weeks">-->
-                <!--                                <li>Sun</li>-->
-                <!--                                <li>Mon</li>-->
-                <!--                                <li>Tue</li>-->
-                <!--                                <li>Wed</li>-->
-                <!--                                <li>Thu</li>-->
-                <!--                                <li>Fri</li>-->
-                <!--                                <li>Sat</li>-->
-                <!--                            </ul>-->
-                <!--                            <ul class="days"></ul>-->
-                <!--                        </div>-->
-                <!--                    </div>-->
                 <div id="gallery">
                     <h3>Choose a baby account to see the gallery and add media</h3>
 
@@ -371,7 +356,6 @@
 </div>
 
 </div>
-<script src="../scripts/calendar.js"></script>
 <script src="../scripts/mainFunctions.js"></script>
 </body>
 

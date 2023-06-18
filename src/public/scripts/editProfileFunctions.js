@@ -1,17 +1,3 @@
-function applyThemeFromLocalStorage() {
-    const element = document.body;
-    const userPreference = localStorage.getItem("theme");
-
-    if (userPreference === "dark") {
-        element.classList.add("dark-theme");
-    } else {
-        element.classList.remove("dark-theme");
-    }
-}
-
-document.addEventListener("DOMContentLoaded", function() {
-    applyThemeFromLocalStorage();
-});
 
 
 let user_info = null;
@@ -230,23 +216,3 @@ window.addEventListener('load', () => {
     setInterval(populateInfo, pollingInterval);
 });
 
-
-function logout() {
-    fetch('/logout', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
-        .then(response => {
-            if (response.ok) {
-                window.location.href = "http://localhost:3000/views/login.html";
-            } else {
-                alert('An error occurred while logging out.');
-            }
-        })
-        .catch(error => {
-            console.error(error);
-            alert('An error occurred while logging out.');
-        });
-}
