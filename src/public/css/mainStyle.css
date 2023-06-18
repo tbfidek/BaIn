@@ -223,7 +223,11 @@ textarea {
     max-height: 370px;
     overflow-y: auto;
   }
-
+  .show-files {
+    max-height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
 
 .account-overview button {
     display: flex;

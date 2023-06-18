@@ -16,6 +16,7 @@ import { updateBabyPicture, updateChild } from "./controllers/editChildData.js";
 import mealTimeController from "./controllers/mealController.js";
 import napTimeController from "./controllers/napControler.js";
 import { getRSS } from "./controllers/rssController.js";
+import { handleGetFilesByDate } from "./model/fileGetter.js";
 import {
   updateUserEmail,
   updateUserName,
@@ -124,6 +125,9 @@ const server = http.createServer((req, res) => {
   }
   if (pathname === "/rss" && req.method === "GET") {
     getRSS(req, res);
+  }
+  if (pathname.startsWith("/getFilesByDate") && req.method === "GET") {
+    handleGetFilesByDate(req, res);
   }
   if (pathname.startsWith("/meal")) {
     mealTimeController(req, res);

@@ -22,9 +22,9 @@ export function addMedicalFile(req, res) {
             let date = new Date();
 
             const query = {
-                text: 'INSERT INTO child_medical(child_account_id,file) VALUES ($1,$2)',
-                values: [id,image],
-            };
+                text: "INSERT INTO child_medical(child_account_id, file, date) VALUES ($1, $2, $3)",
+                values: [id, image, date],
+              };
             pool.query(query)
                 .then(() => {
                     console.log("galerie");
