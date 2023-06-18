@@ -73,7 +73,7 @@ export async function uploadPDF(file) {
     if(file != null) {
         const input = {
             Bucket: process.env.AWS_BUCKET_NAME,
-            Key: randomPDFName(),
+            Key: randomName(),
             Body: file.buffer,
             ContentType: file.mimetype,
         };

@@ -11,11 +11,12 @@ import { handleLogin } from "./controllers/loginHandler.js";
 import { handleDeleteChild } from "./controllers/deleteChildHandler.js";
 import { handleLogout } from "./controllers/logoutHandler.js";
 import { retrieveUserData } from "./controllers/editProfileDataRetriever.js";
-import { decryptLogin } from "./controllers/cookieDecrypt.js";
+import { decryptLogin, getLoggedStatus } from "./controllers/cookieDecrypt.js";
 import { updateBabyPicture, updateChild } from "./controllers/editChildData.js";
 import mealTimeController from "./controllers/mealController.js";
 import napTimeController from "./controllers/napControler.js";
 import { getRSS } from "./controllers/rssController.js";
+import { handleGetFilesByDate } from "./model/fileGetter.js";
 import {
   updateUserEmail,
   updateUserName,
@@ -47,7 +48,9 @@ const server = http.createServer((req, res) => {
 
   serve(req, res, () => {});
 
-
+  if( url.match(/login.html/) || url.match(/signUp.html/) || url.match(/signup.html/)){
+    getLoggedStatus(req, res);
+  }
   if (url.match(/main/) || url.match(/editProfile/)) {
     decryptLogin(req, res);
   }
@@ -124,6 +127,9 @@ const server = http.createServer((req, res) => {
   }
   if (pathname === "/rss" && req.method === "GET") {
     getRSS(req, res);
+  }
+  if (pathname.startsWith("/getFilesByDate") && req.method === "GET") {
+    handleGetFilesByDate(req, res);
   }
   if (pathname.startsWith("/meal")) {
     mealTimeController(req, res);

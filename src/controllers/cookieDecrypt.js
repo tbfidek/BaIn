@@ -23,7 +23,6 @@ export function decryptLogin(req, res) {
       return;
     }
     const logged = decoded.logged;
-    // console.log("logged:", logged);
     if (logged === false) {
       res.statusCode = 302;
       res.setHeader("Location", "/views/login.html");
@@ -52,4 +51,27 @@ export function decryptId(req, res) {
     id = decoded.userId;
   });
   return id;
+}
+
+export function getLoggedStatus(req, res){
+  const cookie = req.headers.cookie;
+  if(cookie != null) {
+    const token = cookie
+        .split(";")
+        .map((cookie) => cookie.trim())
+        .find((cookie) => cookie.startsWith("loggedToken="))
+        .split("=")[1];
+
+    jwt.verify(token, "secretKey", (err, decoded) => {
+      if (err) {
+        return;
+      }
+      const logged = decoded.logged;
+      if(logged === true){
+        res.statusCode = 302;
+        res.setHeader("Location", "/views/main.html");
+        res.end();
+      }
+    });
+  }
 }

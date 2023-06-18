@@ -744,6 +744,13 @@ function populateChildData(child_id) {
           document.getElementById("kid-pic").src = "/images/user_img.png";
           document.getElementById("kid-pic-mobile").src = "/images/user_img.png";
         }
+        const pdfInput = document.getElementById("pdf");
+        const dateInput = document.getElementById("data");
+        const fileDiv = document.querySelector(".show-files");
+
+      pdfInput.value = "";
+      dateInput.value = "";
+      fileDiv.innerHTML = "";
         showOverview();
         populateMealTable();
         populateNapTable();
@@ -1086,8 +1093,58 @@ function sendMedicalFile() {
         console.error(error);
         alert('An error occurred');
       });
+      const pdfInput = document.getElementById("pdf");
+      const dateInput = document.getElementById("data");
+      const fileDiv = document.querySelector(".show-files");
+
+      pdfInput.value = "";
+      dateInput.value = "";
+      fileDiv.innerHTML = "";
+}
+function getFilesByDate() {
+  const dateInput = document.getElementById("data");
+  const date = dateInput.value;
+
+  if (selected_child != null) {
+    if (!date) {
+      alert("Please select a date.");
+      return;
+    }
+    fetch(`/getFilesByDate/${selected_child.id}/${date}`, {
+      method: "GET",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const fileDiv = document.querySelector(".show-files");
+        fileDiv.innerHTML = "";
+        if (data.message) {
+          alert(data.message);
+          return;
+        }
+        data.forEach((file) => {
+          const button = document.createElement("button");
+          button.textContent = file.filename;
+          button.addEventListener("click", () => {
+            window.open(file.url, "_blank");
+          });
+
+          fileDiv.appendChild(button);
+        });
+        dateInput.value = "";
+      })
+      .catch((error) => {
+        console.error(error);
+        alert(error.message);
+      });
+  } else {
+    alert("Please select a child first.");
+    return;
+  }
 }
 
+document.addEventListener("DOMContentLoaded", (event) => {
+  document.getElementById("data").addEventListener("change", getFilesByDate);
+});
 function populateTimeline() {
   const formData = new FormData();
   formData.append('id', selected_child.id);
