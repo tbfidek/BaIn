@@ -253,6 +253,8 @@ function showAddOption() {
 function removeAddOption() {
   let gallery = document.querySelector(".form-add-image");
   gallery.style.display = "none";
+  let sal = document.querySelector("#gallery");
+  sal.style.display = "";
 }
 function showAddMeal() {
   let food = document.querySelector(".form-table");
@@ -790,6 +792,7 @@ window.addEventListener("load", () => {
             });
         await new Promise((r) => setTimeout(r, 500));
       }
+      populateUserData();
     } else if(jsonFiles[0].fileType === "csv"){
       const rows = jsonFiles[0].content.split('\n');
 
@@ -855,6 +858,7 @@ window.addEventListener("load", () => {
             });
         await new Promise((r) => setTimeout(r, 500));
       }
+      populateUserData();
     } else {
       alert("Invalid file type!");
       return;

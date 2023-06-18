@@ -3,20 +3,15 @@ import * as http from "http";
 import path, { dirname } from "path";
 import serveStatic from "serve-static";
 import { fileURLToPath } from "url";
-import { handleSignUp } from "./controllers/signUpHandler.js";
 import { retrieveChildData } from "./controllers/childDataRetriever.js";
-import { handleAddChild } from "./controllers/addChildHandler.js";
-import { handleAddChildToParent } from "./controllers/addChildToParentHandler.js";
-import { handleLogin } from "./controllers/loginHandler.js";
-import { handleDeleteChild } from "./controllers/deleteChildHandler.js";
-import { handleLogout } from "./controllers/logoutHandler.js";
 import { retrieveUserData } from "./controllers/editProfileDataRetriever.js";
 import { decryptLogin, getLoggedStatus } from "./controllers/cookieDecrypt.js";
-import { updateBabyPicture, updateChild } from "./controllers/editChildData.js";
 import mealTimeController from "./controllers/mealController.js";
 import napTimeController from "./controllers/napControler.js";
 import { getRSS } from "./controllers/rssController.js";
 import { handleGetFilesByDate } from "./model/fileGetter.js";
+import * as childController from "./controllers/childController.js";
+import * as authController from "./controllers/authController.js";
 import {
   updateUserEmail,
   updateUserName,
@@ -27,8 +22,6 @@ import req_url from "url";
 import { addMedia } from "./controllers/galleryHandler.js";
 import { retrieveChildGallery } from "./controllers/retrieveChildGallery.js";
 import { addMedicalFile } from "./controllers/addMedicalFile.js";
-import { retrieveExportData } from "./controllers/retrieveExportData.js";
-import { handleImportChild } from "./controllers/importChildData.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const port = 3000;
@@ -56,23 +49,23 @@ const server = http.createServer((req, res) => {
   }
 
   if (req.method === "POST" && pathname === "/signup") {
-    handleSignUp(req, res);
+    authController.handleSignUp(req, res);
   }
 
   if (req.method === "POST" && pathname === "/addchild") {
-    handleAddChild(req, res);
+    childController.handleAddChild(req, res);
   }
 
   if (req.method === "POST" && pathname === "/addchildtoparent") {
-    handleAddChildToParent(req, res);
+    childController.handleAddChildToParent(req, res);
   }
 
   if (req.method === "POST" && pathname === "/login") {
-      handleLogin(req, res);
+    authController.handleLogin(req, res);
 
   }
   if (req.method === "POST" && pathname === "/logout") {
-    handleLogout(req, res);
+    authController.handleLogout(req, res);
   }
   if (req.method === "GET" && pathname === "/editProfile") {
     retrieveUserData(req, res);
@@ -99,19 +92,19 @@ const server = http.createServer((req, res) => {
     updateUserPassword(req, res);
   }
   if (req.method === "POST" && pathname === "/addChild") {
-    handleAddChildToParent(req, res);
+    childController.handleAddChildToParent(req, res);
   }
   if (req.method === "POST" && pathname === "/removeChild") {
-    handleDeleteChild(req, res);
+    childController.handleDeleteChild(req, res);
   }
   if (req.method === "POST" && pathname === "/updatePicture") {
     updatePicture(req, res);
   }
   if (req.method === "POST" && pathname === "/updateBabyPicture") {
-    updateBabyPicture(req, res);
+    childController.updateBabyPicture(req, res);
   }
   if (req.method === "POST" && pathname === "/editChildData") {
-    updateChild(req, res);
+    childController.handleUpdateChild(req, res);
   }
   if (req.method === "POST" && pathname === "/addMedia") {
     addMedia(req, res);
@@ -120,10 +113,10 @@ const server = http.createServer((req, res) => {
     addMedicalFile(req, res);
   }
   if (req.method === "GET" && pathname === "/retrieveExportData") {
-    retrieveExportData(req, res);
+    childController.retrieveExportData(req, res);
   }
   if (req.method === "POST" && pathname === "/importChildData") {
-    handleImportChild(req, res);
+    childController.handleImportChild(req, res);
   }
   if (pathname === "/rss" && req.method === "GET") {
     getRSS(req, res);

@@ -8,37 +8,47 @@ function sendData() {
     const type = document.getElementById("type-pic");
     const desc = document.getElementById("desc-pic");
     console.log(type.value);
+    console.log(date.value);
+    console.log(desc.value);
 
-    formData.append('date',date.value);
-    formData.append('photo', img.files[0]);
-    formData.append('type', type.value);
-    formData.append('desc', desc.value);
-    formData.append('id',selected_child.id);
+    if(img.files[0] != null){
+        if(date.value != "" && desc.value != ""){
+            formData.append('date',date.value);
+            formData.append('photo', img.files[0]);
+            formData.append('type', type.value);
+            formData.append('desc', desc.value);
+            formData.append('id',selected_child.id);
 
-    fetch('/addMedia', {
-        method: 'POST',
-        body: formData,
-    })
-        .then((response) => {
-            removeAddOption();
-            if (response.ok) {
-                // location.reload();
-                removeAddOption();
-                alert('Media added to the gallery');
-                populateGallery();
-                date.value = "";
-                img.value = "";
-                type.value = "";
-                desc.value = "";
-            } else {
-                alert('Failed to update picture. Please try again.');
-            }
-        })
-        .catch((error) => {
-            removeAddOption();
-            console.error(error);
-            alert('An error occurred');
-        });
+            fetch('/addMedia', {
+                method: 'POST',
+                body: formData,
+            })
+                .then((response) => {
+                    //removeAddOption();
+                    if (response.ok) {
+                        // location.reload();
+                        removeAddOption();
+                        showGallery();
+                        alert('Media added to the gallery');
+                        date.value = "";
+                        img.value = "";
+                        type.value = "";
+                        desc.value = "";
+                    } else {
+                        alert('Failed to update picture. Please try again.');
+                    }
+                })
+                .catch((error) => {
+                    removeAddOption();
+                    console.error(error);
+                    alert('An error occurred.');
+                });
+        } else {
+            alert("Please fill all fields.");
+        }
+    } else {
+        alert("No media selected.");
+    }
 }
 
 //medical files
