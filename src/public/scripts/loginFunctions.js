@@ -16,7 +16,7 @@ function login() {
     })
         .then(response => {
             if (response.ok) {
-                window.location.replace( "/views/main.html");
+                window.location.href =  "/views/main.html";
             } else {
                 alert('Wrong credentials! Try Again');
             }
