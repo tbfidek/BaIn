@@ -8,3 +8,6 @@ relationarea cu alti copii (e.g., verisori, colegi de gradinita/scoala) etc. Apl
 a celor mai importante momente surprinse referitoare la fiecare copil in parte, cu posibilitatea partajarii celor mai semnificative 
 momente in cadrul unei aplicatii sociale sau via un flux de stiri RSS. Functionalitatile sistemului vor fi expuse si prin 
 intermediul unui API Web REST/GraphQL. 
+
+Prezentarea video: https://youtu.be/-6SSC72-_wE
+
